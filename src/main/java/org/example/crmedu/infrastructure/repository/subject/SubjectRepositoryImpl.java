@@ -9,6 +9,9 @@ import org.example.crmedu.infrastructure.mapping.SubjectEntityMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
+/**
+ * Implementation of the {@link SubjectRepository} interface using JPA. Provides methods for managing {@link Subject} entities in the database.
+ */
 @Component
 @RequiredArgsConstructor
 public class SubjectRepositoryImpl implements SubjectRepository {

@@ -10,6 +10,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+/**
+ * JPA-entity representing a Subject.
+ */
 @Getter
 @Setter
 @Accessors(chain = true)

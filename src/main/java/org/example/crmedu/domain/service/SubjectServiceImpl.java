@@ -8,6 +8,9 @@ import org.example.crmedu.domain.model.Subject;
 import org.example.crmedu.domain.repository.SubjectRepository;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of the {@link SubjectService} interface. Provides business logic for managing {@link Subject} entities.
+ */
 @Service
 @RequiredArgsConstructor
 public class SubjectServiceImpl implements SubjectService {
