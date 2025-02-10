@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-subjects-table
+      author: soudagh
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_subject
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: organization_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_subject_organization_id_organization
+                    references: organization(id)
+            schemaName: crmedu
+            tableName: subject
+            remarks: table for persist subjects
+        - addUniqueConstraint:
+            tableName: subject
+            columnNames: name, organization_id
+            constraintName: uq_subject_name_organization

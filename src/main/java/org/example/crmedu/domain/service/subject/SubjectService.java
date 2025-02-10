@@ -13,7 +13,8 @@ public interface SubjectService {
    *
    * @param subject the subject to create
    * @return the created {@link Subject}
-   * @throws org.example.crmedu.domain.exception.EntityExistsException if a subject with the same name already exists
+   * @throws org.example.crmedu.domain.exception.EntityExistsException if a subject with the same name already exists or if an organization, which subject
+   * belongs, not exist
    */
   Subject create(Subject subject);
 
@@ -40,9 +41,9 @@ public interface SubjectService {
    *
    * @param subject the updated subject data
    * @param id the unique identifier of the subject to update
-   * @throws org.example.crmedu.domain.exception.EntityNotFoundException if no subject with the given ID is found
+   * @throws org.example.crmedu.domain.exception.EntityNotFoundException if no subject with the given ID is found or if an organization, which subject belongs,
+   * not exist
    * @throws org.example.crmedu.domain.exception.EntityExistsException if a subject with the same name already exists
-   *
    */
   void update(Subject subject, Long id);
 

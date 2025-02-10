@@ -45,6 +45,9 @@ public class OrganizationEntity {
   @OneToMany(mappedBy = "organization")
   private List<SubjectEntity> subjects;
 
+  @OneToMany(mappedBy = "organization")
+  private List<UserEntity> users;
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

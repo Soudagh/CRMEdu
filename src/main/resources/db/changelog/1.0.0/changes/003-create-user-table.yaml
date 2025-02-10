@@ -1,10 +1,9 @@
 databaseChangeLog:
   - changeSet:
-      id: 001-create-tables
+      id: 003-create-user-table
       author: soudagh
       changes:
         - createTable:
-            tableName: organization
             columns:
               - column:
                   name: id
@@ -13,21 +12,22 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: pk_organization
+                    primaryKeyName: pk_user
+              - column:
+                  name: surname
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
               - column:
                   name: name
-                  type: varchar(100)
-                  constraints:
-                    nullable: false
-                    unique: true
-              - column:
-                  name: specialization
-                  type: varchar(100)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: country
                   type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: patronymic
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
               - column:
                   name: email
                   type: varchar(254)
@@ -40,30 +40,35 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     unique: true
-        - createTable:
-            tableName: subject
-            columns:
               - column:
-                  name: id
-                  type: bigint
-                  autoIncrement: true
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: pk_subject
-              - column:
-                  name: name
+                  name: timezone
                   type: varchar(50)
+                  defaultValue: 'UTC'
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
                   constraints:
                     nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: roles
+                  type: jsonb
+                  defaultValue: '["USER"]'
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: 'ACTIVE'
               - column:
                   name: organization_id
                   type: bigint
                   constraints:
-                    nullable: false
-                    foreignKeyName: fk_subject_organization_id_organization
+                    nullable: true
+                    foreignKeyName: fk_user_organization_id_organization
                     references: organization(id)
-        - addUniqueConstraint:
-            tableName: subject
-            columnNames: name, organization_id
-            constraintName: uq_subject_name_organization
+            schemaName: crmedu
+            tableName: user
+            remarks: table for persist users
