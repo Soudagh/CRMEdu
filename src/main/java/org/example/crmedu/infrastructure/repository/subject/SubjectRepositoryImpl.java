@@ -34,8 +34,8 @@ public class SubjectRepositoryImpl implements SubjectRepository {
   }
 
   @Override
-  public boolean existsByName(Subject subject) {
-    return subjectRepository.existsByName(subject.getName());
+  public boolean existsByNameAndOrganizationId(Subject subject) {
+    return subjectRepository.existsByNameAndOrganizationId(subject.getName(), subject.getOrganization().getId());
   }
 
   @Override

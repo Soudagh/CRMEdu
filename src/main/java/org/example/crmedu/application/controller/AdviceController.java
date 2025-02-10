@@ -1,13 +1,19 @@
 package org.example.crmedu.application.controller;
 
+import jakarta.validation.ConstraintViolationException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.example.crmedu.application.dto.error.SystemError;
+import org.example.crmedu.application.dto.error.ValidationErrorResponse;
+import org.example.crmedu.application.dto.error.Violation;
 import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -39,6 +45,41 @@ public class AdviceController {
   public ResponseEntity<SystemError> handleEntityExistsException(EntityExistsException e) {
     var error = getSystemError(e);
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+  }
+
+  /**
+   * Handles a {@link ConstraintViolationException} and returns an HTTP 400 Bad Request response.
+   *
+   * @param e the exception containing validation errors
+   * @return a {@link ResponseEntity} containing a {@link ValidationErrorResponse} with error details
+   */
+  @ExceptionHandler(ConstraintViolationException.class)
+  public ResponseEntity<ValidationErrorResponse> handleConstraintValidationException(ConstraintViolationException e) {
+    final List<Violation> violations = e.getConstraintViolations().stream()
+        .map(violation -> new Violation(
+                violation.getPropertyPath().toString(),
+                violation.getMessage()
+            )
+        ).toList();
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ValidationErrorResponse(violations));
+  }
+
+  /**
+   * Handles a {@link MethodArgumentNotValidException} and returns an HTTP 400 Bad Request response.
+   * <p>
+   * This exception is thrown when validation on an argument annotated with {@code @Valid} fails. The method extracts field validation errors and returns them
+   * in a structured response.
+   * </p>
+   *
+   * @param e the exception containing validation errors
+   * @return a {@link ResponseEntity} containing a {@link ValidationErrorResponse} with the list of validation violations
+   */
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public ResponseEntity<ValidationErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+    final List<Violation> violations = e.getBindingResult().getFieldErrors().stream()
+        .map(error -> new Violation(error.getField(), error.getDefaultMessage()))
+        .collect(Collectors.toList());
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ValidationErrorResponse(violations));
   }
 
   /**

@@ -13,10 +13,11 @@ import org.springframework.stereotype.Repository;
 public interface DataSubjectRepository extends JpaRepository<SubjectEntity, Long>, PagingAndSortingRepository<SubjectEntity, Long> {
 
   /**
-   * Checks whether a subject with the specified name exists.
+   * Checks whether a subject with the specified name that belongs to certain organization exists.
    *
    * @param name the name of the subject
+   * @param id the unique identifier of the organization
    * @return {@code true} if a subject with this name exists. otherwise {@code false}
    */
-  boolean existsByName(String name);
+  boolean existsByNameAndOrganizationId(String name, Long id);
 }

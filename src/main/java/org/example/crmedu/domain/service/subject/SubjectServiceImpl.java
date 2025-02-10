@@ -1,10 +1,12 @@
-package org.example.crmedu.domain.service;
+package org.example.crmedu.domain.service.subject;
 
 import lombok.RequiredArgsConstructor;
 import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
+import org.example.crmedu.domain.model.Organization;
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.Subject;
+import org.example.crmedu.domain.repository.OrganizationRepository;
 import org.example.crmedu.domain.repository.SubjectRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +19,15 @@ public class SubjectServiceImpl implements SubjectService {
 
   private final SubjectRepository subjectRepository;
 
+  private final OrganizationRepository organizationRepository;
+
   @Override
   public Subject create(Subject subject) {
-    if (subjectRepository.existsByName(subject)) {
-      throw new EntityExistsException(Subject.class, "name");
+    checkSubjectConstraints(subject);
+    if (organizationRepository.existsById(subject.getOrganization().getId())) {
+      return subjectRepository.save(subject);
     }
-    return subjectRepository.save(subject);
+    throw new EntityNotFoundException(Organization.class, subject.getOrganization().getId());
   }
 
   @Override
@@ -40,14 +45,21 @@ public class SubjectServiceImpl implements SubjectService {
   public void update(Subject subject, Long id) {
     var subjectEntity = subjectRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException(Subject.class, id));
+    checkSubjectConstraints(subject);
     subjectRepository.update(subject
         .setId(subjectEntity.getId())
-        .setName(subject.getName())
+        .setOrganization(subjectEntity.getOrganization())
     );
   }
 
   @Override
   public void delete(Long id) {
     subjectRepository.delete(id);
+  }
+
+  private void checkSubjectConstraints(Subject subject) {
+    if (subjectRepository.existsByNameAndOrganizationId(subject)) {
+      throw new EntityExistsException(Subject.class, "name and organization");
+    }
   }
 }

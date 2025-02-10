@@ -12,13 +12,13 @@ import org.mapstruct.Mapper;
 /**
  * A mapper interface for converting between Subject domain model and its corresponding DTOs. Uses MapStruct for automatic mapping.
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = OrganizationDTOMapper.class)
 public interface SubjectDTOMapper {
 
   /**
-   * Converts a {@link Subject} entity to a {@link GetSubjectResponse} DTO.
+   * Converts a {@link Subject} domain model to a {@link GetSubjectResponse} DTO.
    *
-   * @param subject the subject entity to convert
+   * @param subject the subject model to convert
    * @return the corresponding {@link GetSubjectResponse} DTO
    */
   GetSubjectResponse subjectToGetSubjectResponse(Subject subject);
@@ -32,26 +32,26 @@ public interface SubjectDTOMapper {
   PageDTO<GetSubjectResponse> pageSubjectToPageDTO(Page<Subject> subjectPage);
 
   /**
-   * Converts a {@link Subject} entity to a {@link CreateSubjectResponse} DTO.
+   * Converts a {@link Subject} model to a {@link CreateSubjectResponse} DTO.
    *
-   * @param subject the created subject entity
+   * @param subject the created subject model
    * @return the corresponding {@link CreateSubjectResponse} DTO
    */
   CreateSubjectResponse subjectToCreateSubjectResponse(Subject subject);
 
   /**
-   * Converts an {@link UpdateSubjectRequest} DTO to a {@link Subject} entity.
+   * Converts an {@link UpdateSubjectRequest} DTO to a {@link Subject} model.
    *
-   * @param updateSubjectRequest the DTO containing updated subject details
-   * @return the corresponding {@link Subject} entity
+   * @param request the DTO containing updated subject details
+   * @return the corresponding {@link Subject} model
    */
-  Subject updateRequestToSubject(UpdateSubjectRequest updateSubjectRequest);
+  Subject updateRequestToSubject(UpdateSubjectRequest request);
 
   /**
-   * Converts a {@link CreateSubjectRequest} DTO to a {@link Subject} entity.
+   * Converts a {@link CreateSubjectRequest} DTO to a {@link Subject} model.
    *
-   * @param createSubjectRequest the DTO containing subject creation details
-   * @return the corresponding {@link Subject} entity
+   * @param request the DTO containing subject creation details
+   * @return the corresponding {@link Subject} model
    */
-  Subject createRequestToSubject(CreateSubjectRequest createSubjectRequest);
+  Subject createRequestToSubject(CreateSubjectRequest request);
 }

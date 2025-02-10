@@ -1,4 +1,4 @@
-package org.example.crmedu.domain.service;
+package org.example.crmedu.domain.service.subject;
 
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.Subject;
@@ -47,7 +47,7 @@ public interface SubjectService {
   void update(Subject subject, Long id);
 
   /**
-   * Delete a subject by its unique identifier.
+   * Deletes a subject by its unique identifier.
    *
    * @param id the unique identifier of the subject to delete
    */

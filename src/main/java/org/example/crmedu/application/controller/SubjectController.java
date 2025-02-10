@@ -1,5 +1,6 @@
 package org.example.crmedu.application.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.crmedu.application.dto.PageDTO;
 import org.example.crmedu.application.dto.request.subject.CreateSubjectRequest;
@@ -7,7 +8,7 @@ import org.example.crmedu.application.dto.request.subject.UpdateSubjectRequest;
 import org.example.crmedu.application.dto.response.subject.CreateSubjectResponse;
 import org.example.crmedu.application.dto.response.subject.GetSubjectResponse;
 import org.example.crmedu.application.mapping.SubjectDTOMapper;
-import org.example.crmedu.domain.service.SubjectService;
+import org.example.crmedu.domain.service.subject.SubjectService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * REST controller for managing subjects. Provides endpoints to create, retrieve, update, and delete subjects.
+ * REST controller for managing subjects. Provides endpoints to create, retrieve, update and delete subjects.
  */
 @RestController
 @RequestMapping("api/v1/subjects")
@@ -63,7 +64,7 @@ public class SubjectController {
    * @return a {@link ResponseEntity} with the created subject data in {@link CreateSubjectResponse}
    */
   @PostMapping
-  public ResponseEntity<CreateSubjectResponse> createSubject(@RequestBody CreateSubjectRequest request) {
+  public ResponseEntity<CreateSubjectResponse> createSubject(@Valid @RequestBody CreateSubjectRequest request) {
     var subject = subjectService.create(subjectMapper.createRequestToSubject(request));
     return ResponseEntity.status(HttpStatus.CREATED)
         .body(subjectMapper.subjectToCreateSubjectResponse(subject));
@@ -77,7 +78,7 @@ public class SubjectController {
    * @return a {@link ResponseEntity}
    */
   @PutMapping("/{id}")
-  public ResponseEntity<Void> updateSubject(@PathVariable Long id, @RequestBody UpdateSubjectRequest request) {
+  public ResponseEntity<Void> updateSubject(@PathVariable Long id, @Valid @RequestBody UpdateSubjectRequest request) {
     subjectService.update(subjectMapper.updateRequestToSubject(request), id);
     return ResponseEntity.ok().build();
   }

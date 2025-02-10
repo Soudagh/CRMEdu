@@ -26,12 +26,12 @@ public interface SubjectRepository {
   Optional<Subject> findById(Long id);
 
   /**
-   * Checks whether a subject with the same name already exists.
+   * Checks whether a subject with the same name that belongs to certain organization already exists.
    *
    * @param subject the subject to check
    * @return {@code true} if a subject with the same name exists, otherwise {@code false}
    */
-  boolean existsByName(Subject subject);
+  boolean existsByNameAndOrganizationId(Subject subject);
 
   /**
    * Retrieves a paginated list of subjects.
