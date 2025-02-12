@@ -1,5 +1,6 @@
 package org.example.crmedu.application.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.crmedu.application.dto.PageDTO;
 import org.example.crmedu.application.dto.request.tutor.CreateTutorRequest;
@@ -53,7 +54,7 @@ public class TutorController {
    * @return a {@link ResponseEntity} with the created subject data in {@link CreateUserResponse}
    */
   @PostMapping
-  public ResponseEntity<CreateTutorResponse> createTutors(@RequestBody CreateTutorRequest request) {
+  public ResponseEntity<CreateTutorResponse> createTutors(@Valid @RequestBody CreateTutorRequest request) {
     var tutor = tutorService.create(mapper.createRequestToTutor(request));
     return ResponseEntity.status(HttpStatus.CREATED).body(mapper.tutorToCreateResponse(tutor));
   }
@@ -77,7 +78,7 @@ public class TutorController {
    * @return a {@link ResponseEntity}
    */
   @PutMapping("/{id}")
-  public ResponseEntity<Void> updateTutor(@RequestBody UpdateTutorRequest request, @PathVariable Long id) {
+  public ResponseEntity<Void> updateTutor(@Valid @RequestBody UpdateTutorRequest request, @PathVariable Long id) {
     tutorService.update(mapper.updateRequestToUser(request), id);
     return ResponseEntity.ok().build();
   }
