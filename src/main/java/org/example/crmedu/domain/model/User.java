@@ -1,8 +1,6 @@
 package org.example.crmedu.domain.model;
 
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.example.crmedu.domain.enums.Role;
@@ -63,7 +61,7 @@ public class User {
   /**
    * The set of the user roles in the system.
    */
-  private Set<Role> roles = new HashSet<>();
+  private Role role;
 
   /**
    * Current status of user's account in the system.

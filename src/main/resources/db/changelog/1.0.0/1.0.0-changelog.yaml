@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/1.0.0/changes/002-create-subject-table.yaml
   - include:
       file: db/changelog/1.0.0/changes/003-create-user-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/004-create-tutor-table.yaml

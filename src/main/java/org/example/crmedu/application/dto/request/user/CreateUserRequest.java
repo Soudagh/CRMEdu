@@ -8,6 +8,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.example.crmedu.domain.enums.Role;
 
 /**
  * A DTO representing a request to create a new User.
@@ -33,6 +34,7 @@ public class CreateUserRequest {
   private String email;
 
   @Pattern(regexp = "^\\+\\d{1,3}\\d{10}$", message = "Invalid phone number. Expected format: +[country code]XXXXXXXXXX")
+  @NotEmpty(message = "Phone cannot be empty")
   private String phone;
 
   @Size(max = 50, message = "Timezone must be at most 50 characters")
@@ -40,4 +42,6 @@ public class CreateUserRequest {
 
   @PositiveOrZero
   private Long organization;
+
+  private Role role;
 }

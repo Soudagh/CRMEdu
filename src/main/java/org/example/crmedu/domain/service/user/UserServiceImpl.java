@@ -1,12 +1,15 @@
 package org.example.crmedu.domain.service.user;
 
 import lombok.RequiredArgsConstructor;
+import org.example.crmedu.domain.enums.Role;
 import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
 import org.example.crmedu.domain.model.Organization;
 import org.example.crmedu.domain.model.Page;
+import org.example.crmedu.domain.model.Tutor;
 import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.repository.OrganizationRepository;
+import org.example.crmedu.domain.repository.TutorRepository;
 import org.example.crmedu.domain.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +22,19 @@ public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
 
+  private final TutorRepository tutorRepository;
+
   private final OrganizationRepository organizationRepository;
 
   @Override
   public User create(User user) {
     checkUserConstraints(user);
     if (organizationRepository.existsById(user.getOrganization().getId())) {
-      return userRepository.save(user);
+      var createdUser = userRepository.save(user);
+      if (createdUser.getRole().equals(Role.TUTOR)) {
+        createTutor(createdUser);
+      }
+      return createdUser;
     }
     throw new EntityNotFoundException(Organization.class, user.getOrganization().getId());
   }
@@ -56,6 +65,11 @@ public class UserServiceImpl implements UserService {
     throw new EntityNotFoundException(User.class, id);
   }
 
+  @Override
+  public void delete(Long id) {
+    userRepository.delete(id);
+  }
+
   private void checkUserConstraints(User user) {
     if (userRepository.existsByEmail(user)) {
       throw new EntityExistsException(User.class, "email");
@@ -72,8 +86,7 @@ public class UserServiceImpl implements UserService {
     return organizationRepository.existsById(organization.getId());
   }
 
-  @Override
-  public void delete(Long id) {
-    userRepository.delete(id);
+  private void createTutor(User user) {
+    tutorRepository.save(new Tutor().setUser(user));
   }
 }

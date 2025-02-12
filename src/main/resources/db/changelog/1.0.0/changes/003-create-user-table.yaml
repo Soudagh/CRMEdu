@@ -55,9 +55,9 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: roles
-                  type: jsonb
-                  defaultValue: '["USER"]'
+                  name: role
+                  type: varchar(20)
+                  defaultValue: 'USER'
               - column:
                   name: status
                   type: varchar(20)

@@ -43,6 +43,14 @@ public interface UserRepository {
   boolean existsByPhone(User user);
 
   /**
+   * Checks whether a user with certain id exists.
+   *
+   * @param user the user to check
+   * @return {@code true} if a user with the same phone exists, otherwise {@code false}
+   */
+  boolean existsById(User user);
+
+  /**
    * Saves a new user or updates an existing one.
    *
    * @param user the user to save

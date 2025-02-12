@@ -9,7 +9,7 @@ import org.example.crmedu.domain.model.User;
 public interface UserService {
 
   /**
-   * Creates a new user.
+   * Creates a new user. If user has role 'tutor', a tutor corresponding to that user is also created.
    *
    * @param user the user to create
    * @return the created {@link User}

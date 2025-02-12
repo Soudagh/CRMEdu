@@ -52,6 +52,11 @@ public class UserRepositoryImpl implements UserRepository {
   }
 
   @Override
+  public boolean existsById(User user) {
+    return userRepository.existsById(user.getId());
+  }
+
+  @Override
   public User save(User user) {
     var requestedUserEntity = userMapper.userToUserEntity(user);
     var responsedUserEntity = userRepository.save(requestedUserEntity);

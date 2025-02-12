@@ -17,7 +17,7 @@ public interface DataSubjectRepository extends JpaRepository<SubjectEntity, Long
    *
    * @param name the name of the subject
    * @param id the unique identifier of the organization
-   * @return {@code true} if a subject with this name exists. otherwise {@code false}
+   * @return {@code true} if a subject with this name exists. Otherwise {@code false}
    */
   boolean existsByNameAndOrganizationId(String name, Long id);
 }

@@ -2,6 +2,8 @@ package org.example.crmedu.infrastructure.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,16 +12,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.example.crmedu.domain.enums.Role;
+import org.example.crmedu.domain.enums.UserStatus;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.type.SqlTypes;
 
 /**
  * JPA-repository representing an User
@@ -52,7 +51,7 @@ public class UserEntity {
   private String phone;
 
   @Column(name = "timezone", nullable = false)
-  private String timezone;
+  private String timezone = "UTC";
 
   @CreationTimestamp
   @Column(name = "created_at", nullable = false)
@@ -62,9 +61,13 @@ public class UserEntity {
   @Column(name = "updated_at", nullable = false)
   private ZonedDateTime updatedAt;
 
-  @JdbcTypeCode(SqlTypes.JSON)
-  @Column(name = "roles", columnDefinition = "jsonb")
-  private Set<Role> roles = new HashSet<>();
+  @Enumerated(EnumType.STRING)
+  @Column(name = "role")
+  private Role role = Role.USER;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "status")
+  private UserStatus status = UserStatus.PENDING;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "organization_id")

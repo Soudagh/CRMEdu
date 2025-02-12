@@ -1,15 +1,13 @@
 package org.example.crmedu.application.dto.response.user;
 
 import java.time.ZonedDateTime;
-import java.util.Set;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.example.crmedu.domain.enums.Role;
 import org.example.crmedu.domain.enums.UserStatus;
-import org.example.crmedu.domain.model.Organization;
 
 /**
- *
+ * A DTO representing the response when retrieving a User.
  */
 @Data
 @Accessors(chain = true)
@@ -33,9 +31,9 @@ public class GetUserResponse {
 
   private ZonedDateTime updatedAt;
 
-  private Set<Role> roles;
+  private Role role;
 
   private UserStatus status;
 
-  private Organization organization;
+  private Long organization;
 }
