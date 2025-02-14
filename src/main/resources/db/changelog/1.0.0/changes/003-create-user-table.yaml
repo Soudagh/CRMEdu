@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-user-table
+      author: soudagh
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_user
+              - column:
+                  name: surname
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: patronymic
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: email
+                  type: varchar(254)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: phone
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: timezone
+                  type: varchar(50)
+                  defaultValue: 'UTC'
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(20)
+                  defaultValue: 'USER'
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: 'ACTIVE'
+              - column:
+                  name: organization_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_user_organization_id_organization
+                    references: organization(id)
+            schemaName: crmedu
+            tableName: user
+            remarks: table for persist users
