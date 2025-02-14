@@ -1,4 +1,4 @@
-package org.example.crmedu.domain.model;
+package org.example.crmedu.domain.enums;
 
 public enum DaysOfWeek {
   MONDAY,

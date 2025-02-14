@@ -57,7 +57,7 @@ public interface OrganizationDTOMapper {
   CreateOrganizationResponse organizationToCreateResponse(Organization organization);
 
   /**
-   * Converts the unique identifier of the organization of the subject to {@link Organization} model.
+   * Converts the unique identifier of the organization to {@link Organization} model.
    *
    * @param id the unique identifier of organization
    * @return the corresponding {@link Organization} model

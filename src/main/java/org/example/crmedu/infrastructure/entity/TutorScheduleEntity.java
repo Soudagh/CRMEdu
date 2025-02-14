@@ -7,7 +7,7 @@ import jakarta.persistence.Enumerated;
 import java.time.OffsetTime;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.crmedu.domain.model.DaysOfWeek;
+import org.example.crmedu.domain.enums.DaysOfWeek;
 
 @Getter
 @Setter

@@ -8,6 +8,7 @@ import org.example.crmedu.application.dto.response.subject.GetSubjectResponse;
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.Subject;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * A mapper interface for converting between Subject domain model and its corresponding DTOs. Uses MapStruct for automatic mapping.
@@ -21,6 +22,7 @@ public interface SubjectDTOMapper {
    * @param subject the subject model to convert
    * @return the corresponding {@link GetSubjectResponse} DTO
    */
+  @Mapping(target = "organization", source = "subject.organization.id")
   GetSubjectResponse subjectToGetSubjectResponse(Subject subject);
 
   /**
