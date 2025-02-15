@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: crmedu
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    version: openapi_3_0
+  swagger-ui:
+    path: /swagger-ui.html
