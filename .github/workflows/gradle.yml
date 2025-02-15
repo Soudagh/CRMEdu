@@ -90,6 +90,9 @@ jobs:
       - name: Generate OpenAPI spec
         run: ./gradlew generateOpenApiSpec
 
+      - name: Fetch OpenAPI spec
+        run: curl -o build/generated/openapi.json http://localhost:8080/v3/api-docs
+
       - name: Convert OpenAPI spec
         uses: Legion2/swagger-ui-action@v1
         with:
