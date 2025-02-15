@@ -72,6 +72,8 @@ jobs:
       #
       # - name: Build with Gradle 8.9
       #   run: gradle build
+      - name: Debug DATABASE_URL
+        run: echo "DATABASE_URL=${DATABASE_URL}"
 
       - name: Run Tests
         run: ./gradlew test

@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
  * A class representing a link entity that contains information about site name and its link. This class is used as a domain model.
  */
 @Data
-@Accessors
+@Accessors(chain = true)
 public class Link {
 
   /**
