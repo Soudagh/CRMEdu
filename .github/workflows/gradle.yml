@@ -90,10 +90,9 @@ jobs:
       - name: Convert OpenAPI spec
         uses: Legion2/swagger-ui-action@v1
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           output: gh-pages/swagger
           spec-file: src/main/resources/openapi.json
-        env:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Javadoc & Swagger to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
