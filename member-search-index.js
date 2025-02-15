@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"org.example.crmedu","c":"CrmeduApplication","l":"CrmeduApplication()","u":"%3Cinit%3E()"},{"p":"org.example.crmedu","c":"CrmeduApplication","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();
