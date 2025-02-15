@@ -95,7 +95,7 @@ jobs:
 
       - name: Fix OpenAPI version for Swagger UI
         run: |
-          cat build/generated/openapi.json | jq '{swagger: "2.0", info: .info, servers: .servers, paths: .paths, components: .components}' > temp.json
+          cat build/generated/openapi.json | jq '{openapi: "3.0.1", info: .info, servers: .servers, paths: .paths, components: .components}' > temp.json
           mv temp.json build/generated/openapi.json
 
       - name: Convert OpenAPI spec
