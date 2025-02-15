@@ -84,8 +84,11 @@ jobs:
       - name: Move Javadoc to gh-pages folder
         run: mkdir -p gh-pages/javadoc && mv build/docs/javadoc/* gh-pages/javadoc/
 
-      - name: Generate Swagger UI
-        run: ./gradlew copySwaggerUI
+      - name: Start application for OpenAPI generation
+        run: ./gradlew bootRun & sleep 10
+
+      - name: Generate OpenAPI spec
+        run: ./gradlew generateOpenApiSpec
 
       - name: Convert OpenAPI spec
         uses: Legion2/swagger-ui-action@v1
@@ -93,6 +96,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           output: gh-pages/swagger
           spec-file: src/main/resources/openapi.json
+
+      - name: Create index.html for GitHub Pages
+        run: echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=swagger/index.html"></head><body></body></html>' > gh-pages/index.html
 
       - name: Publish Javadoc & Swagger to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

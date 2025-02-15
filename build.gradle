@@ -41,9 +41,12 @@ tasks.named('test') {
     finalizedBy jacocoTestReport
 }
 
-tasks.register('copySwaggerUI', Copy) {
-    from(layout.projectDirectory.file("src/main/resources/openapi.json"))
-    into(layout.buildDirectory.dir("docs/swagger"))
+tasks.register("generateOpenApiSpec") {
+    doLast {
+        def outputDir = layout.buildDirectory.dir("generated/openapi").get().asFile
+        outputDir.mkdirs()
+        ant.get(src: "http://localhost:8080/v3/api-docs", dest: new File(outputDir, "openapi.json"))
+    }
 }
 
 tasks.named('jacocoTestReport') {
