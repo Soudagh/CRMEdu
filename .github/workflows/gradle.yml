@@ -93,9 +93,10 @@ jobs:
       - name: Fetch OpenAPI spec
         run: curl -o build/generated/openapi.json http://localhost:8080/v3/api-docs
 
-      - name: Fix OpenAPI spec format
+      - name: Fix OpenAPI version for Swagger UI
         run: |
-          jq '.openapi="3.0.0"' build/generated/openapi.json > temp.json && mv temp.json build/generated/openapi.json
+          cat build/generated/openapi.json | jq '{swagger: "2.0", openapi: "3.0.0", info: .info, servers: .servers, paths: .paths, components: .components}' > temp.json
+          mv temp.json build/generated/openapi.json
 
       - name: Convert OpenAPI spec
         uses: Legion2/swagger-ui-action@v1
