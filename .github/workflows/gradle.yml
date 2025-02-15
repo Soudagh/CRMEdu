@@ -81,11 +81,20 @@ jobs:
       - name: Generate Javadoc
         run: ./gradlew javadoc
 
-      - name: Publish Javadoc to GitHub Pages
+      - name: Move Javadoc to gh-pages folder
+        run: mkdir -p gh-pages/javadoc && mv build/docs/javadoc/* gh-pages/javadoc/
+
+      - name: Generate Swagger UI
+        run: ./gradlew copySwaggerUI
+
+      - name: Move Swagger UI to gh-pages folder
+        run: mkdir -p gh-pages/swagger && mv build/docs/swagger/* gh-pages/swagger/
+
+      - name: Publish Javadoc & Swagger to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: build/docs/javadoc
+          folder: gh-pages
           token: ${{ secrets.GITHUB_TOKEN }}
 
   dependency-submission:
