@@ -96,6 +96,20 @@ jobs:
 
   publish-docs:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: ${{ secrets.DATABASE_NAME}}
+          POSTGRES_USER: ${{ secrets.DATABASE_USERNAME }}
+          POSTGRES_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        ports:
+          - 5435:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     env:
       DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
