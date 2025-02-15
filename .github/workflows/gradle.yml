@@ -95,7 +95,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           output: gh-pages/swagger
-          spec-file: src/main/resources/openapi.json
+          spec-file: build/generated/openapi.json
 
       - name: Create index.html for GitHub Pages
         run: echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=swagger/index.html"></head><body></body></html>' > gh-pages/index.html
