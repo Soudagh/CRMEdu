@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '3.4.2'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'jacoco'
+    id 'org.springdoc.openapi-gradle-plugin' version '1.6.0'
 }
 
 group = 'org.example'
@@ -41,7 +42,7 @@ tasks.named('test') {
 }
 
 tasks.register('copySwaggerUI', Copy) {
-    from(layout.buildDirectory.dir("swagger-ui"))
+    from(layout.projectDirectory.file("src/main/resources/openapi.json"))
     into(layout.buildDirectory.dir("docs/swagger"))
 }
 

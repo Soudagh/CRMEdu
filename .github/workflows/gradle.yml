@@ -68,7 +68,7 @@ jobs:
           name: Package
           path: build/libs
 
-  publish-javadoc:
+  publish-docs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -87,8 +87,11 @@ jobs:
       - name: Generate Swagger UI
         run: ./gradlew copySwaggerUI
 
-      - name: Move Swagger UI to gh-pages folder
-        run: mkdir -p gh-pages/swagger && mv build/docs/swagger/* gh-pages/swagger/
+      - name: Convert OpenAPI spec
+        uses: Legion2/swagger-ui-action@v1
+        with:
+          output: gh-pages/swagger
+          spec-file: src/main/resources/openapi.json
 
       - name: Publish Javadoc & Swagger to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
