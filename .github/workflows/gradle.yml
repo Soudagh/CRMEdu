@@ -95,7 +95,7 @@ jobs:
 
       - name: Fix OpenAPI spec format
         run: |
-          jq '.openapi="3.0.0"' build/generated/openapi.json > temp.json && mv temp.json build/generated/openapi.json
+          jq '.openapi="3.1.0"' build/generated/openapi.json > temp.json && mv temp.json build/generated/openapi.json
 
       - name: Convert OpenAPI spec
         uses: Legion2/swagger-ui-action@v1
