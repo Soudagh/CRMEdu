@@ -1,0 +1,109 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-create-tutor-table
+      author: soudagh
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKeyName: pk_tutor
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    unique: true
+                    foreignKeyName: fk_tutor_user_id_user
+                    references: user(id)
+              - column:
+                  name: social_contacts
+                  type: jsonb
+                  constraints:
+                    nullable: true
+              - column:
+                  name: notes
+                  type: text
+                  constraints:
+                    nullable: true
+            schemaName: crmedu
+            tableName: tutor
+            remarks: table for persist tutors
+        - createTable:
+            columns:
+              - column:
+                  name: tutor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_tutors_subjects_tutor_id_tutor
+                    references: tutor(id)
+              - column:
+                  name: subject_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_tutors_subjects_subject_id_subject
+                    references: subject(id)
+            schemaName: crmedu
+            tableName: tutors_subjects
+            remarks: auxiliary table for persist tutors and their subjects
+        - addUniqueConstraint:
+            tableName: tutors_subjects
+            columnNames: tutor_id, subject_id
+            constraintName: uq_tutors_subjects_tutor_subject
+        - createTable:
+            columns:
+              - column:
+                  name: tutor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_tutor_grades_tutor_id_tutor
+                    references: tutor(id)
+              - column:
+                  name: grade
+                  type: int
+                  constraints:
+                    nullable: false
+            schemaName: crmedu
+            tableName: tutor_grades
+            remarks: auxiliary table for persist grades of education and tutors
+        - addUniqueConstraint:
+            tableName: tutor_grades
+            columnNames: tutor_id, grade
+            constraintName: uq_tutor_grades_tutor_grade
+        - createTable:
+            columns:
+              - column:
+                  name: tutor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_tutor_free_time_tutor_id_tutor
+                    references: tutor(id)
+              - column:
+                  name: day_of_week
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: time_start
+                  type: time with timezone
+                  constraints:
+                    nullable: false
+                  defaultValue: 00:00:00+1559
+              - column:
+                  name: time_end
+                  type: time with timezone
+                  constraints:
+                    nullable: false
+                  defaultValue: 24:00:00-1559
+            schemaName: crmedu
+            tableName: tutor_free_time
+            remarks: auxiliary table for persist free time of tutors
