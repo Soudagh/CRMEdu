@@ -2,6 +2,8 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.4.2'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'jacoco'
+    id 'org.springdoc.openapi-gradle-plugin' version '1.6.0'
 }
 
 group = 'org.example'
@@ -29,6 +31,7 @@ dependencies {
     implementation 'net.lbruun.springboot:preliquibase-spring-boot-starter:1.6.0'
     implementation 'org.mapstruct:mapstruct:1.6.0'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
@@ -41,4 +44,21 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+tasks.register("generateOpenApiSpec") {
+    doLast {
+        def outputDir = layout.buildDirectory.dir("generated/openapi").get().asFile
+        outputDir.mkdirs()
+        ant.get(src: "http://localhost:8080/v3/api-docs", dest: new File(outputDir, "openapi.json"))
+    }
+}
+
+tasks.named('jacocoTestReport') {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
