@@ -92,6 +92,8 @@ jobs:
         with:
           output: gh-pages/swagger
           spec-file: src/main/resources/openapi.json
+        env:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Javadoc & Swagger to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
