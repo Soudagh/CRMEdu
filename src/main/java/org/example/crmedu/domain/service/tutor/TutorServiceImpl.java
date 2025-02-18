@@ -1,9 +1,11 @@
 package org.example.crmedu.domain.service.tutor;
 
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
 import org.example.crmedu.domain.model.Page;
+import org.example.crmedu.domain.model.Subject;
 import org.example.crmedu.domain.model.Tutor;
 import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.repository.TutorRepository;
@@ -40,14 +42,30 @@ public class TutorServiceImpl implements TutorService {
 
   @Override
   public void update(Tutor tutor, Long id) {
-    var tutorEntity = tutorRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(Tutor.class, id));
+    var tutorEntity = getTutorByIdOrThrow(id);
     tutorRepository.update(tutor.setUser(tutorEntity.getUser()));
   }
 
   @Override
   public void delete(Long id) {
     tutorRepository.delete(id);
+  }
+
+  @Override
+  public void patchSubjects(Set<Subject> subjects, Long id) {
+    var tutorEntity = getTutorByIdOrThrow(id);
+    tutorRepository.update(tutorEntity.setSubjects(subjects));
+  }
+
+  @Override
+  public void patchGrades(Set<Integer> grades, Long id) {
+    var tutorEntity = getTutorByIdOrThrow(id);
+    tutorRepository.update(tutorEntity.setGrades(grades));
+  }
+
+  private Tutor getTutorByIdOrThrow(Long id) {
+    return tutorRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException(Tutor.class, id));
   }
 
   private void makeChecksForCreation(Tutor tutor) {

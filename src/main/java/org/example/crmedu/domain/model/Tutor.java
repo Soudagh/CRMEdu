@@ -42,5 +42,4 @@ public class Tutor {
    */
   private Set<Integer> grades;
 
-  private Set<TutorSchedule> schedule;
 }

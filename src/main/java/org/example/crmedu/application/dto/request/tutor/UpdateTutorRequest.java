@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.example.crmedu.domain.model.Link;
 import org.example.crmedu.domain.model.Subject;
-import org.example.crmedu.domain.model.TutorSchedule;
 
 /**
  * A DTO representing a request to update Tutor.
@@ -22,6 +21,4 @@ public class UpdateTutorRequest {
   private Set<Subject> subjects;
 
   private Set<Integer> grades;
-
-  private Set<TutorSchedule> schedule;
 }

@@ -13,9 +13,9 @@ import org.example.crmedu.domain.enums.DaysOfWeek;
 public class TutorSchedule {
 
   /**
-   * Tutor that has this schedule.
+   * The unique identifier of the schedule.
    */
-  private Tutor tutor;
+  private Long id;
 
   /**
    * The day of week when tutor works.
@@ -31,4 +31,9 @@ public class TutorSchedule {
    * End of the working period.
    */
   private OffsetTime timeEnd;
+
+  /**
+   * The tutor, which this schedule belongs.
+   */
+  private Tutor tutor;
 }

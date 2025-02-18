@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.HashSet;
@@ -62,9 +63,8 @@ public class TutorEntity {
   @Column(name = "grade")
   private Set<Integer> grades = new HashSet<>();
 
-  @ElementCollection
-  @CollectionTable(name = "tutor_free_time", joinColumns = @JoinColumn(name = "tutor_id"))
-  private Set<TutorScheduleEntity> schedule;
+  @OneToMany(mappedBy = "tutor")
+  private Set<TutorScheduleEntity> schedule = new HashSet<>();
 
   @Override
   public boolean equals(Object o) {

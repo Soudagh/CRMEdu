@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-add-column-to-tutor-time
+      author: soudagh
+      changes:
+        - addColumn:
+            tableName: tutor_free_time
+            schemaName: crmedu
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKeyName: pk_tutor_free_time
+                    primaryKey: true
