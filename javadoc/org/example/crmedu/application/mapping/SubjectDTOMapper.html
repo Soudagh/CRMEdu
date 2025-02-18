@@ -96,7 +96,7 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab5" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab5', 3)" class="table-tab">Default Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
@@ -107,20 +107,10 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Converts a <a href="../dto/request/subject/CreateSubjectRequest.html" title="class in org.example.crmedu.application.dto.request.subject"><code>CreateSubjectRequest</code></a> DTO to a <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a> model.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#idToSubject(java.lang.Long)" class="member-name-link">idToSubject</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../dto/PageDTO.html" title="class in org.example.crmedu.application.dto">PageDTO</a><wbr>&lt;<a href="../dto/response/subject/GetSubjectResponse.html" title="class in org.example.crmedu.application.dto.response.subject">GetSubjectResponse</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#pageSubjectToPageDTO(org.example.crmedu.domain.model.Page)" class="member-name-link">pageSubjectToPageDTO</a><wbr>(<a href="../../domain/model/Page.html" title="class in org.example.crmedu.domain.model">Page</a>&lt;<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>&gt;&nbsp;subjectPage)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Map <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a> by its unique identifier.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../dto/PageDTO.html" title="class in org.example.crmedu.application.dto">PageDTO</a><wbr>&lt;<a href="../dto/response/subject/GetSubjectResponse.html" title="class in org.example.crmedu.application.dto.response.subject">GetSubjectResponse</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#pageSubjectToPageDTO(org.example.crmedu.domain.model.Page)" class="member-name-link">pageSubjectToPageDTO</a><wbr>(<a href="../../domain/model/Page.html" title="class in org.example.crmedu.domain.model">Page</a>&lt;<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>&gt;&nbsp;subjectPage)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Converts a paginated <a href="../../domain/model/Page.html" title="class in org.example.crmedu.domain.model"><code>Page</code></a> of <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a> entities to a paginated <a href="../dto/PageDTO.html" title="class in org.example.crmedu.application.dto"><code>PageDTO</code></a> of <a href="../dto/response/subject/GetSubjectResponse.html" title="class in org.example.crmedu.application.dto.response.subject"><code>GetSubjectResponse</code></a> DTOs.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a><wbr>&lt;<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#setIdsToSetSubjects(java.util.Set)" class="member-name-link">setIdsToSetSubjects</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;&nbsp;ids)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
-<div class="block">Map set of subject ids into set of corresponding subjects.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../dto/response/subject/CreateSubjectResponse.html" title="class in org.example.crmedu.application.dto.response.subject">CreateSubjectResponse</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#subjectToCreateSubjectResponse(org.example.crmedu.domain.model.Subject)" class="member-name-link">subjectToCreateSubjectResponse</a><wbr>(<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>&nbsp;subject)</code></div>
@@ -213,32 +203,6 @@ loadScripts(document, 'script');</script>
 <dd><code>request</code> - the DTO containing subject creation details</dd>
 <dt>Returns:</dt>
 <dd>the corresponding <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a> model</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="idToSubject(java.lang.Long)">
-<h3>idToSubject</h3>
-<div class="member-signature"><span class="return-type"><a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a></span>&nbsp;<span class="element-name">idToSubject</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
-<div class="block">Map <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a> by its unique identifier.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>id</code> - the unique identifier</dd>
-<dt>Returns:</dt>
-<dd>the corresponding <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a> model</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setIdsToSetSubjects(java.util.Set)">
-<h3>setIdsToSetSubjects</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>&gt;</span>&nbsp;<span class="element-name">setIdsToSetSubjects</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;&nbsp;ids)</span></div>
-<div class="block">Map set of subject ids into set of corresponding subjects.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>ids</code> - set of unique identifiers of subjects</dd>
-<dt>Returns:</dt>
-<dd>the corresponding <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>&gt;</code></dd>
 </dl>
 </section>
 </li>

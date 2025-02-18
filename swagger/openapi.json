@@ -266,12 +266,12 @@
         }
       }
     },
-    "/api/v1/schedules/{id}": {
+    "/api/v1/students/{id}": {
       "get": {
         "tags": [
-          "tutor-schedule-controller"
+          "student-controller"
         ],
-        "operationId": "getTutorScheduleById",
+        "operationId": "getStudentById",
         "parameters": [
           {
             "name": "id",
@@ -289,7 +289,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetTutorScheduleResponse"
+                  "$ref": "#/components/schemas/GetStudentResponse"
                 }
               }
             }
@@ -298,9 +298,9 @@
       },
       "put": {
         "tags": [
-          "tutor-schedule-controller"
+          "student-controller"
         ],
-        "operationId": "updateSchedule",
+        "operationId": "updateStudent",
         "parameters": [
           {
             "name": "id",
@@ -316,7 +316,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTutorScheduleRequest"
+                "$ref": "#/components/schemas/UpdateStudentRequest"
               }
             }
           },
@@ -330,9 +330,9 @@
       },
       "delete": {
         "tags": [
-          "tutor-schedule-controller"
+          "student-controller"
         ],
-        "operationId": "deleteSchedule",
+        "operationId": "deleteStudent",
         "parameters": [
           {
             "name": "id",
@@ -610,12 +610,12 @@
         }
       }
     },
-    "/api/v1/schedules/tutor/{tutorId}": {
+    "/api/v1/students": {
       "get": {
         "tags": [
-          "tutor-schedule-controller"
+          "student-controller"
         ],
-        "operationId": "getTutorSchedulesOfTutor",
+        "operationId": "getStudents",
         "parameters": [
           {
             "name": "pageable",
@@ -623,15 +623,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/Pageable"
-            }
-          },
-          {
-            "name": "tutorId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
             }
           }
         ],
@@ -641,7 +632,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageDTOGetTutorScheduleResponse"
+                  "$ref": "#/components/schemas/PageDTOGetStudentResponse"
                 }
               }
             }
@@ -650,25 +641,14 @@
       },
       "post": {
         "tags": [
-          "tutor-schedule-controller"
+          "student-controller"
         ],
-        "operationId": "createSchedule",
-        "parameters": [
-          {
-            "name": "tutorId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
+        "operationId": "createStudent",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateTutorScheduleRequest"
+                "$ref": "#/components/schemas/CreateStudentRequest"
               }
             }
           },
@@ -680,7 +660,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateTutorScheduleResponse"
+                  "$ref": "#/components/schemas/CreateStudentResponse"
                 }
               }
             }
@@ -745,74 +725,6 @@
           }
         }
       }
-    },
-    "/api/v1/tutors/{id}/subjects": {
-      "patch": {
-        "tags": [
-          "tutor-controller"
-        ],
-        "operationId": "updateSubjects",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PatchTutorSubjectsRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/v1/tutors/{id}/grades": {
-      "patch": {
-        "tags": [
-          "tutor-controller"
-        ],
-        "operationId": "updateGrades",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PatchTutorGradesRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
     }
   },
   "components": {
@@ -871,6 +783,27 @@
           }
         }
       },
+      "LocalTime": {
+        "type": "object",
+        "properties": {
+          "hour": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minute": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "second": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nano": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "Organization": {
         "type": "object",
         "properties": {
@@ -910,9 +843,16 @@
           }
         }
       },
-      "UpdateTutorRequest": {
+      "Tutor": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
           "socials": {
             "type": "array",
             "items": {
@@ -939,26 +879,12 @@
           }
         }
       },
-      "UpdateSubjectRequest": {
-        "required": [
-          "name"
-        ],
+      "TutorSchedule": {
         "type": "object",
         "properties": {
-          "name": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          }
-        }
-      },
-      "UpdateTutorScheduleRequest": {
-        "required": [
-          "timeEnd",
-          "timeStart"
-        ],
-        "type": "object",
-        "properties": {
+          "tutor": {
+            "$ref": "#/components/schemas/Tutor"
+          },
           "dayOfWeek": {
             "type": "string",
             "enum": [
@@ -972,10 +898,476 @@
             ]
           },
           "timeStart": {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "offset": {
+                "type": "object",
+                "properties": {
+                  "totalSeconds": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "rules": {
+                    "type": "object",
+                    "properties": {
+                      "fixedOffset": {
+                        "type": "boolean"
+                      },
+                      "transitions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "duration": {
+                              "type": "object",
+                              "properties": {
+                                "seconds": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "zero": {
+                                  "type": "boolean"
+                                },
+                                "nano": {
+                                  "type": "integer",
+                                  "format": "int32"
+                                },
+                                "negative": {
+                                  "type": "boolean"
+                                },
+                                "positive": {
+                                  "type": "boolean"
+                                },
+                                "units": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "durationEstimated": {
+                                        "type": "boolean"
+                                      },
+                                      "timeBased": {
+                                        "type": "boolean"
+                                      },
+                                      "dateBased": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "gap": {
+                              "type": "boolean"
+                            },
+                            "dateTimeAfter": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "dateTimeBefore": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "instant": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "overlap": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      },
+                      "transitionRules": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "month": {
+                              "type": "string",
+                              "enum": [
+                                "JANUARY",
+                                "FEBRUARY",
+                                "MARCH",
+                                "APRIL",
+                                "MAY",
+                                "JUNE",
+                                "JULY",
+                                "AUGUST",
+                                "SEPTEMBER",
+                                "OCTOBER",
+                                "NOVEMBER",
+                                "DECEMBER"
+                              ]
+                            },
+                            "timeDefinition": {
+                              "type": "string",
+                              "enum": [
+                                "UTC",
+                                "WALL",
+                                "STANDARD"
+                              ]
+                            },
+                            "dayOfWeek": {
+                              "type": "string",
+                              "enum": [
+                                "MONDAY",
+                                "TUESDAY",
+                                "WEDNESDAY",
+                                "THURSDAY",
+                                "FRIDAY",
+                                "SATURDAY",
+                                "SUNDAY"
+                              ]
+                            },
+                            "dayOfMonthIndicator": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "localTime": {
+                              "$ref": "#/components/schemas/LocalTime"
+                            },
+                            "midnightEndOfDay": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "nano": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "hour": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "minute": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "second": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
           },
           "timeEnd": {
+            "type": "object",
+            "properties": {
+              "offset": {
+                "type": "object",
+                "properties": {
+                  "totalSeconds": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "rules": {
+                    "type": "object",
+                    "properties": {
+                      "fixedOffset": {
+                        "type": "boolean"
+                      },
+                      "transitions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "duration": {
+                              "type": "object",
+                              "properties": {
+                                "seconds": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "zero": {
+                                  "type": "boolean"
+                                },
+                                "nano": {
+                                  "type": "integer",
+                                  "format": "int32"
+                                },
+                                "negative": {
+                                  "type": "boolean"
+                                },
+                                "positive": {
+                                  "type": "boolean"
+                                },
+                                "units": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "durationEstimated": {
+                                        "type": "boolean"
+                                      },
+                                      "timeBased": {
+                                        "type": "boolean"
+                                      },
+                                      "dateBased": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "gap": {
+                              "type": "boolean"
+                            },
+                            "dateTimeAfter": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "dateTimeBefore": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "instant": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "overlap": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      },
+                      "transitionRules": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "month": {
+                              "type": "string",
+                              "enum": [
+                                "JANUARY",
+                                "FEBRUARY",
+                                "MARCH",
+                                "APRIL",
+                                "MAY",
+                                "JUNE",
+                                "JULY",
+                                "AUGUST",
+                                "SEPTEMBER",
+                                "OCTOBER",
+                                "NOVEMBER",
+                                "DECEMBER"
+                              ]
+                            },
+                            "timeDefinition": {
+                              "type": "string",
+                              "enum": [
+                                "UTC",
+                                "WALL",
+                                "STANDARD"
+                              ]
+                            },
+                            "dayOfWeek": {
+                              "type": "string",
+                              "enum": [
+                                "MONDAY",
+                                "TUESDAY",
+                                "WEDNESDAY",
+                                "THURSDAY",
+                                "FRIDAY",
+                                "SATURDAY",
+                                "SUNDAY"
+                              ]
+                            },
+                            "dayOfMonthIndicator": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "localTime": {
+                              "$ref": "#/components/schemas/LocalTime"
+                            },
+                            "midnightEndOfDay": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "nano": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "hour": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "minute": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "second": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        }
+      },
+      "UpdateTutorRequest": {
+        "type": "object",
+        "properties": {
+          "socials": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "notes": {
             "type": "string"
+          },
+          "subjects": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            }
+          },
+          "grades": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "schedule": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TutorSchedule"
+            }
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "patronymic": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "SUPERUSER",
+              "ORG_ADMIN",
+              "TUTOR",
+              "CURATOR",
+              "USER"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "DISABLED",
+              "PENDING"
+            ]
+          },
+          "organization": {
+            "$ref": "#/components/schemas/Organization"
+          }
+        }
+      },
+      "UpdateSubjectRequest": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "UpdateStudentRequest": {
+        "type": "object",
+        "properties": {
+          "surname": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "patronymic": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "hex": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ]
           }
         }
       },
@@ -1143,6 +1535,28 @@
           },
           "notes": {
             "type": "string"
+          },
+          "subjects": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            }
+          },
+          "grades": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "schedule": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TutorSchedule"
+            }
           }
         }
       },
@@ -1189,465 +1603,6 @@
           }
         }
       },
-      "LocalTime": {
-        "type": "object",
-        "properties": {
-          "hour": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "minute": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "second": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nano": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "Tutor": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "socials": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Link"
-            }
-          },
-          "notes": {
-            "type": "string"
-          },
-          "subjects": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Subject"
-            }
-          },
-          "grades": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        }
-      },
-      "TutorSchedule": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "dayOfWeek": {
-            "type": "string",
-            "enum": [
-              "MONDAY",
-              "TUESDAY",
-              "WEDNESDAY",
-              "THURSDAY",
-              "FRIDAY",
-              "SATURDAY",
-              "SUNDAY"
-            ]
-          },
-          "timeStart": {
-            "type": "object",
-            "properties": {
-              "offset": {
-                "type": "object",
-                "properties": {
-                  "totalSeconds": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "id": {
-                    "type": "string"
-                  },
-                  "rules": {
-                    "type": "object",
-                    "properties": {
-                      "fixedOffset": {
-                        "type": "boolean"
-                      },
-                      "transitions": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "duration": {
-                              "type": "object",
-                              "properties": {
-                                "seconds": {
-                                  "type": "integer",
-                                  "format": "int64"
-                                },
-                                "zero": {
-                                  "type": "boolean"
-                                },
-                                "nano": {
-                                  "type": "integer",
-                                  "format": "int32"
-                                },
-                                "negative": {
-                                  "type": "boolean"
-                                },
-                                "positive": {
-                                  "type": "boolean"
-                                },
-                                "units": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "durationEstimated": {
-                                        "type": "boolean"
-                                      },
-                                      "timeBased": {
-                                        "type": "boolean"
-                                      },
-                                      "dateBased": {
-                                        "type": "boolean"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "gap": {
-                              "type": "boolean"
-                            },
-                            "dateTimeAfter": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "dateTimeBefore": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "instant": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "overlap": {
-                              "type": "boolean"
-                            }
-                          }
-                        }
-                      },
-                      "transitionRules": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "month": {
-                              "type": "string",
-                              "enum": [
-                                "JANUARY",
-                                "FEBRUARY",
-                                "MARCH",
-                                "APRIL",
-                                "MAY",
-                                "JUNE",
-                                "JULY",
-                                "AUGUST",
-                                "SEPTEMBER",
-                                "OCTOBER",
-                                "NOVEMBER",
-                                "DECEMBER"
-                              ]
-                            },
-                            "timeDefinition": {
-                              "type": "string",
-                              "enum": [
-                                "UTC",
-                                "WALL",
-                                "STANDARD"
-                              ]
-                            },
-                            "dayOfWeek": {
-                              "type": "string",
-                              "enum": [
-                                "MONDAY",
-                                "TUESDAY",
-                                "WEDNESDAY",
-                                "THURSDAY",
-                                "FRIDAY",
-                                "SATURDAY",
-                                "SUNDAY"
-                              ]
-                            },
-                            "dayOfMonthIndicator": {
-                              "type": "integer",
-                              "format": "int32"
-                            },
-                            "localTime": {
-                              "$ref": "#/components/schemas/LocalTime"
-                            },
-                            "midnightEndOfDay": {
-                              "type": "boolean"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "nano": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "hour": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "minute": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "second": {
-                "type": "integer",
-                "format": "int32"
-              }
-            }
-          },
-          "timeEnd": {
-            "type": "object",
-            "properties": {
-              "offset": {
-                "type": "object",
-                "properties": {
-                  "totalSeconds": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "id": {
-                    "type": "string"
-                  },
-                  "rules": {
-                    "type": "object",
-                    "properties": {
-                      "fixedOffset": {
-                        "type": "boolean"
-                      },
-                      "transitions": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "duration": {
-                              "type": "object",
-                              "properties": {
-                                "seconds": {
-                                  "type": "integer",
-                                  "format": "int64"
-                                },
-                                "zero": {
-                                  "type": "boolean"
-                                },
-                                "nano": {
-                                  "type": "integer",
-                                  "format": "int32"
-                                },
-                                "negative": {
-                                  "type": "boolean"
-                                },
-                                "positive": {
-                                  "type": "boolean"
-                                },
-                                "units": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "durationEstimated": {
-                                        "type": "boolean"
-                                      },
-                                      "timeBased": {
-                                        "type": "boolean"
-                                      },
-                                      "dateBased": {
-                                        "type": "boolean"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "gap": {
-                              "type": "boolean"
-                            },
-                            "dateTimeAfter": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "dateTimeBefore": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "instant": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "overlap": {
-                              "type": "boolean"
-                            }
-                          }
-                        }
-                      },
-                      "transitionRules": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "month": {
-                              "type": "string",
-                              "enum": [
-                                "JANUARY",
-                                "FEBRUARY",
-                                "MARCH",
-                                "APRIL",
-                                "MAY",
-                                "JUNE",
-                                "JULY",
-                                "AUGUST",
-                                "SEPTEMBER",
-                                "OCTOBER",
-                                "NOVEMBER",
-                                "DECEMBER"
-                              ]
-                            },
-                            "timeDefinition": {
-                              "type": "string",
-                              "enum": [
-                                "UTC",
-                                "WALL",
-                                "STANDARD"
-                              ]
-                            },
-                            "dayOfWeek": {
-                              "type": "string",
-                              "enum": [
-                                "MONDAY",
-                                "TUESDAY",
-                                "WEDNESDAY",
-                                "THURSDAY",
-                                "FRIDAY",
-                                "SATURDAY",
-                                "SUNDAY"
-                              ]
-                            },
-                            "dayOfMonthIndicator": {
-                              "type": "integer",
-                              "format": "int32"
-                            },
-                            "localTime": {
-                              "$ref": "#/components/schemas/LocalTime"
-                            },
-                            "midnightEndOfDay": {
-                              "type": "boolean"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "nano": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "hour": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "minute": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "second": {
-                "type": "integer",
-                "format": "int32"
-              }
-            }
-          },
-          "tutor": {
-            "$ref": "#/components/schemas/Tutor"
-          }
-        }
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "surname": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "patronymic": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "role": {
-            "type": "string",
-            "enum": [
-              "SUPERUSER",
-              "ORG_ADMIN",
-              "TUTOR",
-              "CURATOR",
-              "USER"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "ACTIVE",
-              "DISABLED",
-              "PENDING"
-            ]
-          },
-          "organization": {
-            "$ref": "#/components/schemas/Organization"
-          }
-        }
-      },
       "CreateSubjectRequest": {
         "required": [
           "name",
@@ -1678,61 +1633,101 @@
           }
         }
       },
-      "CreateTutorScheduleRequest": {
-        "required": [
-          "timeEnd",
-          "timeStart"
-        ],
+      "CreateStudentRequest": {
         "type": "object",
         "properties": {
-          "dayOfWeek": {
+          "surname": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "patronymic": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "hex": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
             "type": "string",
             "enum": [
-              "MONDAY",
-              "TUESDAY",
-              "WEDNESDAY",
-              "THURSDAY",
-              "FRIDAY",
-              "SATURDAY",
-              "SUNDAY"
+              "ACTIVE",
+              "INACTIVE"
             ]
           },
-          "timeStart": {
-            "type": "string"
-          },
-          "timeEnd": {
-            "type": "string"
+          "organization": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
-      "CreateTutorScheduleResponse": {
+      "CreateStudentResponse": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int64"
           },
-          "tutorId": {
-            "type": "integer",
-            "format": "int64"
+          "surname": {
+            "type": "string"
           },
-          "dayOfWeek": {
+          "name": {
+            "type": "string"
+          },
+          "patronymic": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "hex": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
             "type": "string",
             "enum": [
-              "MONDAY",
-              "TUESDAY",
-              "WEDNESDAY",
-              "THURSDAY",
-              "FRIDAY",
-              "SATURDAY",
-              "SUNDAY"
+              "ACTIVE",
+              "INACTIVE"
             ]
-          },
-          "timeStart": {
-            "type": "string"
-          },
-          "timeEnd": {
-            "type": "string"
           }
         }
       },
@@ -1792,38 +1787,6 @@
           },
           "phone": {
             "type": "string"
-          }
-        }
-      },
-      "PatchTutorSubjectsRequest": {
-        "required": [
-          "subjects"
-        ],
-        "type": "object",
-        "properties": {
-          "subjects": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        }
-      },
-      "PatchTutorGradesRequest": {
-        "required": [
-          "grades"
-        ],
-        "type": "object",
-        "properties": {
-          "grades": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
           }
         }
       },
@@ -1932,22 +1895,6 @@
           }
         }
       },
-      "GetSubjectResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          },
-          "organization": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
       "GetTutorResponse": {
         "type": "object",
         "properties": {
@@ -1956,7 +1903,7 @@
             "format": "int64"
           },
           "user": {
-            "$ref": "#/components/schemas/GetUserResponse"
+            "$ref": "#/components/schemas/User"
           },
           "socials": {
             "type": "array",
@@ -1971,7 +1918,7 @@
             "uniqueItems": true,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/GetSubjectResponse"
+              "$ref": "#/components/schemas/Subject"
             }
           },
           "grades": {
@@ -1980,6 +1927,13 @@
             "items": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          "schedule": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TutorSchedule"
             }
           }
         }
@@ -2011,6 +1965,22 @@
           }
         }
       },
+      "GetSubjectResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "organization": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
       "PageDTOGetSubjectResponse": {
         "type": "object",
         "properties": {
@@ -2038,36 +2008,62 @@
           }
         }
       },
-      "GetTutorScheduleResponse": {
+      "GetStudentResponse": {
         "type": "object",
         "properties": {
-          "dayOfWeek": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "patronymic": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "hex": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
             "type": "string",
             "enum": [
-              "MONDAY",
-              "TUESDAY",
-              "WEDNESDAY",
-              "THURSDAY",
-              "FRIDAY",
-              "SATURDAY",
-              "SUNDAY"
+              "ACTIVE",
+              "INACTIVE"
             ]
-          },
-          "timeStart": {
-            "type": "string"
-          },
-          "timeEnd": {
-            "type": "string"
           }
         }
       },
-      "PageDTOGetTutorScheduleResponse": {
+      "PageDTOGetStudentResponse": {
         "type": "object",
         "properties": {
           "content": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/GetTutorScheduleResponse"
+              "$ref": "#/components/schemas/GetStudentResponse"
             }
           },
           "page": {
