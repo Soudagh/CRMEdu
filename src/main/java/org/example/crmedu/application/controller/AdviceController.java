@@ -11,6 +11,7 @@ import org.example.crmedu.application.dto.error.ValidationErrorResponse;
 import org.example.crmedu.application.dto.error.Violation;
 import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
+import org.example.crmedu.domain.exception.TutorScheduleOverlapsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -43,6 +44,18 @@ public class AdviceController {
    */
   @ExceptionHandler(EntityExistsException.class)
   public ResponseEntity<SystemError> handleEntityExistsException(EntityExistsException e) {
+    var error = getSystemError(e);
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+  }
+
+  /**
+   * Handles {@link TutorScheduleOverlapsException} and returns a 400 Bad Request response.
+   *
+   * @param e the thrown exception
+   * @return a {@link ResponseEntity} containing a {@link SystemError} object with error details
+   */
+  @ExceptionHandler(TutorScheduleOverlapsException.class)
+  public ResponseEntity<SystemError> handleTutorScheduleOverlapsException(TutorScheduleOverlapsException e) {
     var error = getSystemError(e);
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
   }

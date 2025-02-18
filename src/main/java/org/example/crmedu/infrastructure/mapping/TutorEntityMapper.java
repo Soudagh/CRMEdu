@@ -24,5 +24,6 @@ public interface TutorEntityMapper {
    * @param tutorEntity the tutor entity to convert
    * @return the {@link Tutor} domain model
    */
+
   Tutor toTutor(TutorEntity tutorEntity);
 }

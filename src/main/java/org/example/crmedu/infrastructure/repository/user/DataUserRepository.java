@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
  * operations and pagination.
  */
 @Repository
-
 public interface DataUserRepository extends JpaRepository<UserEntity, Long>, PagingAndSortingRepository<UserEntity, Long> {
 
   /**
