@@ -26,6 +26,14 @@ public interface OrganizationService {
   Organization findById(Long id);
 
   /**
+   * Check if organization with this unique identifier exists.
+   *
+   * @param id the unique identifier of the organization
+   * @throws org.example.crmedu.domain.exception.EntityNotFoundException if no organization with the given ID is found
+   */
+  void checkExistanceById(Long id);
+
+  /**
    * Retrieves a paginated list of organizations.
    *
    * @param pageNumber the page number (starting from 0)
