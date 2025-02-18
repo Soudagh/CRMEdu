@@ -1,0 +1,80 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-create-student-table
+      author: soudagh
+      changes:
+        - createTable:
+            columns:
+              - column:
+                    name: id
+                    type: bigint
+                    autoIncrement: true
+                    constraints:
+                      nullable: false
+                      primaryKey: true
+                      primaryKeyName: pk_student
+              - column:
+                  name: surname
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: patronymic
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: email
+                  type: varchar(254)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: timezone
+                  type: varchar(50)
+                  defaultValue: 'UTC'
+              - column:
+                  name: hex
+                  type: varchar(7)
+                  defaultValue: '#00FF00'
+              - column:
+                  name: birth_date
+                  type: date
+              - column:
+                  name: grade
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: balance
+                  type: int
+                  defaultValue: '0'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: 'ACTIVE'
+              - column:
+                  name: organization_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_student_organization_id_organization
+                    references: organization(id)
+            tableName: student
+            schemaName: crmedu
+            remarks: table for persists student
+        - addUniqueConstraint:
+            tableName: student
+            columnNames: email, phone, organization_id
+            constraintName: uq_student_email_phone_organization

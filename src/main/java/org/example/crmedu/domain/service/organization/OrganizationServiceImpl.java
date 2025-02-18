@@ -30,6 +30,13 @@ public class OrganizationServiceImpl implements OrganizationService {
   }
 
   @Override
+  public void checkExistanceById(Long id) {
+    if (!organizationRepository.existsById(id)) {
+      throw new EntityNotFoundException(Organization.class, id);
+    }
+  }
+
+  @Override
   public Page<Organization> findAll(int pageNumber, int pageSize) {
     return organizationRepository.findAll(pageNumber, pageSize);
   }

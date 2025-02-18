@@ -19,7 +19,6 @@ public interface OrganizationEntityMapper {
   OrganizationEntity toOrganizationEntity(Organization organization);
 
   /**
-   *
    * Converts an {@link OrganizationEntity} to {@link Organization}.
    *
    * @param organizationEntity the organization entity to convert
