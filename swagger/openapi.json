@@ -266,12 +266,12 @@
         }
       }
     },
-    "/api/v1/students/{id}": {
+    "/api/v1/schedules/{id}": {
       "get": {
         "tags": [
-          "student-controller"
+          "tutor-schedule-controller"
         ],
-        "operationId": "getStudentById",
+        "operationId": "getTutorScheduleById",
         "parameters": [
           {
             "name": "id",
@@ -289,7 +289,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetStudentResponse"
+                  "$ref": "#/components/schemas/GetTutorScheduleResponse"
                 }
               }
             }
@@ -298,9 +298,9 @@
       },
       "put": {
         "tags": [
-          "student-controller"
+          "tutor-schedule-controller"
         ],
-        "operationId": "updateStudent",
+        "operationId": "updateSchedule",
         "parameters": [
           {
             "name": "id",
@@ -316,7 +316,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateStudentRequest"
+                "$ref": "#/components/schemas/UpdateTutorScheduleRequest"
               }
             }
           },
@@ -330,9 +330,9 @@
       },
       "delete": {
         "tags": [
-          "student-controller"
+          "tutor-schedule-controller"
         ],
-        "operationId": "deleteStudent",
+        "operationId": "deleteSchedule",
         "parameters": [
           {
             "name": "id",
@@ -610,12 +610,12 @@
         }
       }
     },
-    "/api/v1/students": {
+    "/api/v1/schedules/tutor/{tutorId}": {
       "get": {
         "tags": [
-          "student-controller"
+          "tutor-schedule-controller"
         ],
-        "operationId": "getStudents",
+        "operationId": "getTutorSchedulesOfTutor",
         "parameters": [
           {
             "name": "pageable",
@@ -623,6 +623,15 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/Pageable"
+            }
+          },
+          {
+            "name": "tutorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
             }
           }
         ],
@@ -632,7 +641,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageDTOGetStudentResponse"
+                  "$ref": "#/components/schemas/PageDTOGetTutorScheduleResponse"
                 }
               }
             }
@@ -641,14 +650,25 @@
       },
       "post": {
         "tags": [
-          "student-controller"
+          "tutor-schedule-controller"
         ],
-        "operationId": "createStudent",
+        "operationId": "createSchedule",
+        "parameters": [
+          {
+            "name": "tutorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateStudentRequest"
+                "$ref": "#/components/schemas/CreateTutorScheduleRequest"
               }
             }
           },
@@ -660,7 +680,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateStudentResponse"
+                  "$ref": "#/components/schemas/CreateTutorScheduleResponse"
                 }
               }
             }
@@ -725,6 +745,74 @@
           }
         }
       }
+    },
+    "/api/v1/tutors/{id}/subjects": {
+      "patch": {
+        "tags": [
+          "tutor-controller"
+        ],
+        "operationId": "updateSubjects",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchTutorSubjectsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/tutors/{id}/grades": {
+      "patch": {
+        "tags": [
+          "tutor-controller"
+        ],
+        "operationId": "updateGrades",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchTutorGradesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -783,27 +871,6 @@
           }
         }
       },
-      "LocalTime": {
-        "type": "object",
-        "properties": {
-          "hour": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "minute": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "second": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nano": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
       "Organization": {
         "type": "object",
         "properties": {
@@ -840,6 +907,306 @@
           },
           "organization": {
             "$ref": "#/components/schemas/Organization"
+          }
+        }
+      },
+      "UpdateTutorRequest": {
+        "type": "object",
+        "properties": {
+          "socials": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "notes": {
+            "type": "string"
+          },
+          "subjects": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            }
+          },
+          "grades": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      },
+      "UpdateSubjectRequest": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "UpdateTutorScheduleRequest": {
+        "required": [
+          "timeEnd",
+          "timeStart"
+        ],
+        "type": "object",
+        "properties": {
+          "dayOfWeek": {
+            "type": "string",
+            "enum": [
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          },
+          "timeStart": {
+            "type": "string"
+          },
+          "timeEnd": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateOrganizationRequest": {
+        "required": [
+          "country",
+          "name",
+          "specialization"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "specialization": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "country": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 254,
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
+            "type": "string"
+          },
+          "phone": {
+            "pattern": "^\\+\\d{1,3}\\d{10}$",
+            "type": "string"
+          }
+        }
+      },
+      "CreateUserRequest": {
+        "required": [
+          "email",
+          "name",
+          "phone",
+          "surname"
+        ],
+        "type": "object",
+        "properties": {
+          "surname": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "patronymic": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 254,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phone": {
+            "pattern": "^\\+\\d{1,3}\\d{10}$",
+            "type": "string"
+          },
+          "timezone": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "organization": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "SUPERUSER",
+              "ORG_ADMIN",
+              "TUTOR",
+              "CURATOR",
+              "USER"
+            ]
+          }
+        }
+      },
+      "CreateUserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "patronymic": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "SUPERUSER",
+              "ORG_ADMIN",
+              "TUTOR",
+              "CURATOR",
+              "USER"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "DISABLED",
+              "PENDING"
+            ]
+          },
+          "organization": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CreateTutorRequest": {
+        "required": [
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "socials": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateTutorResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "socials": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "notes": {
+            "type": "string"
+          },
+          "subjects": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            }
+          },
+          "grades": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "schedule": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TutorSchedule"
+            }
+          }
+        }
+      },
+      "LocalTime": {
+        "type": "object",
+        "properties": {
+          "hour": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minute": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "second": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nano": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
@@ -882,8 +1249,9 @@
       "TutorSchedule": {
         "type": "object",
         "properties": {
-          "tutor": {
-            "$ref": "#/components/schemas/Tutor"
+          "id": {
+            "type": "integer",
+            "format": "int64"
           },
           "dayOfWeek": {
             "type": "string",
@@ -1218,42 +1586,9 @@
                 "format": "int32"
               }
             }
-          }
-        }
-      },
-      "UpdateTutorRequest": {
-        "type": "object",
-        "properties": {
-          "socials": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Link"
-            }
           },
-          "notes": {
-            "type": "string"
-          },
-          "subjects": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Subject"
-            }
-          },
-          "grades": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "schedule": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TutorSchedule"
-            }
+          "tutor": {
+            "$ref": "#/components/schemas/Tutor"
           }
         }
       },
@@ -1313,296 +1648,6 @@
           }
         }
       },
-      "UpdateSubjectRequest": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          }
-        }
-      },
-      "UpdateStudentRequest": {
-        "type": "object",
-        "properties": {
-          "surname": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "patronymic": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "hex": {
-            "type": "string"
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "grade": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "balance": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "ACTIVE",
-              "INACTIVE"
-            ]
-          }
-        }
-      },
-      "UpdateOrganizationRequest": {
-        "required": [
-          "country",
-          "name",
-          "specialization"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
-          },
-          "specialization": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
-          },
-          "country": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "email": {
-            "maxLength": 254,
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
-            "type": "string"
-          },
-          "phone": {
-            "pattern": "^\\+\\d{1,3}\\d{10}$",
-            "type": "string"
-          }
-        }
-      },
-      "CreateUserRequest": {
-        "required": [
-          "email",
-          "name",
-          "phone",
-          "surname"
-        ],
-        "type": "object",
-        "properties": {
-          "surname": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "name": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "patronymic": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "email": {
-            "maxLength": 254,
-            "minLength": 0,
-            "type": "string"
-          },
-          "phone": {
-            "pattern": "^\\+\\d{1,3}\\d{10}$",
-            "type": "string"
-          },
-          "timezone": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "organization": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "role": {
-            "type": "string",
-            "enum": [
-              "SUPERUSER",
-              "ORG_ADMIN",
-              "TUTOR",
-              "CURATOR",
-              "USER"
-            ]
-          }
-        }
-      },
-      "CreateUserResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "surname": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "patronymic": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "role": {
-            "type": "string",
-            "enum": [
-              "SUPERUSER",
-              "ORG_ADMIN",
-              "TUTOR",
-              "CURATOR",
-              "USER"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "ACTIVE",
-              "DISABLED",
-              "PENDING"
-            ]
-          },
-          "organization": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
-      "CreateTutorRequest": {
-        "required": [
-          "user"
-        ],
-        "type": "object",
-        "properties": {
-          "user": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "socials": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Link"
-            }
-          },
-          "notes": {
-            "type": "string"
-          },
-          "subjects": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Subject"
-            }
-          },
-          "grades": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "schedule": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TutorSchedule"
-            }
-          }
-        }
-      },
-      "CreateTutorResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "socials": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Link"
-            }
-          },
-          "notes": {
-            "type": "string"
-          },
-          "subjects": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Subject"
-            }
-          },
-          "grades": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "schedule": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TutorSchedule"
-            }
-          }
-        }
-      },
       "CreateSubjectRequest": {
         "required": [
           "name",
@@ -1633,101 +1678,61 @@
           }
         }
       },
-      "CreateStudentRequest": {
+      "CreateTutorScheduleRequest": {
+        "required": [
+          "timeEnd",
+          "timeStart"
+        ],
         "type": "object",
         "properties": {
-          "surname": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "patronymic": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "hex": {
-            "type": "string"
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "grade": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "balance": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
+          "dayOfWeek": {
             "type": "string",
             "enum": [
-              "ACTIVE",
-              "INACTIVE"
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
             ]
           },
-          "organization": {
-            "type": "integer",
-            "format": "int64"
+          "timeStart": {
+            "type": "string"
+          },
+          "timeEnd": {
+            "type": "string"
           }
         }
       },
-      "CreateStudentResponse": {
+      "CreateTutorScheduleResponse": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int64"
           },
-          "surname": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "patronymic": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "hex": {
-            "type": "string"
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "grade": {
+          "tutorId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           },
-          "balance": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
+          "dayOfWeek": {
             "type": "string",
             "enum": [
-              "ACTIVE",
-              "INACTIVE"
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
             ]
+          },
+          "timeStart": {
+            "type": "string"
+          },
+          "timeEnd": {
+            "type": "string"
           }
         }
       },
@@ -1787,6 +1792,38 @@
           },
           "phone": {
             "type": "string"
+          }
+        }
+      },
+      "PatchTutorSubjectsRequest": {
+        "required": [
+          "subjects"
+        ],
+        "type": "object",
+        "properties": {
+          "subjects": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "PatchTutorGradesRequest": {
+        "required": [
+          "grades"
+        ],
+        "type": "object",
+        "properties": {
+          "grades": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         }
       },
@@ -1895,6 +1932,22 @@
           }
         }
       },
+      "GetSubjectResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "organization": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
       "GetTutorResponse": {
         "type": "object",
         "properties": {
@@ -1903,7 +1956,7 @@
             "format": "int64"
           },
           "user": {
-            "$ref": "#/components/schemas/User"
+            "$ref": "#/components/schemas/GetUserResponse"
           },
           "socials": {
             "type": "array",
@@ -1918,7 +1971,7 @@
             "uniqueItems": true,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Subject"
+              "$ref": "#/components/schemas/GetSubjectResponse"
             }
           },
           "grades": {
@@ -1927,13 +1980,6 @@
             "items": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          "schedule": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TutorSchedule"
             }
           }
         }
@@ -1965,22 +2011,6 @@
           }
         }
       },
-      "GetSubjectResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          },
-          "organization": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
       "PageDTOGetSubjectResponse": {
         "type": "object",
         "properties": {
@@ -2008,62 +2038,36 @@
           }
         }
       },
-      "GetStudentResponse": {
+      "GetTutorScheduleResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "surname": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "patronymic": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "hex": {
-            "type": "string"
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "grade": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "balance": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
+          "dayOfWeek": {
             "type": "string",
             "enum": [
-              "ACTIVE",
-              "INACTIVE"
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
             ]
+          },
+          "timeStart": {
+            "type": "string"
+          },
+          "timeEnd": {
+            "type": "string"
           }
         }
       },
-      "PageDTOGetStudentResponse": {
+      "PageDTOGetTutorScheduleResponse": {
         "type": "object",
         "properties": {
           "content": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/GetStudentResponse"
+              "$ref": "#/components/schemas/GetTutorScheduleResponse"
             }
           },
           "page": {
