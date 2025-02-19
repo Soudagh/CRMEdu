@@ -7,3 +7,5 @@ databaseChangeLog:
       file: db/changelog/1.0.0/changes/003-create-user-table.yaml
   - include:
       file: db/changelog/1.0.0/changes/004-create-tutor-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/005-add-column-to-tutor-time.yaml

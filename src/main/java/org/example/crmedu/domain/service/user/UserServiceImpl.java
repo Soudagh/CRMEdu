@@ -29,14 +29,12 @@ public class UserServiceImpl implements UserService {
   @Override
   public User create(User user) {
     checkUserConstraints(user);
-    if (organizationRepository.existsById(user.getOrganization().getId())) {
-      var createdUser = userRepository.save(user);
-      if (createdUser.getRole().equals(Role.TUTOR)) {
-        createTutor(createdUser);
-      }
-      return createdUser;
+    validateOrganizationExists(user.getOrganization().getId());
+    var createdUser = userRepository.save(user);
+    if (createdUser.getRole().equals(Role.TUTOR)) {
+      createTutor(createdUser);
     }
-    throw new EntityNotFoundException(Organization.class, user.getOrganization().getId());
+    return createdUser;
   }
 
   @Override
@@ -76,6 +74,12 @@ public class UserServiceImpl implements UserService {
     }
     if (userRepository.existsByPhone(user)) {
       throw new EntityExistsException(User.class, "phone");
+    }
+  }
+
+  private void validateOrganizationExists(Long organizationId) {
+    if (!(organizationRepository.existsById(organizationId))) {
+      throw new EntityNotFoundException(Organization.class, organizationId);
     }
   }
 

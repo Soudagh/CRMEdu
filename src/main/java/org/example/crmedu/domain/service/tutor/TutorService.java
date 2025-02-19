@@ -1,6 +1,8 @@
 package org.example.crmedu.domain.service.tutor;
 
+import java.util.Set;
 import org.example.crmedu.domain.model.Page;
+import org.example.crmedu.domain.model.Subject;
 import org.example.crmedu.domain.model.Tutor;
 
 /**
@@ -51,4 +53,21 @@ public interface TutorService {
    * @param id the unique identifier of the tutor to delete
    */
   void delete(Long id);
+
+  /**
+   * Updates the list of subjects that a tutor can teach.
+   *
+   * @param subjects set of subjects
+   * @param id the unique identifier of the tutor to update
+   */
+  void patchSubjects(Set<Subject> subjects, Long id);
+
+  /**
+   * Updates the list of education classes that a tutor can teach.
+   *
+   * @param grades set of grades
+   * @param id the unique identifier of the tutor to update
+   */
+  void patchGrades(Set<Integer> grades, Long id);
+
 }
