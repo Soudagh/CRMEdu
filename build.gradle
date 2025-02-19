@@ -50,6 +50,10 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+    reports {
+        junitXml.required = true
+        html.required = true
+    }
 }
 
 tasks.register("generateOpenApiSpec") {
