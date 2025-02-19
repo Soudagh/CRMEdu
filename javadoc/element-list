@@ -4,11 +4,13 @@ org.example.crmedu.application.dto
 org.example.crmedu.application.dto.error
 org.example.crmedu.application.dto.request.organization
 org.example.crmedu.application.dto.request.schedule
+org.example.crmedu.application.dto.request.student
 org.example.crmedu.application.dto.request.subject
 org.example.crmedu.application.dto.request.tutor
 org.example.crmedu.application.dto.request.user
 org.example.crmedu.application.dto.response.organization
 org.example.crmedu.application.dto.response.schedule
+org.example.crmedu.application.dto.response.student
 org.example.crmedu.application.dto.response.subject
 org.example.crmedu.application.dto.response.tutor
 org.example.crmedu.application.dto.response.user
@@ -19,6 +21,7 @@ org.example.crmedu.domain.model
 org.example.crmedu.domain.repository
 org.example.crmedu.domain.service.organization
 org.example.crmedu.domain.service.schedule
+org.example.crmedu.domain.service.student
 org.example.crmedu.domain.service.subject
 org.example.crmedu.domain.service.tutor
 org.example.crmedu.domain.service.user
@@ -26,6 +29,7 @@ org.example.crmedu.infrastructure.entity
 org.example.crmedu.infrastructure.mapping
 org.example.crmedu.infrastructure.repository.organization
 org.example.crmedu.infrastructure.repository.schedule
+org.example.crmedu.infrastructure.repository.student
 org.example.crmedu.infrastructure.repository.subject
 org.example.crmedu.infrastructure.repository.tutor
 org.example.crmedu.infrastructure.repository.user

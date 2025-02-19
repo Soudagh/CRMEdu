@@ -52,6 +52,10 @@ loadScripts(document, 'script');</script>
 <a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
+<dt><a href="org/example/crmedu/domain/enums/StudentStatus.html#ACTIVE" class="member-name-link">ACTIVE</a> - Enum constant in enum class org.example.crmedu.domain.enums.<a href="org/example/crmedu/domain/enums/StudentStatus.html" title="enum class in org.example.crmedu.domain.enums">StudentStatus</a></dt>
+<dd>
+<div class="block">Status representing a student, that having lessons in organization.</div>
+</dd>
 <dt><a href="org/example/crmedu/domain/enums/UserStatus.html#ACTIVE" class="member-name-link">ACTIVE</a> - Enum constant in enum class org.example.crmedu.domain.enums.<a href="org/example/crmedu/domain/enums/UserStatus.html" title="enum class in org.example.crmedu.domain.enums">UserStatus</a></dt>
 <dd>
 <div class="block">Status representing an active account, that can use the system.</div>
@@ -65,11 +69,23 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
+<dt><a href="org/example/crmedu/domain/service/organization/OrganizationService.html#checkExistanceById(java.lang.Long)" class="member-name-link">checkExistanceById(Long)</a> - Method in interface org.example.crmedu.domain.service.organization.<a href="org/example/crmedu/domain/service/organization/OrganizationService.html" title="interface in org.example.crmedu.domain.service.organization">OrganizationService</a></dt>
+<dd>
+<div class="block">Check if organization with this unique identifier exists.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/service/organization/OrganizationServiceImpl.html#checkExistanceById(java.lang.Long)" class="member-name-link">checkExistanceById(Long)</a> - Method in class org.example.crmedu.domain.service.organization.<a href="org/example/crmedu/domain/service/organization/OrganizationServiceImpl.html" title="class in org.example.crmedu.domain.service.organization">OrganizationServiceImpl</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/domain/service/organization/OrganizationService.html#create(org.example.crmedu.domain.model.Organization)" class="member-name-link">create(Organization)</a> - Method in interface org.example.crmedu.domain.service.organization.<a href="org/example/crmedu/domain/service/organization/OrganizationService.html" title="interface in org.example.crmedu.domain.service.organization">OrganizationService</a></dt>
 <dd>
 <div class="block">Creates a new organization.</div>
 </dd>
 <dt><a href="org/example/crmedu/domain/service/organization/OrganizationServiceImpl.html#create(org.example.crmedu.domain.model.Organization)" class="member-name-link">create(Organization)</a> - Method in class org.example.crmedu.domain.service.organization.<a href="org/example/crmedu/domain/service/organization/OrganizationServiceImpl.html" title="class in org.example.crmedu.domain.service.organization">OrganizationServiceImpl</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentService.html#create(org.example.crmedu.domain.model.Student)" class="member-name-link">create(Student)</a> - Method in interface org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentService.html" title="interface in org.example.crmedu.domain.service.student">StudentService</a></dt>
+<dd>
+<div class="block">Creates a new student.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html#create(org.example.crmedu.domain.model.Student)" class="member-name-link">create(Student)</a> - Method in class org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html" title="class in org.example.crmedu.domain.service.student">StudentServiceImpl</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/domain/service/subject/SubjectService.html#create(org.example.crmedu.domain.model.Subject)" class="member-name-link">create(Subject)</a> - Method in interface org.example.crmedu.domain.service.subject.<a href="org/example/crmedu/domain/service/subject/SubjectService.html" title="interface in org.example.crmedu.domain.service.subject">SubjectService</a></dt>
 <dd>
@@ -118,6 +134,22 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates a new schedule.</div>
 </dd>
 <dt><a href="org/example/crmedu/domain/service/schedule/TutorScheduleServiceImpl.html#createSchedule(org.example.crmedu.domain.model.TutorSchedule,java.lang.Long)" class="member-name-link">createSchedule(TutorSchedule, Long)</a> - Method in class org.example.crmedu.domain.service.schedule.<a href="org/example/crmedu/domain/service/schedule/TutorScheduleServiceImpl.html" title="class in org.example.crmedu.domain.service.schedule">TutorScheduleServiceImpl</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/application/dto/request/student/CreateStudentRequest.html" class="type-name-link" title="class in org.example.crmedu.application.dto.request.student">CreateStudentRequest</a> - Class in <a href="org/example/crmedu/application/dto/request/student/package-summary.html">org.example.crmedu.application.dto.request.student</a></dt>
+<dd>
+<div class="block">A DTO representing a request to create a new Student.</div>
+</dd>
+<dt><a href="org/example/crmedu/application/dto/request/student/CreateStudentRequest.html#%3Cinit%3E()" class="member-name-link">CreateStudentRequest()</a> - Constructor for class org.example.crmedu.application.dto.request.student.<a href="org/example/crmedu/application/dto/request/student/CreateStudentRequest.html" title="class in org.example.crmedu.application.dto.request.student">CreateStudentRequest</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/application/mapping/StudentDTOMapper.html#createStudentRequestToStudent(org.example.crmedu.application.dto.request.student.CreateStudentRequest)" class="member-name-link">createStudentRequestToStudent(CreateStudentRequest)</a> - Method in interface org.example.crmedu.application.mapping.<a href="org/example/crmedu/application/mapping/StudentDTOMapper.html" title="interface in org.example.crmedu.application.mapping">StudentDTOMapper</a></dt>
+<dd>
+<div class="block">Converts a <a href="org/example/crmedu/application/dto/request/student/CreateStudentRequest.html" title="class in org.example.crmedu.application.dto.request.student"><code>CreateStudentRequest</code></a> DTO to a <a href="org/example/crmedu/domain/model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a> domain model.</div>
+</dd>
+<dt><a href="org/example/crmedu/application/dto/response/student/CreateStudentResponse.html" class="type-name-link" title="class in org.example.crmedu.application.dto.response.student">CreateStudentResponse</a> - Class in <a href="org/example/crmedu/application/dto/response/student/package-summary.html">org.example.crmedu.application.dto.response.student</a></dt>
+<dd>
+<div class="block">A DTO representing the response after creating a Student.</div>
+</dd>
+<dt><a href="org/example/crmedu/application/dto/response/student/CreateStudentResponse.html#%3Cinit%3E()" class="member-name-link">CreateStudentResponse()</a> - Constructor for class org.example.crmedu.application.dto.response.student.<a href="org/example/crmedu/application/dto/response/student/CreateStudentResponse.html" title="class in org.example.crmedu.application.dto.response.student">CreateStudentResponse</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/application/controller/SubjectController.html#createSubject(org.example.crmedu.application.dto.request.subject.CreateSubjectRequest)" class="member-name-link">createSubject(CreateSubjectRequest)</a> - Method in class org.example.crmedu.application.controller.<a href="org/example/crmedu/application/controller/SubjectController.html" title="class in org.example.crmedu.application.controller">SubjectController</a></dt>
 <dd>
@@ -202,6 +234,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">JPA repository for managing <a href="org/example/crmedu/infrastructure/entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>OrganizationEntity</code></a> entities in the database.</div>
 </dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/DataStudentRepository.html" class="type-name-link" title="interface in org.example.crmedu.infrastructure.repository.student">DataStudentRepository</a> - Interface in <a href="org/example/crmedu/infrastructure/repository/student/package-summary.html">org.example.crmedu.infrastructure.repository.student</a></dt>
+<dd>
+<div class="block">JPA repository for managing <a href="org/example/crmedu/infrastructure/entity/StudentEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>StudentEntity</code></a> entities in the database.</div>
+</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/subject/DataSubjectRepository.html" class="type-name-link" title="interface in org.example.crmedu.infrastructure.repository.subject">DataSubjectRepository</a> - Interface in <a href="org/example/crmedu/infrastructure/repository/subject/package-summary.html">org.example.crmedu.infrastructure.repository.subject</a></dt>
 <dd>
 <div class="block">JPA repository for managing <a href="org/example/crmedu/infrastructure/entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>SubjectEntity</code></a> entities in the database.</div>
@@ -223,6 +259,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/example/crmedu/domain/repository/OrganizationRepository.html#delete(java.lang.Long)" class="member-name-link">delete(Long)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/OrganizationRepository.html" title="interface in org.example.crmedu.domain.repository">OrganizationRepository</a></dt>
 <dd>
 <div class="block">Delete an organization by its unique identifier.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/repository/StudentRepository.html#delete(java.lang.Long)" class="member-name-link">delete(Long)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/StudentRepository.html" title="interface in org.example.crmedu.domain.repository">StudentRepository</a></dt>
+<dd>
+<div class="block">Deletes a student by its unique identifier.</div>
 </dd>
 <dt><a href="org/example/crmedu/domain/repository/SubjectRepository.html#delete(java.lang.Long)" class="member-name-link">delete(Long)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/SubjectRepository.html" title="interface in org.example.crmedu.domain.repository">SubjectRepository</a></dt>
 <dd>
@@ -274,11 +314,19 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/schedule/TutorScheduleRepositoryImpl.html#delete(java.lang.Long)" class="member-name-link">delete(Long)</a> - Method in class org.example.crmedu.infrastructure.repository.schedule.<a href="org/example/crmedu/infrastructure/repository/schedule/TutorScheduleRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.schedule">TutorScheduleRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html#delete(java.lang.Long)" class="member-name-link">delete(Long)</a> - Method in class org.example.crmedu.infrastructure.repository.student.<a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.student">StudentRepositoryImpl</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/subject/SubjectRepositoryImpl.html#delete(java.lang.Long)" class="member-name-link">delete(Long)</a> - Method in class org.example.crmedu.infrastructure.repository.subject.<a href="org/example/crmedu/infrastructure/repository/subject/SubjectRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.subject">SubjectRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/tutor/TutorRepositoryImpl.html#delete(java.lang.Long)" class="member-name-link">delete(Long)</a> - Method in class org.example.crmedu.infrastructure.repository.tutor.<a href="org/example/crmedu/infrastructure/repository/tutor/TutorRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.tutor">TutorRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/user/UserRepositoryImpl.html#delete(java.lang.Long)" class="member-name-link">delete(Long)</a> - Method in class org.example.crmedu.infrastructure.repository.user.<a href="org/example/crmedu/infrastructure/repository/user/UserRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.user">UserRepositoryImpl</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentService.html#deleteStudent(java.lang.Long)" class="member-name-link">deleteStudent(Long)</a> - Method in interface org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentService.html" title="interface in org.example.crmedu.domain.service.student">StudentService</a></dt>
+<dd>
+<div class="block">Deletes a student by its unique identifier.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html#deleteStudent(java.lang.Long)" class="member-name-link">deleteStudent(Long)</a> - Method in class org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html" title="class in org.example.crmedu.domain.service.student">StudentServiceImpl</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/application/controller/SubjectController.html#deleteSubject(java.lang.Long)" class="member-name-link">deleteSubject(Long)</a> - Method in class org.example.crmedu.application.controller.<a href="org/example/crmedu/application/controller/SubjectController.html" title="class in org.example.crmedu.application.controller">SubjectController</a></dt>
 <dd>
@@ -344,6 +392,16 @@ loadScripts(document, 'script');</script>
 <div class="block">Checks whether a user with the same email already exists.</div>
 </dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/user/UserRepositoryImpl.html#existsByEmail(org.example.crmedu.domain.model.User)" class="member-name-link">existsByEmail(User)</a> - Method in class org.example.crmedu.infrastructure.repository.user.<a href="org/example/crmedu/infrastructure/repository/user/UserRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.user">UserRepositoryImpl</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/DataStudentRepository.html#existsByEmailAndPhoneAndOrganization_Id(java.lang.String,java.lang.String,java.lang.Long)" class="member-name-link">existsByEmailAndPhoneAndOrganization_Id(String, String, Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.student.<a href="org/example/crmedu/infrastructure/repository/student/DataStudentRepository.html" title="interface in org.example.crmedu.infrastructure.repository.student">DataStudentRepository</a></dt>
+<dd>
+<div class="block">Checks whether a student with the specified phone and email that belongs to certain organization exists.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/repository/StudentRepository.html#existsByEmailAndPhoneInOrganization(org.example.crmedu.domain.model.Student)" class="member-name-link">existsByEmailAndPhoneInOrganization(Student)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/StudentRepository.html" title="interface in org.example.crmedu.domain.repository">StudentRepository</a></dt>
+<dd>
+<div class="block">Checks whether a student with this email and phone exists in this organization.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html#existsByEmailAndPhoneInOrganization(org.example.crmedu.domain.model.Student)" class="member-name-link">existsByEmailAndPhoneInOrganization(Student)</a> - Method in class org.example.crmedu.infrastructure.repository.student.<a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.student">StudentRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/domain/repository/OrganizationRepository.html#existsById(java.lang.Long)" class="member-name-link">existsById(Long)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/OrganizationRepository.html" title="interface in org.example.crmedu.domain.repository">OrganizationRepository</a></dt>
 <dd>
@@ -414,6 +472,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Retrieves a paginated list of organizations.</div>
 </dd>
+<dt><a href="org/example/crmedu/domain/repository/StudentRepository.html#findAll(int,int)" class="member-name-link">findAll(int, int)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/StudentRepository.html" title="interface in org.example.crmedu.domain.repository">StudentRepository</a></dt>
+<dd>
+<div class="block">Retrieves a paginated list of students.</div>
+</dd>
 <dt><a href="org/example/crmedu/domain/repository/SubjectRepository.html#findAll(int,int)" class="member-name-link">findAll(int, int)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/SubjectRepository.html" title="interface in org.example.crmedu.domain.repository">SubjectRepository</a></dt>
 <dd>
 <div class="block">Retrieves a paginated list of subjects.</div>
@@ -452,6 +514,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/organization/OrganizationRepositoryImpl.html#findAll(int,int)" class="member-name-link">findAll(int, int)</a> - Method in class org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/OrganizationRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.organization">OrganizationRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html#findAll(int,int)" class="member-name-link">findAll(int, int)</a> - Method in class org.example.crmedu.infrastructure.repository.student.<a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.student">StudentRepositoryImpl</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/subject/SubjectRepositoryImpl.html#findAll(int,int)" class="member-name-link">findAll(int, int)</a> - Method in class org.example.crmedu.infrastructure.repository.subject.<a href="org/example/crmedu/infrastructure/repository/subject/SubjectRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.subject">SubjectRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/tutor/TutorRepositoryImpl.html#findAll(int,int)" class="member-name-link">findAll(int, int)</a> - Method in class org.example.crmedu.infrastructure.repository.tutor.<a href="org/example/crmedu/infrastructure/repository/tutor/TutorRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.tutor">TutorRepositoryImpl</a></dt>
@@ -461,6 +525,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/example/crmedu/domain/repository/OrganizationRepository.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/OrganizationRepository.html" title="interface in org.example.crmedu.domain.repository">OrganizationRepository</a></dt>
 <dd>
 <div class="block">Retrieves an organization by its unique identifier.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/repository/StudentRepository.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/StudentRepository.html" title="interface in org.example.crmedu.domain.repository">StudentRepository</a></dt>
+<dd>
+<div class="block">Retrieves a student by its unique identifier.</div>
 </dd>
 <dt><a href="org/example/crmedu/domain/repository/SubjectRepository.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/SubjectRepository.html" title="interface in org.example.crmedu.domain.repository">SubjectRepository</a></dt>
 <dd>
@@ -490,6 +558,12 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/crmedu/domain/service/schedule/TutorScheduleServiceImpl.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in class org.example.crmedu.domain.service.schedule.<a href="org/example/crmedu/domain/service/schedule/TutorScheduleServiceImpl.html" title="class in org.example.crmedu.domain.service.schedule">TutorScheduleServiceImpl</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentService.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in interface org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentService.html" title="interface in org.example.crmedu.domain.service.student">StudentService</a></dt>
+<dd>
+<div class="block">Retrieves a student by its unique identifier.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in class org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html" title="class in org.example.crmedu.domain.service.student">StudentServiceImpl</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/domain/service/subject/SubjectService.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in interface org.example.crmedu.domain.service.subject.<a href="org/example/crmedu/domain/service/subject/SubjectService.html" title="interface in org.example.crmedu.domain.service.subject">SubjectService</a></dt>
 <dd>
 <div class="block">Retrieves a subject by its unique identifier.</div>
@@ -511,6 +585,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/example/crmedu/infrastructure/repository/organization/OrganizationRepositoryImpl.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in class org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/OrganizationRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.organization">OrganizationRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/schedule/TutorScheduleRepositoryImpl.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in class org.example.crmedu.infrastructure.repository.schedule.<a href="org/example/crmedu/infrastructure/repository/schedule/TutorScheduleRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.schedule">TutorScheduleRepositoryImpl</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in class org.example.crmedu.infrastructure.repository.student.<a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.student">StudentRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/subject/SubjectRepositoryImpl.html#findById(java.lang.Long)" class="member-name-link">findById(Long)</a> - Method in class org.example.crmedu.infrastructure.repository.subject.<a href="org/example/crmedu/infrastructure/repository/subject/SubjectRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.subject">SubjectRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
@@ -548,6 +624,18 @@ loadScripts(document, 'script');</script>
 <div class="block">A DTO representing the response with retrieving an Organization.</div>
 </dd>
 <dt><a href="org/example/crmedu/application/dto/response/organization/GetOrganizationResponse.html#%3Cinit%3E()" class="member-name-link">GetOrganizationResponse()</a> - Constructor for class org.example.crmedu.application.dto.response.organization.<a href="org/example/crmedu/application/dto/response/organization/GetOrganizationResponse.html" title="class in org.example.crmedu.application.dto.response.organization">GetOrganizationResponse</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/application/dto/response/student/GetStudentResponse.html" class="type-name-link" title="class in org.example.crmedu.application.dto.response.student">GetStudentResponse</a> - Class in <a href="org/example/crmedu/application/dto/response/student/package-summary.html">org.example.crmedu.application.dto.response.student</a></dt>
+<dd>
+<div class="block">A DTO representing the response after retrieving a Student.</div>
+</dd>
+<dt><a href="org/example/crmedu/application/dto/response/student/GetStudentResponse.html#%3Cinit%3E()" class="member-name-link">GetStudentResponse()</a> - Constructor for class org.example.crmedu.application.dto.response.student.<a href="org/example/crmedu/application/dto/response/student/GetStudentResponse.html" title="class in org.example.crmedu.application.dto.response.student">GetStudentResponse</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentService.html#getStudents(int,int)" class="member-name-link">getStudents(int, int)</a> - Method in interface org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentService.html" title="interface in org.example.crmedu.domain.service.student">StudentService</a></dt>
+<dd>
+<div class="block">Retrieves a paginated list of students.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html#getStudents(int,int)" class="member-name-link">getStudents(int, int)</a> - Method in class org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html" title="class in org.example.crmedu.domain.service.student">StudentServiceImpl</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/application/controller/SubjectController.html#getSubject(java.lang.Long)" class="member-name-link">getSubject(Long)</a> - Method in class org.example.crmedu.application.controller.<a href="org/example/crmedu/application/controller/SubjectController.html" title="class in org.example.crmedu.application.controller">SubjectController</a></dt>
 <dd>
@@ -651,6 +739,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Converts the unique identifier of the user to <a href="org/example/crmedu/domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model.</div>
 </dd>
+<dt><a href="org/example/crmedu/domain/enums/StudentStatus.html#INACTIVE" class="member-name-link">INACTIVE</a> - Enum constant in enum class org.example.crmedu.domain.enums.<a href="org/example/crmedu/domain/enums/StudentStatus.html" title="enum class in org.example.crmedu.domain.enums">StudentStatus</a></dt>
+<dd>
+<div class="block">Status representing a student, that not having lessons in organization.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:L">L</h2>
 <dl class="index">
@@ -696,6 +788,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/application/dto/request/schedule/package-summary.html">org.example.crmedu.application.dto.request.schedule</a> - package org.example.crmedu.application.dto.request.schedule</dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/application/dto/request/student/package-summary.html">org.example.crmedu.application.dto.request.student</a> - package org.example.crmedu.application.dto.request.student</dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/application/dto/request/subject/package-summary.html">org.example.crmedu.application.dto.request.subject</a> - package org.example.crmedu.application.dto.request.subject</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/application/dto/request/tutor/package-summary.html">org.example.crmedu.application.dto.request.tutor</a> - package org.example.crmedu.application.dto.request.tutor</dt>
@@ -705,6 +799,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/example/crmedu/application/dto/response/organization/package-summary.html">org.example.crmedu.application.dto.response.organization</a> - package org.example.crmedu.application.dto.response.organization</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/application/dto/response/schedule/package-summary.html">org.example.crmedu.application.dto.response.schedule</a> - package org.example.crmedu.application.dto.response.schedule</dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/application/dto/response/student/package-summary.html">org.example.crmedu.application.dto.response.student</a> - package org.example.crmedu.application.dto.response.student</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/application/dto/response/subject/package-summary.html">org.example.crmedu.application.dto.response.subject</a> - package org.example.crmedu.application.dto.response.subject</dt>
 <dd>&nbsp;</dd>
@@ -737,6 +833,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/domain/service/schedule/package-summary.html">org.example.crmedu.domain.service.schedule</a> - package org.example.crmedu.domain.service.schedule</dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/domain/service/student/package-summary.html">org.example.crmedu.domain.service.student</a> - package org.example.crmedu.domain.service.student</dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/domain/service/subject/package-summary.html">org.example.crmedu.domain.service.subject</a> - package org.example.crmedu.domain.service.subject</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/domain/service/tutor/package-summary.html">org.example.crmedu.domain.service.tutor</a> - package org.example.crmedu.domain.service.tutor</dt>
@@ -754,6 +852,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/example/crmedu/infrastructure/repository/organization/package-summary.html">org.example.crmedu.infrastructure.repository.organization</a> - package org.example.crmedu.infrastructure.repository.organization</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/schedule/package-summary.html">org.example.crmedu.infrastructure.repository.schedule</a> - package org.example.crmedu.infrastructure.repository.schedule</dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/package-summary.html">org.example.crmedu.infrastructure.repository.student</a> - package org.example.crmedu.infrastructure.repository.student</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/subject/package-summary.html">org.example.crmedu.infrastructure.repository.subject</a> - package org.example.crmedu.infrastructure.repository.subject</dt>
 <dd>&nbsp;</dd>
@@ -834,6 +934,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Converts a paginated <a href="org/example/crmedu/domain/model/Page.html" title="class in org.example.crmedu.domain.model"><code>Page</code></a> of <a href="org/example/crmedu/domain/model/Organization.html" title="class in org.example.crmedu.domain.model"><code>Organization</code></a> entities to a paginated <a href="org/example/crmedu/application/dto/PageDTO.html" title="class in org.example.crmedu.application.dto"><code>PageDTO</code></a> of <a href="org/example/crmedu/application/dto/response/organization/GetOrganizationResponse.html" title="class in org.example.crmedu.application.dto.response.organization"><code>GetOrganizationResponse</code></a> DTOs.</div>
 </dd>
+<dt><a href="org/example/crmedu/application/mapping/StudentDTOMapper.html#pageStudentToPageDtoGetTutorResponse(org.example.crmedu.domain.model.Page)" class="member-name-link">pageStudentToPageDtoGetTutorResponse(Page&lt;Student&gt;)</a> - Method in interface org.example.crmedu.application.mapping.<a href="org/example/crmedu/application/mapping/StudentDTOMapper.html" title="interface in org.example.crmedu.application.mapping">StudentDTOMapper</a></dt>
+<dd>
+<div class="block">Converts a paginated <a href="org/example/crmedu/domain/model/Page.html" title="class in org.example.crmedu.domain.model"><code>Page</code></a> of <a href="org/example/crmedu/domain/model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a> entities to a paginated <a href="org/example/crmedu/application/dto/PageDTO.html" title="class in org.example.crmedu.application.dto"><code>PageDTO</code></a> of <a href="org/example/crmedu/application/dto/response/student/GetStudentResponse.html" title="class in org.example.crmedu.application.dto.response.student"><code>GetStudentResponse</code></a> DTOs.</div>
+</dd>
 <dt><a href="org/example/crmedu/application/mapping/SubjectDTOMapper.html#pageSubjectToPageDTO(org.example.crmedu.domain.model.Page)" class="member-name-link">pageSubjectToPageDTO(Page&lt;Subject&gt;)</a> - Method in interface org.example.crmedu.application.mapping.<a href="org/example/crmedu/application/mapping/SubjectDTOMapper.html" title="interface in org.example.crmedu.application.mapping">SubjectDTOMapper</a></dt>
 <dd>
 <div class="block">Converts a paginated <a href="org/example/crmedu/domain/model/Page.html" title="class in org.example.crmedu.domain.model"><code>Page</code></a> of <a href="org/example/crmedu/domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a> entities to a paginated <a href="org/example/crmedu/application/dto/PageDTO.html" title="class in org.example.crmedu.application.dto"><code>PageDTO</code></a> of <a href="org/example/crmedu/application/dto/response/subject/GetSubjectResponse.html" title="class in org.example.crmedu.application.dto.response.subject"><code>GetSubjectResponse</code></a> DTOs.</div>
@@ -904,6 +1008,12 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/organization/OrganizationRepositoryImpl.html#save(org.example.crmedu.domain.model.Organization)" class="member-name-link">save(Organization)</a> - Method in class org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/OrganizationRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.organization">OrganizationRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/domain/repository/StudentRepository.html#save(org.example.crmedu.domain.model.Student)" class="member-name-link">save(Student)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/StudentRepository.html" title="interface in org.example.crmedu.domain.repository">StudentRepository</a></dt>
+<dd>
+<div class="block">Saves a new student or updates an existing one.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html#save(org.example.crmedu.domain.model.Student)" class="member-name-link">save(Student)</a> - Method in class org.example.crmedu.infrastructure.repository.student.<a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.student">StudentRepositoryImpl</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/domain/repository/SubjectRepository.html#save(org.example.crmedu.domain.model.Subject)" class="member-name-link">save(Subject)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/SubjectRepository.html" title="interface in org.example.crmedu.domain.repository">SubjectRepository</a></dt>
 <dd>
 <div class="block">Saves a new subject or updates an existing one.</div>
@@ -939,6 +1049,72 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/example/crmedu/application/mapping/TutorScheduleDTOMapper.html#stringToOffsetTime(java.lang.String)" class="member-name-link">stringToOffsetTime(String)</a> - Method in interface org.example.crmedu.application.mapping.<a href="org/example/crmedu/application/mapping/TutorScheduleDTOMapper.html" title="interface in org.example.crmedu.application.mapping">TutorScheduleDTOMapper</a></dt>
 <dd>
 <div class="block">Converts time presented in <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link"><code>String</code></a> format to <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/OffsetTime.html" title="class or interface in java.time" class="external-link"><code>OffsetTime</code></a></div>
+</dd>
+<dt><a href="org/example/crmedu/domain/model/Student.html" class="type-name-link" title="class in org.example.crmedu.domain.model">Student</a> - Class in <a href="org/example/crmedu/domain/model/package-summary.html">org.example.crmedu.domain.model</a></dt>
+<dd>
+<div class="block">A class representing a student entity.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/model/Student.html#%3Cinit%3E()" class="member-name-link">Student()</a> - Constructor for class org.example.crmedu.domain.model.<a href="org/example/crmedu/domain/model/Student.html" title="class in org.example.crmedu.domain.model">Student</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/application/controller/StudentController.html" class="type-name-link" title="class in org.example.crmedu.application.controller">StudentController</a> - Class in <a href="org/example/crmedu/application/controller/package-summary.html">org.example.crmedu.application.controller</a></dt>
+<dd>
+<div class="block">REST controller for managing students.</div>
+</dd>
+<dt><a href="org/example/crmedu/application/controller/StudentController.html#%3Cinit%3E()" class="member-name-link">StudentController()</a> - Constructor for class org.example.crmedu.application.controller.<a href="org/example/crmedu/application/controller/StudentController.html" title="class in org.example.crmedu.application.controller">StudentController</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/application/mapping/StudentDTOMapper.html" class="type-name-link" title="interface in org.example.crmedu.application.mapping">StudentDTOMapper</a> - Interface in <a href="org/example/crmedu/application/mapping/package-summary.html">org.example.crmedu.application.mapping</a></dt>
+<dd>
+<div class="block">A mapper interface for converting between Student domain model and its corresponding DTOs.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/entity/StudentEntity.html" class="type-name-link" title="class in org.example.crmedu.infrastructure.entity">StudentEntity</a> - Class in <a href="org/example/crmedu/infrastructure/entity/package-summary.html">org.example.crmedu.infrastructure.entity</a></dt>
+<dd>
+<div class="block">JPA-entity representing a Student.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/entity/StudentEntity.html#%3Cinit%3E()" class="member-name-link">StudentEntity()</a> - Constructor for class org.example.crmedu.infrastructure.entity.<a href="org/example/crmedu/infrastructure/entity/StudentEntity.html" title="class in org.example.crmedu.infrastructure.entity">StudentEntity</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/infrastructure/mapping/StudentEntityMapper.html" class="type-name-link" title="interface in org.example.crmedu.infrastructure.mapping">StudentEntityMapper</a> - Interface in <a href="org/example/crmedu/infrastructure/mapping/package-summary.html">org.example.crmedu.infrastructure.mapping</a></dt>
+<dd>
+<div class="block">A mapper interface for converting between Student domain model and Student JPA-entity.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/mapping/StudentEntityMapper.html#studentEntityToStudent(org.example.crmedu.infrastructure.entity.StudentEntity)" class="member-name-link">studentEntityToStudent(StudentEntity)</a> - Method in interface org.example.crmedu.infrastructure.mapping.<a href="org/example/crmedu/infrastructure/mapping/StudentEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">StudentEntityMapper</a></dt>
+<dd>
+<div class="block">Converts a <a href="org/example/crmedu/infrastructure/entity/StudentEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>StudentEntity</code></a> to <a href="org/example/crmedu/domain/model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a>.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/repository/StudentRepository.html" class="type-name-link" title="interface in org.example.crmedu.domain.repository">StudentRepository</a> - Interface in <a href="org/example/crmedu/domain/repository/package-summary.html">org.example.crmedu.domain.repository</a></dt>
+<dd>
+<div class="block">Repository interface for managing <a href="org/example/crmedu/domain/model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a> entities.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html" class="type-name-link" title="class in org.example.crmedu.infrastructure.repository.student">StudentRepositoryImpl</a> - Class in <a href="org/example/crmedu/infrastructure/repository/student/package-summary.html">org.example.crmedu.infrastructure.repository.student</a></dt>
+<dd>
+<div class="block">Implementation of the <a href="org/example/crmedu/domain/repository/StudentRepository.html" title="interface in org.example.crmedu.domain.repository"><code>StudentRepository</code></a> interface.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html#%3Cinit%3E()" class="member-name-link">StudentRepositoryImpl()</a> - Constructor for class org.example.crmedu.infrastructure.repository.student.<a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.student">StudentRepositoryImpl</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentService.html" class="type-name-link" title="interface in org.example.crmedu.domain.service.student">StudentService</a> - Interface in <a href="org/example/crmedu/domain/service/student/package-summary.html">org.example.crmedu.domain.service.student</a></dt>
+<dd>
+<div class="block">Service interface for managing <a href="org/example/crmedu/domain/model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a> entities.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html" class="type-name-link" title="class in org.example.crmedu.domain.service.student">StudentServiceImpl</a> - Class in <a href="org/example/crmedu/domain/service/student/package-summary.html">org.example.crmedu.domain.service.student</a></dt>
+<dd>
+<div class="block">Implementation of the <a href="org/example/crmedu/domain/service/student/StudentService.html" title="interface in org.example.crmedu.domain.service.student"><code>StudentService</code></a> interface.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html#%3Cinit%3E()" class="member-name-link">StudentServiceImpl()</a> - Constructor for class org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html" title="class in org.example.crmedu.domain.service.student">StudentServiceImpl</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/domain/enums/StudentStatus.html" class="type-name-link" title="enum class in org.example.crmedu.domain.enums">StudentStatus</a> - Enum Class in <a href="org/example/crmedu/domain/enums/package-summary.html">org.example.crmedu.domain.enums</a></dt>
+<dd>
+<div class="block">An enumeration class, representing the student's account statuses in the organization.</div>
+</dd>
+<dt><a href="org/example/crmedu/application/mapping/StudentDTOMapper.html#studentToCreateStudentResponse(org.example.crmedu.domain.model.Student)" class="member-name-link">studentToCreateStudentResponse(Student)</a> - Method in interface org.example.crmedu.application.mapping.<a href="org/example/crmedu/application/mapping/StudentDTOMapper.html" title="interface in org.example.crmedu.application.mapping">StudentDTOMapper</a></dt>
+<dd>
+<div class="block">Converts a <a href="org/example/crmedu/domain/model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a> model to a <a href="org/example/crmedu/application/dto/response/student/CreateStudentResponse.html" title="class in org.example.crmedu.application.dto.response.student"><code>CreateStudentResponse</code></a> DTO.</div>
+</dd>
+<dt><a href="org/example/crmedu/application/mapping/StudentDTOMapper.html#studentToGetStudentResponse(org.example.crmedu.domain.model.Student)" class="member-name-link">studentToGetStudentResponse(Student)</a> - Method in interface org.example.crmedu.application.mapping.<a href="org/example/crmedu/application/mapping/StudentDTOMapper.html" title="interface in org.example.crmedu.application.mapping">StudentDTOMapper</a></dt>
+<dd>
+<div class="block">Converts a <a href="org/example/crmedu/domain/model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a> domain model to a <a href="org/example/crmedu/application/dto/response/student/GetStudentResponse.html" title="class in org.example.crmedu.application.dto.response.student"><code>GetStudentResponse</code></a> DTO.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/mapping/StudentEntityMapper.html#studentToStudentEntity(org.example.crmedu.domain.model.Student)" class="member-name-link">studentToStudentEntity(Student)</a> - Method in interface org.example.crmedu.infrastructure.mapping.<a href="org/example/crmedu/infrastructure/mapping/StudentEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">StudentEntityMapper</a></dt>
+<dd>
+<div class="block">Converts a <a href="org/example/crmedu/domain/model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a> to <a href="org/example/crmedu/infrastructure/entity/StudentEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>StudentEntity</code></a>.</div>
 </dd>
 <dt><a href="org/example/crmedu/domain/model/Subject.html" class="type-name-link" title="class in org.example.crmedu.domain.model">Subject</a> - Class in <a href="org/example/crmedu/domain/model/package-summary.html">org.example.crmedu.domain.model</a></dt>
 <dd>
@@ -1182,6 +1358,12 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/crmedu/domain/service/organization/OrganizationServiceImpl.html#update(org.example.crmedu.domain.model.Organization,java.lang.Long)" class="member-name-link">update(Organization, Long)</a> - Method in class org.example.crmedu.domain.service.organization.<a href="org/example/crmedu/domain/service/organization/OrganizationServiceImpl.html" title="class in org.example.crmedu.domain.service.organization">OrganizationServiceImpl</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/domain/repository/StudentRepository.html#update(org.example.crmedu.domain.model.Student)" class="member-name-link">update(Student)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/StudentRepository.html" title="interface in org.example.crmedu.domain.repository">StudentRepository</a></dt>
+<dd>
+<div class="block">Updates an existing student.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html#update(org.example.crmedu.domain.model.Student)" class="member-name-link">update(Student)</a> - Method in class org.example.crmedu.infrastructure.repository.student.<a href="org/example/crmedu/infrastructure/repository/student/StudentRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.student">StudentRepositoryImpl</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/domain/repository/SubjectRepository.html#update(org.example.crmedu.domain.model.Subject)" class="member-name-link">update(Subject)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/SubjectRepository.html" title="interface in org.example.crmedu.domain.repository">SubjectRepository</a></dt>
 <dd>
 <div class="block">Updates an existing subject.</div>
@@ -1247,6 +1429,22 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/example/crmedu/application/mapping/TutorDTOMapper.html#updateRequestToUser(org.example.crmedu.application.dto.request.tutor.UpdateTutorRequest)" class="member-name-link">updateRequestToUser(UpdateTutorRequest)</a> - Method in interface org.example.crmedu.application.mapping.<a href="org/example/crmedu/application/mapping/TutorDTOMapper.html" title="interface in org.example.crmedu.application.mapping">TutorDTOMapper</a></dt>
 <dd>
 <div class="block">Converts an <a href="org/example/crmedu/application/dto/request/tutor/UpdateTutorRequest.html" title="class in org.example.crmedu.application.dto.request.tutor"><code>UpdateTutorRequest</code></a> DTO to a <a href="org/example/crmedu/domain/model/Tutor.html" title="class in org.example.crmedu.domain.model"><code>Tutor</code></a> model.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentService.html#updateStudent(org.example.crmedu.domain.model.Student,java.lang.Long)" class="member-name-link">updateStudent(Student, Long)</a> - Method in interface org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentService.html" title="interface in org.example.crmedu.domain.service.student">StudentService</a></dt>
+<dd>
+<div class="block">Updates an existing student</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html#updateStudent(org.example.crmedu.domain.model.Student,java.lang.Long)" class="member-name-link">updateStudent(Student, Long)</a> - Method in class org.example.crmedu.domain.service.student.<a href="org/example/crmedu/domain/service/student/StudentServiceImpl.html" title="class in org.example.crmedu.domain.service.student">StudentServiceImpl</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/application/dto/request/student/UpdateStudentRequest.html" class="type-name-link" title="class in org.example.crmedu.application.dto.request.student">UpdateStudentRequest</a> - Class in <a href="org/example/crmedu/application/dto/request/student/package-summary.html">org.example.crmedu.application.dto.request.student</a></dt>
+<dd>
+<div class="block">A DTO representing a request to update an existing Student.</div>
+</dd>
+<dt><a href="org/example/crmedu/application/dto/request/student/UpdateStudentRequest.html#%3Cinit%3E()" class="member-name-link">UpdateStudentRequest()</a> - Constructor for class org.example.crmedu.application.dto.request.student.<a href="org/example/crmedu/application/dto/request/student/UpdateStudentRequest.html" title="class in org.example.crmedu.application.dto.request.student">UpdateStudentRequest</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/application/mapping/StudentDTOMapper.html#updateStudentRequestToStudent(org.example.crmedu.application.dto.request.student.UpdateStudentRequest)" class="member-name-link">updateStudentRequestToStudent(UpdateStudentRequest)</a> - Method in interface org.example.crmedu.application.mapping.<a href="org/example/crmedu/application/mapping/StudentDTOMapper.html" title="interface in org.example.crmedu.application.mapping">StudentDTOMapper</a></dt>
+<dd>
+<div class="block">Converts a <a href="org/example/crmedu/application/dto/request/student/UpdateStudentRequest.html" title="class in org.example.crmedu.application.dto.request.student"><code>UpdateStudentRequest</code></a> DTO to a <a href="org/example/crmedu/domain/model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a> domain model.</div>
 </dd>
 <dt><a href="org/example/crmedu/application/controller/SubjectController.html#updateSubject(java.lang.Long,org.example.crmedu.application.dto.request.subject.UpdateSubjectRequest)" class="member-name-link">updateSubject(Long, UpdateSubjectRequest)</a> - Method in class org.example.crmedu.application.controller.<a href="org/example/crmedu/application/controller/SubjectController.html" title="class in org.example.crmedu.application.controller">SubjectController</a></dt>
 <dd>
@@ -1379,6 +1577,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
+<dt><a href="org/example/crmedu/domain/enums/StudentStatus.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class org.example.crmedu.domain.enums.<a href="org/example/crmedu/domain/enums/StudentStatus.html" title="enum class in org.example.crmedu.domain.enums">StudentStatus</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
 <dt><a href="org/example/crmedu/domain/enums/UserStatus.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class org.example.crmedu.domain.enums.<a href="org/example/crmedu/domain/enums/UserStatus.html" title="enum class in org.example.crmedu.domain.enums">UserStatus</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
@@ -1389,6 +1591,11 @@ loadScripts(document, 'script');</script>
 the order they are declared.</div>
 </dd>
 <dt><a href="org/example/crmedu/domain/enums/Role.html#values()" class="member-name-link">values()</a> - Static method in enum class org.example.crmedu.domain.enums.<a href="org/example/crmedu/domain/enums/Role.html" title="enum class in org.example.crmedu.domain.enums">Role</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
+<dt><a href="org/example/crmedu/domain/enums/StudentStatus.html#values()" class="member-name-link">values()</a> - Static method in enum class org.example.crmedu.domain.enums.<a href="org/example/crmedu/domain/enums/StudentStatus.html" title="enum class in org.example.crmedu.domain.enums">StudentStatus</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>

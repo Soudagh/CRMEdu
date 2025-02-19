@@ -266,6 +266,91 @@
         }
       }
     },
+    "/api/v1/students/{id}": {
+      "get": {
+        "tags": [
+          "student-controller"
+        ],
+        "operationId": "getStudentById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStudentResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "student-controller"
+        ],
+        "operationId": "updateStudent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "student-controller"
+        ],
+        "operationId": "deleteStudent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/v1/schedules/{id}": {
       "get": {
         "tags": [
@@ -603,6 +688,64 @@
               "*/*": {
                 "schema": {
                   "$ref": "#/components/schemas/CreateSubjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/students": {
+      "get": {
+        "tags": [
+          "student-controller"
+        ],
+        "operationId": "getStudents",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDTOGetStudentResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "student-controller"
+        ],
+        "operationId": "createStudent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateStudentResponse"
                 }
               }
             }
@@ -949,6 +1092,73 @@
             "maxLength": 50,
             "minLength": 0,
             "type": "string"
+          }
+        }
+      },
+      "UpdateStudentRequest": {
+        "required": [
+          "email",
+          "grade",
+          "name",
+          "phone",
+          "surname"
+        ],
+        "type": "object",
+        "properties": {
+          "surname": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "patronymic": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 254,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phone": {
+            "pattern": "^\\+\\d{1,3}\\d{10}$",
+            "type": "string"
+          },
+          "timezone": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "hex": {
+            "maxLength": 7,
+            "minLength": 0,
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grade": {
+            "maximum": 11,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ]
           }
         }
       },
@@ -1678,6 +1888,126 @@
           }
         }
       },
+      "CreateStudentRequest": {
+        "required": [
+          "email",
+          "grade",
+          "name",
+          "phone",
+          "surname"
+        ],
+        "type": "object",
+        "properties": {
+          "surname": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "patronymic": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 254,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phone": {
+            "pattern": "^\\+\\d{1,3}\\d{10}$",
+            "type": "string"
+          },
+          "timezone": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "hex": {
+            "maxLength": 7,
+            "minLength": 0,
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grade": {
+            "maximum": 11,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ]
+          },
+          "organization": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CreateStudentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "patronymic": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "hex": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ]
+          }
+        }
+      },
       "CreateTutorScheduleRequest": {
         "required": [
           "timeEnd",
@@ -2018,6 +2348,82 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GetSubjectResponse"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "GetStudentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "patronymic": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "hex": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ]
+          }
+        }
+      },
+      "PageDTOGetStudentResponse": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetStudentResponse"
             }
           },
           "page": {
