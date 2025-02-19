@@ -9,6 +9,9 @@ import org.example.crmedu.domain.repository.StudentRepository;
 import org.example.crmedu.domain.service.organization.OrganizationService;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of the {@link StudentService} interface. Provides business logic for managing {@link Student} entities.
+ */
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
