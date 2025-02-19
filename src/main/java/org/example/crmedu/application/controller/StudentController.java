@@ -74,7 +74,7 @@ public class StudentController {
    *
    * @param request an object containing the updated student details
    * @param id the unique identifier of the student
-   * @return
+   * @return a {@link ResponseEntity}
    */
   @PutMapping("/{id}")
   ResponseEntity<Void> updateStudent(@Valid @RequestBody UpdateStudentRequest request, @PathVariable Long id) {
