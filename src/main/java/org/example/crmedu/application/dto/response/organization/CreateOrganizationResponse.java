@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
  * A DTO representing the response with creating an Organization.
  */
 @Data
-@Accessors
+@Accessors(chain = true)
 public class CreateOrganizationResponse {
 
   private Long id;

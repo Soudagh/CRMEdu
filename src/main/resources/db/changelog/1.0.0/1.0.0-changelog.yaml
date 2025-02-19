@@ -8,4 +8,6 @@ databaseChangeLog:
   - include:
       file: db/changelog/1.0.0/changes/004-create-tutor-table.yaml
   - include:
+      file: db/changelog/1.0.0/changes/005-add-column-to-tutor-time.yaml
+  - include:
       file: db/changelog/1.0.0/changes/006-create-student-table.yaml

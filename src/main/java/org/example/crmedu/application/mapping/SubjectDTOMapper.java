@@ -1,5 +1,7 @@
 package org.example.crmedu.application.mapping;
 
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.example.crmedu.application.dto.PageDTO;
 import org.example.crmedu.application.dto.request.subject.CreateSubjectRequest;
 import org.example.crmedu.application.dto.request.subject.UpdateSubjectRequest;
@@ -9,6 +11,7 @@ import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.Subject;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
 /**
  * A mapper interface for converting between Subject domain model and its corresponding DTOs. Uses MapStruct for automatic mapping.
@@ -56,4 +59,23 @@ public interface SubjectDTOMapper {
    * @return the corresponding {@link Subject} model
    */
   Subject createRequestToSubject(CreateSubjectRequest request);
+
+  /**
+   * Map {@link Subject} by its unique identifier.
+   *
+   * @param id the unique identifier
+   * @return the corresponding {@link Subject} model
+   */
+  Subject idToSubject(Long id);
+
+  /**
+   * Map set of subject ids into set of corresponding subjects.
+   *
+   * @param ids set of unique identifiers of subjects
+   * @return the corresponding {@link Set<Subject>}
+   */
+  @Named("setIdsToSetSubjects")
+  default Set<Subject> setIdsToSetSubjects(Set<Long> ids) {
+    return ids.stream().map(this::idToSubject).collect(Collectors.toSet());
+  }
 }
