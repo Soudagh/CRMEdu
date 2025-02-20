@@ -2,7 +2,6 @@ name: Generate and publish docs
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
 
 jobs:
@@ -54,6 +53,13 @@ jobs:
           cat build/generated/openapi.json | jq '{openapi: "3.0.1", info: .info, servers: .servers, paths: .paths, components: .components}' > temp.json
           mv temp.json build/generated/openapi.json
 
+      - name: Convert OpenAPI spec
+        uses: Legion2/swagger-ui-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          output: gh-pages/swagger
+          spec-file: build/generated/openapi.json
+
       - name: Upload Docs Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -71,13 +77,6 @@ jobs:
         with:
           name: docs
           path: gh-pages
-
-      - name: Convert OpenAPI spec
-        uses: Legion2/swagger-ui-action@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          output: gh-pages/swagger
-          spec-file: gh-pages/generated/openapi.json
 
       - name: Create index.html for GitHub Pages
         run: echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=swagger/index.html"></head><body></body></html>' > gh-pages/index.html
