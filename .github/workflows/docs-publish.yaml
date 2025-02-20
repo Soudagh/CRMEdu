@@ -3,10 +3,17 @@ name: Publish docs
 on:
   push:
     branches: [ "main" ]
+  workflow_run:
+    workflows: [ "Generate docs" ]
+    types:
+      - completed
 
 
 jobs:
   publish-docs:
+    if: >
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
