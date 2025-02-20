@@ -2,6 +2,7 @@ name: Generate and publish docs
 
 on:
   push:
+    branches: ["main"]
   pull_request:
 
 jobs:
