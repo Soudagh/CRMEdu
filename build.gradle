@@ -78,4 +78,19 @@ tasks.named('jacocoTestReport') {
         xml.required = true
         html.required = true
     }
+
+    def exclusions = [
+            '**/infrastructure/entity/*.class',
+            '**/domain/exception/*.class',
+            '**/infrastructure/mapping/*.class',
+            '**/application/mapping/*.class',
+            '**/application/controller/*.class'
+    ]
+
+    def filteredClassDirs = classDirectories.files.collect {
+        println "Checking class directory: ${it}"
+        fileTree(dir: it, exclude: exclusions)
+    }
+
+    classDirectories.setFrom(files(filteredClassDirs))
 }
