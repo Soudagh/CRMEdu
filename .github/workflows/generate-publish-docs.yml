@@ -1,4 +1,4 @@
-name: Generate docs
+name: Generate and publish docs
 
 on:
   push:
@@ -59,3 +59,33 @@ jobs:
         with:
           name: docs
           path: gh-pages
+
+  publish-docs:
+    needs: generate-docs
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Docs Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: docs
+          path: gh-pages
+
+      - name: Convert OpenAPI spec
+        uses: Legion2/swagger-ui-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          output: gh-pages/swagger
+          spec-file: gh-pages/generated/openapi.json
+
+      - name: Create index.html for GitHub Pages
+        run: echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=swagger/index.html"></head><body></body></html>' > gh-pages/index.html
+
+      - name: Publish Javadoc & Swagger to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+          clean: false
