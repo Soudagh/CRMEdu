@@ -79,4 +79,34 @@ public class ScheduleIntegrationServiceTest extends BaseIntegrationTest {
     assertNotEquals(newScheduleEntity, scheduleEntity);
     assertEquals(newScheduleEntity, newSchedule.setId(scheduleId));
   }
+
+  @Test
+  void update_shouldNotUpdateEntityWithSelectedId() {
+    var organization = getMockObject(Organization.class).setId(null);
+    var organizationEntity = organizationService.create(organization);
+    assertNotNull(organizationEntity);
+    var user = getMockObject(User.class).setRole(Role.SUPERUSER).setId(null).setOrganization(organizationEntity);
+    var userEntity = userService.create(user);
+    assertNotNull(userEntity);
+    var tutor = getMockObject(Tutor.class).setId(null).setUser(userEntity).setSubjects(null);
+    var tutorEntity = tutorService.create(tutor);
+    assertNotNull(tutorEntity);
+    var schedule = getMockObject(TutorSchedule.class)
+        .setId(null)
+        .setTutor(null)
+        .setTimeStart(OffsetTime.of(7, 0, 0, 0, ZoneOffset.UTC))
+        .setTimeEnd(OffsetTime.of(9, 0, 0, 0, ZoneOffset.UTC));
+    var scheduleEntity = tutorScheduleService.createSchedule(schedule, tutorEntity.getId());
+    assertNotNull(scheduleEntity);
+    var scheduleId = scheduleEntity.getId();
+    var newSchedule = getMockObject(TutorSchedule.class)
+        .setId(null)
+        .setDayOfWeek(scheduleEntity.getDayOfWeek())
+        .setTimeStart(OffsetTime.of(7, 0, 0, 0, ZoneOffset.UTC))
+        .setTimeEnd(OffsetTime.of(9, 0, 0, 0, ZoneOffset.UTC));
+    tutorScheduleService.update(newSchedule, scheduleId);
+    var newScheduleEntity = assertDoesNotThrow(() -> tutorScheduleService.findById(scheduleId));
+    assertEquals(newScheduleEntity, scheduleEntity);
+    assertEquals(newScheduleEntity, newSchedule.setId(scheduleId));
+  }
 }

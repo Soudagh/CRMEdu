@@ -18,7 +18,7 @@ public interface DataOrganizationRepository extends JpaRepository<OrganizationEn
    * @param name the name of the organization
    * @return {@code true} if an organization with this name exists. otherwise {@code false}
    */
-  boolean existsByName(String name);
+  boolean existsByNameAndIdIsNot(String name, Long id);
 
   /**
    * Checks whether an organization with the specified email exists.
@@ -26,13 +26,13 @@ public interface DataOrganizationRepository extends JpaRepository<OrganizationEn
    * @param email the email of the organization
    * @return {@code true} if an organization with this email exists. otherwise {@code false}
    */
-  boolean existsByEmail(String email);
+  boolean existsByEmailAndIdIsNot(String email, Long id);
 
   /**
    * Checks whether an organization with the specified phone exists.
    *
-   * @param phone the email of the organization
+   * @param phone the phone of the organization
    * @return {@code true} if an organization with this phone exists. otherwise {@code false}
    */
-  boolean existsByPhone(String phone);
+  boolean existsByPhoneAndIdIsNot(String phone, Long id);
 }

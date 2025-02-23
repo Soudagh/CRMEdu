@@ -34,10 +34,11 @@ public class StudentRepositoryImpl implements StudentRepository {
 
   @Override
   public boolean existsByEmailAndPhoneInOrganization(Student student) {
-    return studentRepository.existsByEmailAndPhoneAndOrganization_Id(
+    return studentRepository.existsByEmailAndPhoneAndOrganization_IdAndIdIsNot(
         student.getEmail(),
         student.getPhone(),
-        student.getOrganization().getId()
+        student.getOrganization().getId(),
+        student.getId()
     );
   }
 

@@ -29,17 +29,17 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
 
   @Override
   public boolean existsByName(Organization organization) {
-    return organizationRepository.existsByName(organization.getName());
+    return organizationRepository.existsByNameAndIdIsNot(organization.getName(), organization.getId());
   }
 
   @Override
   public boolean existsByEmail(Organization organization) {
-    return organizationRepository.existsByEmail(organization.getEmail());
+    return organizationRepository.existsByEmailAndIdIsNot(organization.getEmail(), organization.getId());
   }
 
   @Override
   public boolean existsByPhone(Organization organization) {
-    return organizationRepository.existsByPhone(organization.getPhone());
+    return organizationRepository.existsByPhoneAndIdIsNot(organization.getPhone(), organization.getId());
   }
 
   @Override

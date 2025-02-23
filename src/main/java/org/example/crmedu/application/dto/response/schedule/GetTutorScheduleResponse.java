@@ -11,6 +11,8 @@ import org.example.crmedu.domain.enums.DaysOfWeek;
 @Accessors(chain = true)
 public class GetTutorScheduleResponse {
 
+  private Long id;
+
   private DaysOfWeek dayOfWeek;
 
   private String timeStart;

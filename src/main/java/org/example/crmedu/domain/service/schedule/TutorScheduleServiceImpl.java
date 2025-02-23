@@ -62,10 +62,12 @@ public class TutorScheduleServiceImpl implements TutorScheduleService {
   }
 
   private void validateScheduleOverlap(TutorSchedule newSchedule, Set<TutorSchedule> scheduleSet) {
-    scheduleSet.stream()
-        .filter(schedule -> schedule.getDayOfWeek().equals(newSchedule.getDayOfWeek()))
-        .filter(schedule -> newSchedule.getId() == null || !schedule.getId().equals(newSchedule.getId()))
-        .filter(schedule -> isOverlapped(newSchedule, schedule))
+    var schedules = scheduleSet.stream()
+        .filter(schedule -> schedule.getDayOfWeek().equals(newSchedule.getDayOfWeek()));
+    if (newSchedule.getId() != null) {
+      schedules = schedules.filter(schedule -> !schedule.getId().equals(newSchedule.getId()));
+    }
+    schedules.filter(schedule -> isOverlapped(newSchedule, schedule))
         .findFirst()
         .ifPresent(overlappedSchedule -> {
           throw new TutorScheduleOverlapsException(newSchedule, overlappedSchedule);

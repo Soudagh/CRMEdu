@@ -17,15 +17,17 @@ public interface DataUserRepository extends JpaRepository<UserEntity, Long>, Pag
    * Checks whether a user with the specified email exists.
    *
    * @param email the email of the user
-   * @return {@code true} if an user with this email exists. otherwise {@code false}
+   * * @param id the id of the user
+   * @return {@code true} if a user with this email exists. otherwise {@code false}
    */
-  boolean existsByEmail(String email);
+  boolean existsByEmailAndIdIsNot(String email, Long id);
 
   /**
    * Checks whether a user with the specified phone exists.
    *
    * @param phone the email of the user
+   * @param id the id of the user
    * @return {@code true} if a user with this phone exists. otherwise {@code false}
    */
-  boolean existsByPhone(String phone);
+  boolean existsByPhoneAndIdIsNot(String phone, Long id);
 }

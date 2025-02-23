@@ -44,11 +44,11 @@ public class SubjectServiceImpl implements SubjectService {
   @Transactional
   public void update(Subject subject, Long id) {
     var subjectEntity = findById(id);
-    checkSubjectConstraints(subject);
-    subjectRepository.update(subject
+    subject
         .setId(subjectEntity.getId())
-        .setOrganization(subjectEntity.getOrganization())
-    );
+        .setOrganization(subjectEntity.getOrganization());
+    checkSubjectConstraints(subject);
+    subjectRepository.update(subject);
   }
 
   @Override
