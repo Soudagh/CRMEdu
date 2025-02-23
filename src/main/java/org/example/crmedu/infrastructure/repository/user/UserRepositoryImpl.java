@@ -51,10 +51,6 @@ public class UserRepositoryImpl implements UserRepository {
     return userRepository.existsByPhone(user.getPhone());
   }
 
-  @Override
-  public boolean existsById(User user) {
-    return userRepository.existsById(user.getId());
-  }
 
   @Override
   public User save(User user) {

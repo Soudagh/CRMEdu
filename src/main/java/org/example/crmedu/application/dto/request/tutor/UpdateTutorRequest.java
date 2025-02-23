@@ -18,7 +18,7 @@ public class UpdateTutorRequest {
 
   private String notes;
 
-  private Set<Subject> subjects;
+  private Set<Long> subjects;
 
   private Set<Integer> grades;
 }

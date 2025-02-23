@@ -9,6 +9,7 @@ import org.example.crmedu.domain.model.TutorSchedule;
 import org.example.crmedu.domain.repository.TutorScheduleRepository;
 import org.example.crmedu.domain.service.tutor.TutorService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Implementation of the {@link TutorScheduleService} interface. Provides business logic for managing {@link TutorSchedule} entities.
@@ -29,6 +30,7 @@ public class TutorScheduleServiceImpl implements TutorScheduleService {
   }
 
   @Override
+  @Transactional
   public TutorSchedule findById(Long id) {
     return tutorScheduleRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException(TutorSchedule.class, id));
@@ -40,9 +42,9 @@ public class TutorScheduleServiceImpl implements TutorScheduleService {
   }
 
   @Override
+  @Transactional
   public void update(TutorSchedule updatedSchedule, Long id) {
-    var scheduleEntity = tutorScheduleRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(TutorSchedule.class, id));
+    var scheduleEntity = findById(id);
     updatedSchedule.setId(scheduleEntity.getId()).setTutor(scheduleEntity.getTutor());
     var tutorId = scheduleEntity.getTutor().getId();
     var existingSchedules = getSchedulesByTutorId(tutorId);

@@ -1,5 +1,6 @@
 package org.example.crmedu.domain.service.organization;
 
+import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
@@ -25,8 +26,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
   @Override
   public Organization findById(Long id) {
-    return organizationRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(Organization.class, id));
+    return getOrganizationByIdOrThrow(id);
   }
 
   @Override
@@ -43,11 +43,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 
   @Override
   public void update(Organization organization, Long id) {
-    if (organizationRepository.existsById(id)) {
-      checkOrganizationConstraints(organization);
-      organizationRepository.update(organization.setId(id));
-    }
-    throw new EntityNotFoundException(Organization.class, id);
+    checkExistanceById(id);
+    checkOrganizationConstraints(organization);
+    organizationRepository.update(organization.setId(id));
   }
 
   @Override
@@ -55,15 +53,20 @@ public class OrganizationServiceImpl implements OrganizationService {
     organizationRepository.delete(id);
   }
 
+  private Organization getOrganizationByIdOrThrow(Long id) {
+    return organizationRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException(Organization.class, id));
+  }
+
   private void checkOrganizationConstraints(Organization organization) {
-    if (organizationRepository.existsByName(organization)) {
-      throw new EntityExistsException(Organization.class, "name");
-    }
-    if (organizationRepository.existsByEmail(organization)) {
-      throw new EntityExistsException(Organization.class, "email");
-    }
-    if (organizationRepository.existsByPhone(organization)) {
-      throw new EntityExistsException(Organization.class, "phone");
+    checkOrganizationConstraint("name", organizationRepository::existsByName, organization);
+    checkOrganizationConstraint("email", organizationRepository::existsByEmail, organization);
+    checkOrganizationConstraint("phone", organizationRepository::existsByPhone, organization);
+  }
+
+  private void checkOrganizationConstraint(String field, Function<Organization, Boolean> checker, Organization organization) {
+    if (checker.apply(organization)) {
+      throw new EntityExistsException(Organization.class, field);
     }
   }
 }

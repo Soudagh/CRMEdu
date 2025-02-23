@@ -1,0 +1,55 @@
+package org.example.crmedu.service.subject;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.example.crmedu.BaseIntegrationTest;
+import org.example.crmedu.domain.exception.EntityNotFoundException;
+import org.example.crmedu.domain.model.Organization;
+import org.example.crmedu.domain.model.Subject;
+import org.example.crmedu.domain.service.organization.OrganizationService;
+import org.example.crmedu.domain.service.subject.SubjectService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class SubjectServiceIntegrationTest extends BaseIntegrationTest {
+
+  @Autowired
+  private SubjectService subjectService;
+
+  @Autowired
+  private OrganizationService organizationService;
+
+  @Test
+  void delete_shouldDeleteEntityWithSelectedId() {
+    var organization = getMockObject(Organization.class).setId(null);
+    var organizationEntity = organizationService.create(organization);
+    assertNotNull(organizationEntity);
+    var subject = getMockObject(Subject.class).setId(null).setOrganization(organizationEntity);
+    var subjectEntity = subjectService.create(subject);
+    assertNotNull(subjectEntity);
+    var subjectId = subjectEntity.getId();
+    assertDoesNotThrow(() -> subjectService.findById(subjectId));
+    subjectService.delete(subjectId);
+    assertThrows(EntityNotFoundException.class, () -> subjectService.findById(subjectId));
+  }
+
+  @Test
+  void update_shouldUpdateEntityWithSelectedId() {
+    var organization = getMockObject(Organization.class).setId(null);
+    var organizationEntity = organizationService.create(organization);
+    assertNotNull(organizationEntity);
+    var subject = getMockObject(Subject.class).setId(null).setOrganization(organizationEntity);
+    var subjectEntity = subjectService.create(subject);
+    assertNotNull(subjectEntity);
+    var subjectId = subjectEntity.getId();
+    assertDoesNotThrow(() -> subjectService.findById(subjectId));
+    var newSubject = getMockObject(Subject.class).setId(null).setOrganization(organizationEntity);
+    subjectService.update(newSubject, subjectId);
+    var newSubjectEntity = assertDoesNotThrow(() -> subjectService.findById(subjectId));
+    assertNotNull(newSubjectEntity);
+    assertNotEquals(newSubjectEntity, subjectEntity);
+  }
+}

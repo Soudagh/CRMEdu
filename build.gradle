@@ -81,10 +81,7 @@ tasks.named('jacocoTestReport') {
 
     def exclusions = [
             '**/infrastructure/entity/*.class',
-            '**/domain/exception/*.class',
-            '**/infrastructure/mapping/*.class',
-            '**/application/mapping/*.class',
-            '**/application/controller/*.class'
+            '**/application/**'
     ]
 
     def filteredClassDirs = classDirectories.files.collect {
