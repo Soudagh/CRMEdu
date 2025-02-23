@@ -5,7 +5,6 @@ import java.util.Set;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.example.crmedu.domain.model.Link;
-import org.example.crmedu.domain.model.Subject;
 
 /**
  * A DTO representing a request to update Tutor.
