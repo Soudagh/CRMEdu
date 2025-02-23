@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import lombok.SneakyThrows;
-import org.example.crmedu.controller.MockCreator;
 import org.instancio.Instancio;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -23,9 +21,6 @@ import org.springframework.util.ResourceUtils;
 public abstract class BaseUnitTest {
 
   protected static final ObjectMapper objectMapper;
-
-  protected MockCreator mockCreator;
-
 
   static {
     objectMapper = new ObjectMapper();

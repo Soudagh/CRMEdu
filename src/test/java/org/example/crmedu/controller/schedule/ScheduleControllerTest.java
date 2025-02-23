@@ -11,7 +11,6 @@ import lombok.SneakyThrows;
 import org.example.crmedu.BaseIntegrationTest;
 import org.example.crmedu.application.dto.request.schedule.CreateTutorScheduleRequest;
 import org.example.crmedu.application.dto.request.schedule.UpdateTutorScheduleRequest;
-import org.example.crmedu.application.dto.response.schedule.CreateTutorScheduleResponse;
 import org.example.crmedu.controller.MockCreator;
 import org.example.crmedu.domain.enums.DaysOfWeek;
 import org.junit.jupiter.api.Test;

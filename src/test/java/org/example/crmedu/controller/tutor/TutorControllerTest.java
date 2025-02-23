@@ -79,7 +79,6 @@ public class TutorControllerTest extends BaseIntegrationTest {
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(updateRequest)))
         .andExpect(status().isOk());
-    ;
   }
 
   @Test
