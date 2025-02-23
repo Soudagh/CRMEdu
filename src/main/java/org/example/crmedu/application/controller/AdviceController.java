@@ -1,6 +1,5 @@
 package org.example.crmedu.application.controller;
 
-import jakarta.validation.ConstraintViolationException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -58,23 +57,6 @@ public class AdviceController {
   public ResponseEntity<SystemError> handleTutorScheduleOverlapsException(TutorScheduleOverlapsException e) {
     var error = getSystemError(e);
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
-  }
-
-  /**
-   * Handles a {@link ConstraintViolationException} and returns an HTTP 400 Bad Request response.
-   *
-   * @param e the exception containing validation errors
-   * @return a {@link ResponseEntity} containing a {@link ValidationErrorResponse} with error details
-   */
-  @ExceptionHandler(ConstraintViolationException.class)
-  public ResponseEntity<ValidationErrorResponse> handleConstraintValidationException(ConstraintViolationException e) {
-    final List<Violation> violations = e.getConstraintViolations().stream()
-        .map(violation -> new Violation(
-                violation.getPropertyPath().toString(),
-                violation.getMessage()
-            )
-        ).toList();
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ValidationErrorResponse(violations));
   }
 
   /**

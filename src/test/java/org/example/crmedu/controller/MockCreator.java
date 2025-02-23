@@ -37,6 +37,7 @@ public class MockCreator extends BaseIntegrationTest {
             .content(objectMapper.writeValueAsString(request)))
         .andExpect(status().isCreated())
         .andReturn().getResponse().getContentAsString();
+    
     return objectMapper.readValue(responseContent, CreateOrganizationResponse.class);
   }
 
