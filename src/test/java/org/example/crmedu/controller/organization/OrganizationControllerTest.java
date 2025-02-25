@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+/**
+ * Integration tests for {@code OrganizationController}. This class verifies the functionality of organization-related API endpoints.
+ */
 public class OrganizationControllerTest extends BaseIntegrationTest {
 
   @Autowired

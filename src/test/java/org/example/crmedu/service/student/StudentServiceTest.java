@@ -17,12 +17,16 @@ import org.example.crmedu.domain.model.Student;
 import org.example.crmedu.domain.repository.StudentRepository;
 import org.example.crmedu.domain.service.organization.OrganizationService;
 import org.example.crmedu.domain.service.student.StudentServiceImpl;
+import org.example.crmedu.domain.service.user.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * Unit tests for {@link StudentServiceImpl}. This class verifies the behavior of student-related operations using mocked dependencies.
+ */
 @ExtendWith(MockitoExtension.class)
 public class StudentServiceTest extends BaseUnitTest {
 

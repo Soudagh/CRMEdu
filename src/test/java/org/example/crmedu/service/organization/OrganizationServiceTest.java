@@ -21,6 +21,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * Unit tests for {@link OrganizationServiceImpl}. This class verifies the behavior of organization-related operations using mocked dependencies.
+ */
 @ExtendWith(MockitoExtension.class)
 public class OrganizationServiceTest extends BaseUnitTest {
 

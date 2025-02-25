@@ -18,6 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+/**
+ * Integration tests for {@code UserController}. This class verifies the functionality of user-related API endpoints.
+ */
 public class UserControllerTest extends BaseIntegrationTest {
 
   @Autowired

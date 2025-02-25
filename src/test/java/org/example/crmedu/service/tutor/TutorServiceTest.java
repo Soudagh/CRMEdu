@@ -17,6 +17,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * Unit tests for {@link TutorServiceImpl}. This class verifies the behavior of tutor-related operations using mocked dependencies.
+ */
 @ExtendWith(MockitoExtension.class)
 public class TutorServiceTest extends BaseUnitTest {
 

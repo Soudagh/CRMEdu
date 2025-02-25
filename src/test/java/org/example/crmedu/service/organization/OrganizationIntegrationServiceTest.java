@@ -13,11 +13,14 @@ import org.example.crmedu.domain.service.organization.OrganizationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Integration tests for {@link OrganizationService}. This class verifies the integration of organization-related operations within the application, ensuring
+ * correct interactions with the database.
+ */
 public class OrganizationIntegrationServiceTest extends BaseIntegrationTest {
 
   @Autowired
   private OrganizationService organizationService;
-
 
   @Test
   void delete_shouldDeleteEntityWithSelectedId() {

@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+/**
+ * Integration tests for {@code StudentController}. This class verifies the functionality of student-related API endpoints.
+ */
 public class StudentControllerTest extends BaseIntegrationTest {
 
   @Autowired

@@ -15,7 +15,9 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.jdbc.JdbcTestUtils;
 import org.testcontainers.containers.PostgreSQLContainer;
 
-
+/**
+ * Base class for integration tests. This class sets up a PostgreSQL container using Testcontainers and configures Spring Boot's test environment.
+ */
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureMockMvc
@@ -46,9 +48,6 @@ public class BaseIntegrationTest extends BaseUnitTest {
   static void beforeAll() {
     postgreSQLContainer.start();
   }
-
-//  @AfterAll
-//  static void afterAll() { postgreSQLContainer.stop(); }
 
   @Autowired
   protected JdbcTemplate jdbcTemplate;

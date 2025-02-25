@@ -22,6 +22,10 @@ import org.example.crmedu.domain.service.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Integration tests for {@link TutorSchedule}. This class verifies the integration of schedule-related operations within the application, ensuring correct
+ * interactions with the database.
+ */
 public class ScheduleIntegrationServiceTest extends BaseIntegrationTest {
 
   @Autowired

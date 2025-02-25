@@ -23,6 +23,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * Unit tests for {@link UserServiceImpl}. This class verifies the behavior of user-related operations using mocked dependencies.
+ */
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest extends BaseUnitTest {
 

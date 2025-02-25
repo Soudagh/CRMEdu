@@ -26,6 +26,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * Unit tests for {@link TutorScheduleServiceImpl}. This class verifies the behavior of schedule-related operations using mocked dependencies.
+ */
 @ExtendWith(MockitoExtension.class)
 class ScheduleServiceTest extends BaseUnitTest {
 

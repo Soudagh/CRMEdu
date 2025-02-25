@@ -18,6 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+/**
+ * Integration tests for {@code SubjectController}. This class verifies the functionality of subject-related API endpoints.
+ */
 public class SubjectControllerTest extends BaseIntegrationTest {
 
   @Autowired

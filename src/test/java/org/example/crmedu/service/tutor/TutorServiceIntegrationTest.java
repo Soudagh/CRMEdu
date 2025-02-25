@@ -21,6 +21,10 @@ import org.example.crmedu.domain.service.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Integration tests for {@link TutorService}. This class verifies the integration of tutor-related operations within the application, ensuring correct
+ * interactions with the database.
+ */
 public class TutorServiceIntegrationTest extends BaseIntegrationTest {
 
   @Autowired

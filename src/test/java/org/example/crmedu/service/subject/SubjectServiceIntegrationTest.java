@@ -14,6 +14,10 @@ import org.example.crmedu.domain.service.subject.SubjectService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Integration tests for {@link SubjectService}. This class verifies the integration of subject-related operations within the application, ensuring correct
+ * interactions with the database.
+ */
 public class SubjectServiceIntegrationTest extends BaseIntegrationTest {
 
   @Autowired

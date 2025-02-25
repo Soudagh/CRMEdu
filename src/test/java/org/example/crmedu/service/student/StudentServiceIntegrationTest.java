@@ -14,6 +14,10 @@ import org.example.crmedu.domain.service.student.StudentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Integration tests for {@link StudentService}. This class verifies the integration of student-related operations within the application, ensuring correct
+ * interactions with the database.
+ */
 public class StudentServiceIntegrationTest extends BaseIntegrationTest {
 
   @Autowired

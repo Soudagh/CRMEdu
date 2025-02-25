@@ -24,11 +24,20 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 
+/**
+ * Utility class for creating mock entities via API requests during integration testing. It provides methods for creating different domain entities by making
+ * HTTP POST requests.
+ */
 public class MockCreator extends BaseIntegrationTest {
 
   @Autowired
   private MockMvc mockMvc;
 
+  /**
+   * Creates a new organization.
+   *
+   * @return a {@link CreateOrganizationResponse} object containing the details of the created organization
+   */
   @SneakyThrows
   public CreateOrganizationResponse createOrganization() {
     var request = getMockObject(CreateOrganizationRequest.class).setPhone("+79999999999").setEmail("org@mail.ru");
@@ -37,10 +46,15 @@ public class MockCreator extends BaseIntegrationTest {
             .content(objectMapper.writeValueAsString(request)))
         .andExpect(status().isCreated())
         .andReturn().getResponse().getContentAsString();
-    
+
     return objectMapper.readValue(responseContent, CreateOrganizationResponse.class);
   }
 
+  /**
+   * Creates a new user.
+   *
+   * @return a {@link CreateUserResponse} object with the created user's details.
+   */
   @SneakyThrows
   public CreateUserResponse createUser() {
     var organizationId = createOrganization().getId();
@@ -54,6 +68,11 @@ public class MockCreator extends BaseIntegrationTest {
     return objectMapper.readValue(responseContent, CreateUserResponse.class);
   }
 
+  /**
+   * Creates a new tutor.
+   *
+   * @return a {@link CreateTutorResponse} object containing the tutor's details
+   */
   @SneakyThrows
   public CreateTutorResponse createTutor() {
     var userId = createUser().getId();
@@ -66,6 +85,11 @@ public class MockCreator extends BaseIntegrationTest {
     return objectMapper.readValue(responseContent, CreateTutorResponse.class);
   }
 
+  /**
+   * Creates a new subject.
+   *
+   * @return a {@link CreateSubjectResponse} object with subject details
+   */
   @SneakyThrows
   public CreateSubjectResponse createSubject() {
     var organizationId = createOrganization().getId();
@@ -78,6 +102,11 @@ public class MockCreator extends BaseIntegrationTest {
     return objectMapper.readValue(responseContent, CreateSubjectResponse.class);
   }
 
+  /**
+   * Creates a new student.
+   *
+   * @return a {@link CreateStudentResponse} object containing student details.
+   */
   @SneakyThrows
   public CreateStudentResponse createStudent() {
     var organizationId = createOrganization().getId();
@@ -91,6 +120,11 @@ public class MockCreator extends BaseIntegrationTest {
     return objectMapper.readValue(responseContent, CreateStudentResponse.class);
   }
 
+  /**
+   * Creates a new schedule.
+   *
+   * @return a {@link CreateTutorScheduleResponse} object containing schedule details
+   */
   @SneakyThrows
   public CreateTutorScheduleResponse createTutorSchedule() {
     var tutorId = createTutor().getId();
@@ -103,6 +137,12 @@ public class MockCreator extends BaseIntegrationTest {
     return objectMapper.readValue(responseContent, CreateTutorScheduleResponse.class);
   }
 
+  /**
+   * Creates a new subject that linked to certain organization.
+   *
+   * @param organizationId the unique identifier of the organization
+   * @return a {@link CreateSubjectResponse} object with subject details
+   */
   @SneakyThrows
   public CreateSubjectResponse createSubjectByOrganizationId(Long organizationId) {
     var request = getMockObject(CreateSubjectRequest.class).setOrganization(organizationId);
@@ -114,6 +154,12 @@ public class MockCreator extends BaseIntegrationTest {
     return objectMapper.readValue(responseContent, CreateSubjectResponse.class);
   }
 
+  /**
+   * Creates new tutor that linked to certain user.
+   *
+   * @param userId the unique identifier of the user
+   * @return a {@link CreateTutorResponse} object containing the tutor's details
+   */
   @SneakyThrows
   public CreateTutorResponse createTutorByUserId(Long userId) {
     var request = getMockObject(CreateTutorRequest.class).setUser(userId);
