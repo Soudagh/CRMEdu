@@ -4,7 +4,6 @@
 ![Postgres](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
 # CRMEdu
 
----
 ## Description
 CRMEdu is a backend application for managing online school operations.  
 It provides functionalities for:
@@ -15,7 +14,6 @@ It provides functionalities for:
 - [ ] Calculating **salaries** and **payments**
 - [ ] Storing and processing **educational data**
 
----
 ## Installation
 #### 1. Clone the repository
 ```git clone https://github.com/Soudagh/CRMEdu.git```
@@ -33,7 +31,6 @@ gradlew.bat bootRun  # For Windows
 ``` 
 Or open CrmeduApplication.java in IntelliJ IDEA and click Run.
 
----
 ## Documentation
 Code documentation is available at [**JavaDoc**](https://soudagh.github.io/CRMEdu/javadoc/)
 
