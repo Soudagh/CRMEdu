@@ -19,7 +19,8 @@ public interface DataStudentRepository extends CrudRepository<StudentEntity, Lon
    * @param email the email of the student
    * @param phone the phone of the student
    * @param organizationId the unique identifier of the organization
+   * @param userId the unique identifier of the user
    * @return {@code true} if a student with this email and phone in this organization exists. Otherwise {@code false}
    */
-  boolean existsByEmailAndPhoneAndOrganization_Id(String email, String phone, Long organizationId);
+  boolean existsByEmailAndPhoneAndOrganization_IdAndIdIsNot(String email, String phone, Long organizationId, Long userId);
 }

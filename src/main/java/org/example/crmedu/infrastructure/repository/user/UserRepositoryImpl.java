@@ -43,18 +43,14 @@ public class UserRepositoryImpl implements UserRepository {
 
   @Override
   public boolean existsByEmail(User user) {
-    return userRepository.existsByEmail(user.getEmail());
+    return userRepository.existsByEmailAndIdIsNot(user.getEmail(), user.getId());
   }
 
   @Override
   public boolean existsByPhone(User user) {
-    return userRepository.existsByPhone(user.getPhone());
+    return userRepository.existsByPhoneAndIdIsNot(user.getPhone(), user.getId());
   }
 
-  @Override
-  public boolean existsById(User user) {
-    return userRepository.existsById(user.getId());
-  }
 
   @Override
   public User save(User user) {

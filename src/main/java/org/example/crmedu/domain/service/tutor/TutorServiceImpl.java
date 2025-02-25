@@ -7,10 +7,9 @@ import org.example.crmedu.domain.exception.EntityNotFoundException;
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.Subject;
 import org.example.crmedu.domain.model.Tutor;
-import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.repository.TutorRepository;
-import org.example.crmedu.domain.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Implementation of the {@link TutorService} interface. Provides business logic for managing {@link Tutor} entities.
@@ -21,15 +20,14 @@ public class TutorServiceImpl implements TutorService {
 
   private final TutorRepository tutorRepository;
 
-  private final UserRepository userRepository;
-
   @Override
   public Tutor create(Tutor tutor) {
-    makeChecksForCreation(tutor);
+    checkTutorBelongsToUser(tutor);
     return tutorRepository.save(tutor);
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Tutor findById(Long id) {
     return tutorRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException(Tutor.class, id));
@@ -41,9 +39,11 @@ public class TutorServiceImpl implements TutorService {
   }
 
   @Override
+  @Transactional
   public void update(Tutor tutor, Long id) {
-    var tutorEntity = getTutorByIdOrThrow(id);
-    tutorRepository.update(tutor.setUser(tutorEntity.getUser()));
+    var tutorEntity = findById(id);
+    var user = tutorEntity.getUser();
+    tutorRepository.update(tutor.setUser(user).setId(id));
   }
 
   @Override
@@ -52,31 +52,17 @@ public class TutorServiceImpl implements TutorService {
   }
 
   @Override
+  @Transactional
   public void patchSubjects(Set<Subject> subjects, Long id) {
-    var tutorEntity = getTutorByIdOrThrow(id);
+    var tutorEntity = findById(id);
     tutorRepository.update(tutorEntity.setSubjects(subjects));
   }
 
   @Override
+  @Transactional
   public void patchGrades(Set<Integer> grades, Long id) {
-    var tutorEntity = getTutorByIdOrThrow(id);
+    var tutorEntity = findById(id);
     tutorRepository.update(tutorEntity.setGrades(grades));
-  }
-
-  private Tutor getTutorByIdOrThrow(Long id) {
-    return tutorRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(Tutor.class, id));
-  }
-
-  private void makeChecksForCreation(Tutor tutor) {
-    checkUserExists(tutor.getUser());
-    checkTutorBelongsToUser(tutor);
-  }
-
-  private void checkUserExists(User user) {
-    if (!userRepository.existsById(user)) {
-      throw new EntityNotFoundException(User.class, "tutor");
-    }
   }
 
   private void checkTutorBelongsToUser(Tutor tutor) {

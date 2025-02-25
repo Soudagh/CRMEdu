@@ -50,7 +50,7 @@ public class TutorRepositoryImpl implements TutorRepository {
 
   @Override
   public boolean existsByUser(Tutor tutor) {
-    return tutorRepository.existsByUserId(tutor.getUser().getId());
+    return tutorRepository.existsByUserIdAndIdIsNot(tutor.getUser().getId(), tutor.getId());
   }
 
   @Override

@@ -1,17 +1,23 @@
 package org.example.crmedu;
 
-import org.junit.jupiter.api.AfterAll;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.jdbc.JdbcTestUtils;
 import org.testcontainers.containers.PostgreSQLContainer;
 
-
+/**
+ * Base class for integration tests. This class sets up a PostgreSQL container using Testcontainers and configures Spring Boot's test environment.
+ */
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureMockMvc
@@ -43,8 +49,12 @@ public class BaseIntegrationTest extends BaseUnitTest {
     postgreSQLContainer.start();
   }
 
-  @AfterAll
-  static void afterAll() {
-    postgreSQLContainer.stop();
+  @Autowired
+  protected JdbcTemplate jdbcTemplate;
+
+  @SneakyThrows
+  @AfterEach
+  void clearAll() {
+    JdbcTestUtils.deleteFromTables(jdbcTemplate, "crmedu.tutor", "crmedu.user", "crmedu.organization");
   }
 }

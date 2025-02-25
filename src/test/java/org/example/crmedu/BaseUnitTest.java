@@ -18,10 +18,12 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
 
+/**
+ * Base class for unit tests. Provides utility methods for JSON processing, file reading, and mock object creation using Instancio.
+ */
 public abstract class BaseUnitTest {
 
   protected static final ObjectMapper objectMapper;
-
 
   static {
     objectMapper = new ObjectMapper();
@@ -31,12 +33,26 @@ public abstract class BaseUnitTest {
     objectMapper.registerModule(new JavaTimeModule());
   }
 
+  /**
+   * Reads a JSON file from the classpath and deserializes it into an object.
+   *
+   * @param filePath the path to the JSON file
+   * @param clazz the target class type
+   * @param <T> the type of the returned object
+   * @return deserialized object of type {@code T}
+   */
   @SneakyThrows
   protected <T> T getObjectFromJson(String filePath, Class<T> clazz) {
     File file = ResourceUtils.getFile(String.format("classpath:%s", filePath));
     return objectMapper.readValue(file, clazz);
   }
 
+  /**
+   * Reads the contents of a file as a String.
+   *
+   * @param path the file path
+   * @return file content as a string
+   */
   @SneakyThrows
   protected String readFileAsString(String path) {
     ResourceLoader resourceLoader = new DefaultResourceLoader();
@@ -44,6 +60,13 @@ public abstract class BaseUnitTest {
     return asString(resource);
   }
 
+  /**
+   * Creates a mock object of the specified class using Instancio.
+   *
+   * @param mockClass the class to mock
+   * @param <T> the type of the mock object
+   * @return a new mock instance of type {@code T}
+   */
   protected <T> T getMockObject(Class<T> mockClass) {
     return Instancio
         .of(mockClass)
@@ -51,6 +74,13 @@ public abstract class BaseUnitTest {
         .create();
   }
 
+  /**
+   * Converts a {@link Resource} to a String.
+   *
+   * @param resource the resource to read
+   * @return the resource content as a string
+   * @throws IOException if an I/O error occurs
+   */
   private String asString(Resource resource) throws IOException {
     try (Reader reader = new InputStreamReader(resource.getInputStream(), UTF_8)) {
       return FileCopyUtils.copyToString(reader);

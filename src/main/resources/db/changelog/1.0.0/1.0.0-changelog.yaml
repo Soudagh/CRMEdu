@@ -11,3 +11,5 @@ databaseChangeLog:
       file: db/changelog/1.0.0/changes/005-add-column-to-tutor-time.yaml
   - include:
       file: db/changelog/1.0.0/changes/006-create-student-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/007-delete-cascade-columns.yaml

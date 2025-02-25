@@ -8,6 +8,7 @@ import org.example.crmedu.domain.model.Student;
 import org.example.crmedu.domain.repository.StudentRepository;
 import org.example.crmedu.domain.service.organization.OrganizationService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Implementation of the {@link StudentService} interface. Provides business logic for managing {@link Student} entities.
@@ -29,8 +30,10 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
+  @Transactional
   public Student findById(Long id) {
-    return getStudentByIdOrThrow(id);
+    return studentRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException(Student.class, id));
   }
 
   @Override
@@ -39,8 +42,9 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
+  @Transactional
   public void updateStudent(Student student, Long id) {
-    var studentEntity = getStudentByIdOrThrow(id);
+    var studentEntity = findById(id);
     student.setOrganization(studentEntity.getOrganization());
     checkStudentConstraints(student);
     studentRepository.update(
@@ -53,15 +57,9 @@ public class StudentServiceImpl implements StudentService {
     studentRepository.delete(id);
   }
 
-  private Student getStudentByIdOrThrow(Long id) {
-    return studentRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(Student.class, id));
-  }
-
   private void checkStudentConstraints(Student student) {
     if (studentRepository.existsByEmailAndPhoneInOrganization(student)) {
       throw new EntityExistsException(Student.class, "email and phone");
     }
   }
-
 }

@@ -5,7 +5,6 @@ import java.util.Set;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.example.crmedu.domain.model.Link;
-import org.example.crmedu.domain.model.Subject;
 
 /**
  * A DTO representing a request to update Tutor.
@@ -18,7 +17,7 @@ public class UpdateTutorRequest {
 
   private String notes;
 
-  private Set<Subject> subjects;
+  private Set<Long> subjects;
 
   private Set<Integer> grades;
 }

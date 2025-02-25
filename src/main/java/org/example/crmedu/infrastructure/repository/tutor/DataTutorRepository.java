@@ -12,11 +12,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DataTutorRepository extends JpaRepository<TutorEntity, Long>, PagingAndSortingRepository<TutorEntity, Long> {
 
-  /**
-   * Checks whether a tutor belongs to certain user exists.
-   *
-   * @param id the unique identifier of the user
-   * @return {@code true} if a tutor already belongs to this user. Otherwise {@code false}
-   */
-  boolean existsByUserId(Long id);
+  boolean existsByUserIdAndIdIsNot(Long userId, Long tutorId);
 }
