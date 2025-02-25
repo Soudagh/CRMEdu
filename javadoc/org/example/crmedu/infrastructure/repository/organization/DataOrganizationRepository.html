@@ -110,17 +110,20 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../../
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#existsByEmail(java.lang.String)" class="member-name-link">existsByEmail</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;email)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#existsByEmailAndIdIsNot(java.lang.String,java.lang.Long)" class="member-name-link">existsByEmailAndIdIsNot</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;email,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks whether an organization with the specified email exists.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#existsByName(java.lang.String)" class="member-name-link">existsByName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#existsByNameAndIdIsNot(java.lang.String,java.lang.Long)" class="member-name-link">existsByNameAndIdIsNot</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks whether an organization with the specified name exists.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#existsByPhone(java.lang.String)" class="member-name-link">existsByPhone</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;phone)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#existsByPhoneAndIdIsNot(java.lang.String,java.lang.Long)" class="member-name-link">existsByPhoneAndIdIsNot</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;phone,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks whether an organization with the specified phone exists.</div>
 </div>
@@ -157,9 +160,10 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../../
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="existsByName(java.lang.String)">
-<h3>existsByName</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">existsByName</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<section class="detail" id="existsByNameAndIdIsNot(java.lang.String,java.lang.Long)">
+<h3>existsByNameAndIdIsNot</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">existsByNameAndIdIsNot</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block">Checks whether an organization with the specified name exists.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -170,9 +174,10 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../../
 </section>
 </li>
 <li>
-<section class="detail" id="existsByEmail(java.lang.String)">
-<h3>existsByEmail</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">existsByEmail</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;email)</span></div>
+<section class="detail" id="existsByEmailAndIdIsNot(java.lang.String,java.lang.Long)">
+<h3>existsByEmailAndIdIsNot</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">existsByEmailAndIdIsNot</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;email,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block">Checks whether an organization with the specified email exists.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -183,13 +188,14 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../../
 </section>
 </li>
 <li>
-<section class="detail" id="existsByPhone(java.lang.String)">
-<h3>existsByPhone</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">existsByPhone</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;phone)</span></div>
+<section class="detail" id="existsByPhoneAndIdIsNot(java.lang.String,java.lang.Long)">
+<h3>existsByPhoneAndIdIsNot</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">existsByPhoneAndIdIsNot</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;phone,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block">Checks whether an organization with the specified phone exists.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>phone</code> - the email of the organization</dd>
+<dd><code>phone</code> - the phone of the organization</dd>
 <dt>Returns:</dt>
 <dd><code>true</code> if an organization with this phone exists. otherwise <code>false</code></dd>
 </dl>

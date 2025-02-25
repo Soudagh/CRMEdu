@@ -110,9 +110,10 @@ extends org.springframework.data.repository.CrudRepository&lt;<a href="../../ent
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#existsByEmailAndPhoneAndOrganization_Id(java.lang.String,java.lang.String,java.lang.Long)" class="member-name-link">existsByEmailAndPhoneAndOrganization_Id</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;email,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#existsByEmailAndPhoneAndOrganization_IdAndIdIsNot(java.lang.String,java.lang.String,java.lang.Long,java.lang.Long)" class="member-name-link">existsByEmailAndPhoneAndOrganization_IdAndIdIsNot</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;email,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;phone,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;organizationId)</code></div>
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;organizationId,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;userId)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks whether a student with the specified phone and email that belongs to certain organization exists.</div>
 </div>
@@ -137,17 +138,19 @@ extends org.springframework.data.repository.CrudRepository&lt;<a href="../../ent
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="existsByEmailAndPhoneAndOrganization_Id(java.lang.String,java.lang.String,java.lang.Long)">
-<h3>existsByEmailAndPhoneAndOrganization_Id</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">existsByEmailAndPhoneAndOrganization_Id</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;email,
+<section class="detail" id="existsByEmailAndPhoneAndOrganization_IdAndIdIsNot(java.lang.String,java.lang.String,java.lang.Long,java.lang.Long)">
+<h3>existsByEmailAndPhoneAndOrganization_IdAndIdIsNot</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">existsByEmailAndPhoneAndOrganization_IdAndIdIsNot</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;email,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;phone,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;organizationId)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;organizationId,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;userId)</span></div>
 <div class="block">Checks whether a student with the specified phone and email that belongs to certain organization exists.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>email</code> - the email of the student</dd>
 <dd><code>phone</code> - the phone of the student</dd>
 <dd><code>organizationId</code> - the unique identifier of the organization</dd>
+<dd><code>userId</code> - the unique identifier of the user</dd>
 <dt>Returns:</dt>
 <dd><code>true</code> if a student with this email and phone in this organization exists. Otherwise <code>false</code></dd>
 </dl>

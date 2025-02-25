@@ -373,14 +373,6 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/crmedu/infrastructure/entity/UserEntity.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class org.example.crmedu.infrastructure.entity.<a href="org/example/crmedu/infrastructure/entity/UserEntity.html" title="class in org.example.crmedu.infrastructure.entity">UserEntity</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html#existsByEmail(java.lang.String)" class="member-name-link">existsByEmail(String)</a> - Method in interface org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html" title="interface in org.example.crmedu.infrastructure.repository.organization">DataOrganizationRepository</a></dt>
-<dd>
-<div class="block">Checks whether an organization with the specified email exists.</div>
-</dd>
-<dt><a href="org/example/crmedu/infrastructure/repository/user/DataUserRepository.html#existsByEmail(java.lang.String)" class="member-name-link">existsByEmail(String)</a> - Method in interface org.example.crmedu.infrastructure.repository.user.<a href="org/example/crmedu/infrastructure/repository/user/DataUserRepository.html" title="interface in org.example.crmedu.infrastructure.repository.user">DataUserRepository</a></dt>
-<dd>
-<div class="block">Checks whether a user with the specified email exists.</div>
-</dd>
 <dt><a href="org/example/crmedu/domain/repository/OrganizationRepository.html#existsByEmail(org.example.crmedu.domain.model.Organization)" class="member-name-link">existsByEmail(Organization)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/OrganizationRepository.html" title="interface in org.example.crmedu.domain.repository">OrganizationRepository</a></dt>
 <dd>
 <div class="block">Checks whether an organization with the same email already exists.</div>
@@ -393,7 +385,15 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/user/UserRepositoryImpl.html#existsByEmail(org.example.crmedu.domain.model.User)" class="member-name-link">existsByEmail(User)</a> - Method in class org.example.crmedu.infrastructure.repository.user.<a href="org/example/crmedu/infrastructure/repository/user/UserRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.user">UserRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/example/crmedu/infrastructure/repository/student/DataStudentRepository.html#existsByEmailAndPhoneAndOrganization_Id(java.lang.String,java.lang.String,java.lang.Long)" class="member-name-link">existsByEmailAndPhoneAndOrganization_Id(String, String, Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.student.<a href="org/example/crmedu/infrastructure/repository/student/DataStudentRepository.html" title="interface in org.example.crmedu.infrastructure.repository.student">DataStudentRepository</a></dt>
+<dt><a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html#existsByEmailAndIdIsNot(java.lang.String,java.lang.Long)" class="member-name-link">existsByEmailAndIdIsNot(String, Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html" title="interface in org.example.crmedu.infrastructure.repository.organization">DataOrganizationRepository</a></dt>
+<dd>
+<div class="block">Checks whether an organization with the specified email exists.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/user/DataUserRepository.html#existsByEmailAndIdIsNot(java.lang.String,java.lang.Long)" class="member-name-link">existsByEmailAndIdIsNot(String, Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.user.<a href="org/example/crmedu/infrastructure/repository/user/DataUserRepository.html" title="interface in org.example.crmedu.infrastructure.repository.user">DataUserRepository</a></dt>
+<dd>
+<div class="block">Checks whether a user with the specified email exists.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/student/DataStudentRepository.html#existsByEmailAndPhoneAndOrganization_IdAndIdIsNot(java.lang.String,java.lang.String,java.lang.Long,java.lang.Long)" class="member-name-link">existsByEmailAndPhoneAndOrganization_IdAndIdIsNot(String, String, Long, Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.student.<a href="org/example/crmedu/infrastructure/repository/student/DataStudentRepository.html" title="interface in org.example.crmedu.infrastructure.repository.student">DataStudentRepository</a></dt>
 <dd>
 <div class="block">Checks whether a student with the specified phone and email that belongs to certain organization exists.</div>
 </dd>
@@ -409,22 +409,16 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/organization/OrganizationRepositoryImpl.html#existsById(java.lang.Long)" class="member-name-link">existsById(Long)</a> - Method in class org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/OrganizationRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.organization">OrganizationRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/example/crmedu/domain/repository/UserRepository.html#existsById(org.example.crmedu.domain.model.User)" class="member-name-link">existsById(User)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/UserRepository.html" title="interface in org.example.crmedu.domain.repository">UserRepository</a></dt>
-<dd>
-<div class="block">Checks whether a user with certain id exists.</div>
-</dd>
-<dt><a href="org/example/crmedu/infrastructure/repository/user/UserRepositoryImpl.html#existsById(org.example.crmedu.domain.model.User)" class="member-name-link">existsById(User)</a> - Method in class org.example.crmedu.infrastructure.repository.user.<a href="org/example/crmedu/infrastructure/repository/user/UserRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.user">UserRepositoryImpl</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html#existsByName(java.lang.String)" class="member-name-link">existsByName(String)</a> - Method in interface org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html" title="interface in org.example.crmedu.infrastructure.repository.organization">DataOrganizationRepository</a></dt>
-<dd>
-<div class="block">Checks whether an organization with the specified name exists.</div>
-</dd>
 <dt><a href="org/example/crmedu/domain/repository/OrganizationRepository.html#existsByName(org.example.crmedu.domain.model.Organization)" class="member-name-link">existsByName(Organization)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/OrganizationRepository.html" title="interface in org.example.crmedu.domain.repository">OrganizationRepository</a></dt>
 <dd>
 <div class="block">Checks whether an organization with the same name already exists.</div>
 </dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/organization/OrganizationRepositoryImpl.html#existsByName(org.example.crmedu.domain.model.Organization)" class="member-name-link">existsByName(Organization)</a> - Method in class org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/OrganizationRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.organization">OrganizationRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html#existsByNameAndIdIsNot(java.lang.String,java.lang.Long)" class="member-name-link">existsByNameAndIdIsNot(String, Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html" title="interface in org.example.crmedu.infrastructure.repository.organization">DataOrganizationRepository</a></dt>
+<dd>
+<div class="block">Checks whether an organization with the specified name exists.</div>
+</dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/subject/DataSubjectRepository.html#existsByNameAndOrganizationId(java.lang.String,java.lang.Long)" class="member-name-link">existsByNameAndOrganizationId(String, Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.subject.<a href="org/example/crmedu/infrastructure/repository/subject/DataSubjectRepository.html" title="interface in org.example.crmedu.infrastructure.repository.subject">DataSubjectRepository</a></dt>
 <dd>
 <div class="block">Checks whether a subject with the specified name that belongs to certain organization exists.</div>
@@ -435,14 +429,6 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/subject/SubjectRepositoryImpl.html#existsByNameAndOrganizationId(org.example.crmedu.domain.model.Subject)" class="member-name-link">existsByNameAndOrganizationId(Subject)</a> - Method in class org.example.crmedu.infrastructure.repository.subject.<a href="org/example/crmedu/infrastructure/repository/subject/SubjectRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.subject">SubjectRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html#existsByPhone(java.lang.String)" class="member-name-link">existsByPhone(String)</a> - Method in interface org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html" title="interface in org.example.crmedu.infrastructure.repository.organization">DataOrganizationRepository</a></dt>
-<dd>
-<div class="block">Checks whether an organization with the specified phone exists.</div>
-</dd>
-<dt><a href="org/example/crmedu/infrastructure/repository/user/DataUserRepository.html#existsByPhone(java.lang.String)" class="member-name-link">existsByPhone(String)</a> - Method in interface org.example.crmedu.infrastructure.repository.user.<a href="org/example/crmedu/infrastructure/repository/user/DataUserRepository.html" title="interface in org.example.crmedu.infrastructure.repository.user">DataUserRepository</a></dt>
-<dd>
-<div class="block">Checks whether a user with the specified phone exists.</div>
-</dd>
 <dt><a href="org/example/crmedu/domain/repository/OrganizationRepository.html#existsByPhone(org.example.crmedu.domain.model.Organization)" class="member-name-link">existsByPhone(Organization)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/OrganizationRepository.html" title="interface in org.example.crmedu.domain.repository">OrganizationRepository</a></dt>
 <dd>
 <div class="block">Checks whether an organization with the same phone already exists.</div>
@@ -455,16 +441,22 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/user/UserRepositoryImpl.html#existsByPhone(org.example.crmedu.domain.model.User)" class="member-name-link">existsByPhone(User)</a> - Method in class org.example.crmedu.infrastructure.repository.user.<a href="org/example/crmedu/infrastructure/repository/user/UserRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.user">UserRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html#existsByPhoneAndIdIsNot(java.lang.String,java.lang.Long)" class="member-name-link">existsByPhoneAndIdIsNot(String, Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.organization.<a href="org/example/crmedu/infrastructure/repository/organization/DataOrganizationRepository.html" title="interface in org.example.crmedu.infrastructure.repository.organization">DataOrganizationRepository</a></dt>
+<dd>
+<div class="block">Checks whether an organization with the specified phone exists.</div>
+</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/user/DataUserRepository.html#existsByPhoneAndIdIsNot(java.lang.String,java.lang.Long)" class="member-name-link">existsByPhoneAndIdIsNot(String, Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.user.<a href="org/example/crmedu/infrastructure/repository/user/DataUserRepository.html" title="interface in org.example.crmedu.infrastructure.repository.user">DataUserRepository</a></dt>
+<dd>
+<div class="block">Checks whether a user with the specified phone exists.</div>
+</dd>
 <dt><a href="org/example/crmedu/domain/repository/TutorRepository.html#existsByUser(org.example.crmedu.domain.model.Tutor)" class="member-name-link">existsByUser(Tutor)</a> - Method in interface org.example.crmedu.domain.repository.<a href="org/example/crmedu/domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository">TutorRepository</a></dt>
 <dd>
 <div class="block">Checks whether a tutor with the same user already exists.</div>
 </dd>
 <dt><a href="org/example/crmedu/infrastructure/repository/tutor/TutorRepositoryImpl.html#existsByUser(org.example.crmedu.domain.model.Tutor)" class="member-name-link">existsByUser(Tutor)</a> - Method in class org.example.crmedu.infrastructure.repository.tutor.<a href="org/example/crmedu/infrastructure/repository/tutor/TutorRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.tutor">TutorRepositoryImpl</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/example/crmedu/infrastructure/repository/tutor/DataTutorRepository.html#existsByUserId(java.lang.Long)" class="member-name-link">existsByUserId(Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.tutor.<a href="org/example/crmedu/infrastructure/repository/tutor/DataTutorRepository.html" title="interface in org.example.crmedu.infrastructure.repository.tutor">DataTutorRepository</a></dt>
-<dd>
-<div class="block">Checks whether a tutor belongs to certain user exists.</div>
-</dd>
+<dt><a href="org/example/crmedu/infrastructure/repository/tutor/DataTutorRepository.html#existsByUserIdAndIdIsNot(java.lang.Long,java.lang.Long)" class="member-name-link">existsByUserIdAndIdIsNot(Long, Long)</a> - Method in interface org.example.crmedu.infrastructure.repository.tutor.<a href="org/example/crmedu/infrastructure/repository/tutor/DataTutorRepository.html" title="interface in org.example.crmedu.infrastructure.repository.tutor">DataTutorRepository</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:F">F</h2>
 <dl class="index">
@@ -694,10 +686,6 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:H">H</h2>
 <dl class="index">
-<dt><a href="org/example/crmedu/application/controller/AdviceController.html#handleConstraintValidationException(jakarta.validation.ConstraintViolationException)" class="member-name-link">handleConstraintValidationException(ConstraintViolationException)</a> - Method in class org.example.crmedu.application.controller.<a href="org/example/crmedu/application/controller/AdviceController.html" title="class in org.example.crmedu.application.controller">AdviceController</a></dt>
-<dd>
-<div class="block">Handles a <code>ConstraintViolationException</code> and returns an HTTP 400 Bad Request response.</div>
-</dd>
 <dt><a href="org/example/crmedu/application/controller/AdviceController.html#handleEntityExistsException(org.example.crmedu.domain.exception.EntityExistsException)" class="member-name-link">handleEntityExistsException(EntityExistsException)</a> - Method in class org.example.crmedu.application.controller.<a href="org/example/crmedu/application/controller/AdviceController.html" title="class in org.example.crmedu.application.controller">AdviceController</a></dt>
 <dd>
 <div class="block">Handles <a href="org/example/crmedu/domain/exception/EntityExistsException.html" title="class in org.example.crmedu.domain.exception"><code>EntityExistsException</code></a> and returns a 400 Bad Request response.</div>

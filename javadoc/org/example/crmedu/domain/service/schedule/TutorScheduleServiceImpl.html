@@ -206,7 +206,8 @@ implements <a href="TutorScheduleService.html" title="interface in org.example.c
 <li>
 <section class="detail" id="findById(java.lang.Long)">
 <h3>findById</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a></span>&nbsp;<span class="element-name">findById</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
+<div class="member-signature"><span class="annotations">@Transactional
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a></span>&nbsp;<span class="element-name">findById</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="TutorScheduleService.html#findById(java.lang.Long)">TutorScheduleService</a></code></span></div>
 <div class="block">Retrieves a schedule by its unique identifier.</div>
 <dl class="notes">
@@ -242,7 +243,8 @@ implements <a href="TutorScheduleService.html" title="interface in org.example.c
 <li>
 <section class="detail" id="update(org.example.crmedu.domain.model.TutorSchedule,java.lang.Long)">
 <h3>update</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span><wbr><span class="parameters">(<a href="../../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&nbsp;updatedSchedule,
+<div class="member-signature"><span class="annotations">@Transactional
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span><wbr><span class="parameters">(<a href="../../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&nbsp;updatedSchedule,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="TutorScheduleService.html#update(org.example.crmedu.domain.model.TutorSchedule,java.lang.Long)">TutorScheduleService</a></code></span></div>
 <div class="block">Updates an existing schedule.</div>

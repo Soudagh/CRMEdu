@@ -214,7 +214,8 @@ implements <a href="TutorService.html" title="interface in org.example.crmedu.do
 <li>
 <section class="detail" id="findById(java.lang.Long)">
 <h3>findById</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a></span>&nbsp;<span class="element-name">findById</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
+<div class="member-signature"><span class="annotations">@Transactional(readOnly=true)
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a></span>&nbsp;<span class="element-name">findById</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="TutorService.html#findById(java.lang.Long)">TutorService</a></code></span></div>
 <div class="block">Retrieves an tutor by its unique identifier.</div>
 <dl class="notes">
@@ -248,7 +249,8 @@ implements <a href="TutorService.html" title="interface in org.example.crmedu.do
 <li>
 <section class="detail" id="update(org.example.crmedu.domain.model.Tutor,java.lang.Long)">
 <h3>update</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span><wbr><span class="parameters">(<a href="../../model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&nbsp;tutor,
+<div class="member-signature"><span class="annotations">@Transactional
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span><wbr><span class="parameters">(<a href="../../model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&nbsp;tutor,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="TutorService.html#update(org.example.crmedu.domain.model.Tutor,java.lang.Long)">TutorService</a></code></span></div>
 <div class="block">Updates an existing tutor.</div>
@@ -278,7 +280,8 @@ implements <a href="TutorService.html" title="interface in org.example.crmedu.do
 <li>
 <section class="detail" id="patchSubjects(java.util.Set,java.lang.Long)">
 <h3>patchSubjects</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">patchSubjects</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../../model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>&gt;&nbsp;subjects,
+<div class="member-signature"><span class="annotations">@Transactional
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">patchSubjects</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../../model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>&gt;&nbsp;subjects,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="TutorService.html#patchSubjects(java.util.Set,java.lang.Long)">TutorService</a></code></span></div>
 <div class="block">Updates the list of subjects that a tutor can teach.</div>
@@ -294,7 +297,8 @@ implements <a href="TutorService.html" title="interface in org.example.crmedu.do
 <li>
 <section class="detail" id="patchGrades(java.util.Set,java.lang.Long)">
 <h3>patchGrades</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">patchGrades</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;grades,
+<div class="member-signature"><span class="annotations">@Transactional
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">patchGrades</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;grades,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="TutorService.html#patchGrades(java.util.Set,java.lang.Long)">TutorService</a></code></span></div>
 <div class="block">Updates the list of education classes that a tutor can teach.</div>

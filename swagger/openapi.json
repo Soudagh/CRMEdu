@@ -81,7 +81,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
@@ -1014,45 +1014,6 @@
           }
         }
       },
-      "Organization": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          },
-          "specialization": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          }
-        }
-      },
-      "Subject": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          },
-          "organization": {
-            "$ref": "#/components/schemas/Organization"
-          }
-        }
-      },
       "UpdateTutorRequest": {
         "type": "object",
         "properties": {
@@ -1069,7 +1030,8 @@
             "uniqueItems": true,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Subject"
+              "type": "integer",
+              "format": "int64"
             }
           },
           "grades": {
@@ -1420,6 +1382,45 @@
           }
         }
       },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "specialization": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+      },
+      "Subject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/Organization"
+          }
+        }
+      },
       "Tutor": {
         "type": "object",
         "properties": {
@@ -1549,12 +1550,12 @@
                               "type": "string",
                               "format": "date-time"
                             },
+                            "overlap": {
+                              "type": "boolean"
+                            },
                             "instant": {
                               "type": "string",
                               "format": "date-time"
-                            },
-                            "overlap": {
-                              "type": "boolean"
                             }
                           }
                         }
@@ -1710,12 +1711,12 @@
                               "type": "string",
                               "format": "date-time"
                             },
+                            "overlap": {
+                              "type": "boolean"
+                            },
                             "instant": {
                               "type": "string",
                               "format": "date-time"
-                            },
-                            "overlap": {
-                              "type": "boolean"
                             }
                           }
                         }
@@ -2447,6 +2448,10 @@
       "GetTutorScheduleResponse": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
           "dayOfWeek": {
             "type": "string",
             "enum": [

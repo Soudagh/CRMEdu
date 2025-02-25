@@ -120,29 +120,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/error/ValidationErrorResponse.html" title="class in org.example.crmedu.application.dto.error">ValidationErrorResponse</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleConstraintValidationException(jakarta.validation.ConstraintViolationException)" class="member-name-link">handleConstraintValidationException</a><wbr>(jakarta.validation.ConstraintViolationException&nbsp;e)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/error/SystemError.html" title="class in org.example.crmedu.application.dto.error">SystemError</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleEntityExistsException(org.example.crmedu.domain.exception.EntityExistsException)" class="member-name-link">handleEntityExistsException</a><wbr>(<a href="../../domain/exception/EntityExistsException.html" title="class in org.example.crmedu.domain.exception">EntityExistsException</a>&nbsp;e)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Handles a <code>ConstraintViolationException</code> and returns an HTTP 400 Bad Request response.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/error/SystemError.html" title="class in org.example.crmedu.application.dto.error">SystemError</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleEntityExistsException(org.example.crmedu.domain.exception.EntityExistsException)" class="member-name-link">handleEntityExistsException</a><wbr>(<a href="../../domain/exception/EntityExistsException.html" title="class in org.example.crmedu.domain.exception">EntityExistsException</a>&nbsp;e)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Handles <a href="../../domain/exception/EntityExistsException.html" title="class in org.example.crmedu.domain.exception"><code>EntityExistsException</code></a> and returns a 400 Bad Request response.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/error/SystemError.html" title="class in org.example.crmedu.application.dto.error">SystemError</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleEntityNotFoundException(org.example.crmedu.domain.exception.EntityNotFoundException)" class="member-name-link">handleEntityNotFoundException</a><wbr>(<a href="../../domain/exception/EntityNotFoundException.html" title="class in org.example.crmedu.domain.exception">EntityNotFoundException</a>&nbsp;e)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/error/SystemError.html" title="class in org.example.crmedu.application.dto.error">SystemError</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleEntityNotFoundException(org.example.crmedu.domain.exception.EntityNotFoundException)" class="member-name-link">handleEntityNotFoundException</a><wbr>(<a href="../../domain/exception/EntityNotFoundException.html" title="class in org.example.crmedu.domain.exception">EntityNotFoundException</a>&nbsp;e)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Handles <a href="../../domain/exception/EntityNotFoundException.html" title="class in org.example.crmedu.domain.exception"><code>EntityNotFoundException</code></a> and returns a 404 Not Found response.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/error/ValidationErrorResponse.html" title="class in org.example.crmedu.application.dto.error">ValidationErrorResponse</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleMethodArgumentNotValidException(org.springframework.web.bind.MethodArgumentNotValidException)" class="member-name-link">handleMethodArgumentNotValidException</a><wbr>(org.springframework.web.bind.MethodArgumentNotValidException&nbsp;e)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/error/ValidationErrorResponse.html" title="class in org.example.crmedu.application.dto.error">ValidationErrorResponse</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleMethodArgumentNotValidException(org.springframework.web.bind.MethodArgumentNotValidException)" class="member-name-link">handleMethodArgumentNotValidException</a><wbr>(org.springframework.web.bind.MethodArgumentNotValidException&nbsp;e)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Handles a <code>MethodArgumentNotValidException</code> and returns an HTTP 400 Bad Request response.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/error/SystemError.html" title="class in org.example.crmedu.application.dto.error">SystemError</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleTutorScheduleOverlapsException(org.example.crmedu.domain.exception.TutorScheduleOverlapsException)" class="member-name-link">handleTutorScheduleOverlapsException</a><wbr>(<a href="../../domain/exception/TutorScheduleOverlapsException.html" title="class in org.example.crmedu.domain.exception">TutorScheduleOverlapsException</a>&nbsp;e)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/error/SystemError.html" title="class in org.example.crmedu.application.dto.error">SystemError</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleTutorScheduleOverlapsException(org.example.crmedu.domain.exception.TutorScheduleOverlapsException)" class="member-name-link">handleTutorScheduleOverlapsException</a><wbr>(<a href="../../domain/exception/TutorScheduleOverlapsException.html" title="class in org.example.crmedu.domain.exception">TutorScheduleOverlapsException</a>&nbsp;e)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Handles <a href="../../domain/exception/TutorScheduleOverlapsException.html" title="class in org.example.crmedu.domain.exception"><code>TutorScheduleOverlapsException</code></a> and returns a 400 Bad Request response.</div>
 </div>
 </div>
@@ -215,20 +210,6 @@ loadScripts(document, 'script');</script>
 <dd><code>e</code> - the thrown exception</dd>
 <dt>Returns:</dt>
 <dd>a <code>ResponseEntity</code> containing a <a href="../dto/error/SystemError.html" title="class in org.example.crmedu.application.dto.error"><code>SystemError</code></a> object with error details</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="handleConstraintValidationException(jakarta.validation.ConstraintViolationException)">
-<h3>handleConstraintValidationException</h3>
-<div class="member-signature"><span class="annotations">@ExceptionHandler(jakarta.validation.ConstraintViolationException.class)
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../dto/error/ValidationErrorResponse.html" title="class in org.example.crmedu.application.dto.error">ValidationErrorResponse</a>&gt;</span>&nbsp;<span class="element-name">handleConstraintValidationException</span><wbr><span class="parameters">(jakarta.validation.ConstraintViolationException&nbsp;e)</span></div>
-<div class="block">Handles a <code>ConstraintViolationException</code> and returns an HTTP 400 Bad Request response.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>e</code> - the exception containing validation errors</dd>
-<dt>Returns:</dt>
-<dd>a <code>ResponseEntity</code> containing a <a href="../dto/error/ValidationErrorResponse.html" title="class in org.example.crmedu.application.dto.error"><code>ValidationErrorResponse</code></a> with error details</dd>
 </dl>
 </section>
 </li>
