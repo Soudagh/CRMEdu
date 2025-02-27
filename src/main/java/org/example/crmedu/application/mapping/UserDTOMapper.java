@@ -1,8 +1,11 @@
 package org.example.crmedu.application.mapping;
 
 import org.example.crmedu.application.dto.PageDTO;
+import org.example.crmedu.application.dto.request.auth.SignInRequest;
+import org.example.crmedu.application.dto.request.auth.SignUpRequest;
 import org.example.crmedu.application.dto.request.user.CreateUserRequest;
 import org.example.crmedu.application.dto.request.user.UpdateUserRequest;
+import org.example.crmedu.application.dto.response.auth.SignUpResponse;
 import org.example.crmedu.application.dto.response.user.CreateUserResponse;
 import org.example.crmedu.application.dto.response.user.GetUserResponse;
 import org.example.crmedu.domain.model.Page;
@@ -65,4 +68,10 @@ public interface UserDTOMapper {
    * @return the corresponding {@link User} model
    */
   User idToUser(Long id);
+
+  User singInRequestToUser(SignInRequest signInRequest);
+
+  User singUpRequestToUser(SignUpRequest signInRequest);
+
+  SignUpResponse userToSignUpResponse(User user);
 }

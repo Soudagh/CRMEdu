@@ -26,6 +26,10 @@ public interface UserRepository {
    */
   Optional<User> findById(Long id);
 
+  Optional<User> findByEmail(String email);
+
+  Optional<User> findByVerificationToken(String token);
+
   /**
    * Checks whether a user with the same email already exists.
    *

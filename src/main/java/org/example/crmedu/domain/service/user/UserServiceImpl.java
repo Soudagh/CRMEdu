@@ -3,6 +3,7 @@ package org.example.crmedu.domain.service.user;
 import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 import org.example.crmedu.domain.enums.Role;
+import org.example.crmedu.domain.enums.UserStatus;
 import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
 import org.example.crmedu.domain.model.Organization;
@@ -11,6 +12,7 @@ import org.example.crmedu.domain.model.Tutor;
 import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.repository.OrganizationRepository;
 import org.example.crmedu.domain.repository.UserRepository;
+import org.example.crmedu.domain.service.jwt.PasswordEncode;
 import org.example.crmedu.domain.service.tutor.TutorService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,10 +30,13 @@ public class UserServiceImpl implements UserService {
 
   private final OrganizationRepository organizationRepository;
 
+  private final PasswordEncode passwordEncode;
+
   @Override
   public User create(User user) {
     checkUserConstraints(user);
     validateOrganizationExists(user.getOrganization().getId());
+    user.setPassword(passwordEncode.encode(user.getPassword())).setStatus(UserStatus.PENDING);
     var createdUser = userRepository.save(user);
     if (createdUser.getRole().equals(Role.TUTOR)) {
       createTutor(createdUser);
@@ -44,6 +49,12 @@ public class UserServiceImpl implements UserService {
   public User findById(Long id) {
     return userRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException(User.class, id));
+  }
+
+  @Override
+  public User findByEmail(String email) {
+    return userRepository.findByEmail(email)
+        .orElseThrow(() -> new EntityNotFoundException(User.class, email));
   }
 
   @Override
@@ -67,6 +78,14 @@ public class UserServiceImpl implements UserService {
   @Override
   public void delete(Long id) {
     userRepository.delete(id);
+  }
+
+  @Override
+  public void validateVerificationToken(String token) {
+    var user = userRepository.findByVerificationToken(token)
+        .orElseThrow(() -> new EntityNotFoundException(User.class, token));
+    user.setStatus(UserStatus.ACTIVE);
+    userRepository.save(user);
   }
 
   private void checkUserConstraints(User user) {

@@ -26,6 +26,8 @@ public interface UserService {
    */
   User findById(Long id);
 
+  User findByEmail(String email);
+
   /**
    * Retrieves a paginated list of users.
    *
@@ -51,4 +53,6 @@ public interface UserService {
    * @param id the unique identifier of the user to delete
    */
   void delete(Long id);
+
+  void validateVerificationToken(String token);
 }

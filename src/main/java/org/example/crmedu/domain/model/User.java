@@ -48,6 +48,10 @@ public class User {
    */
   private String timezone;
 
+  private String password;
+
+  private String verificationToken;
+
   /**
    * Timestamp with time zone when user was signed up.
    */

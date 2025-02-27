@@ -1,5 +1,6 @@
 package org.example.crmedu.infrastructure.repository.user;
 
+import java.util.Optional;
 import org.example.crmedu.infrastructure.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -30,4 +31,10 @@ public interface DataUserRepository extends JpaRepository<UserEntity, Long>, Pag
    * @return {@code true} if a user with this phone exists. otherwise {@code false}
    */
   boolean existsByPhoneAndIdIsNot(String phone, Long id);
+
+  Optional<UserEntity> findByEmail(String email);
+
+  Optional<UserEntity> findByVerificationToken(String verificationToken);
+
+  boolean existsByEmail(String email);
 }
