@@ -1550,12 +1550,12 @@
                               "type": "string",
                               "format": "date-time"
                             },
-                            "overlap": {
-                              "type": "boolean"
-                            },
                             "instant": {
                               "type": "string",
                               "format": "date-time"
+                            },
+                            "overlap": {
+                              "type": "boolean"
                             }
                           }
                         }
@@ -1711,12 +1711,12 @@
                               "type": "string",
                               "format": "date-time"
                             },
-                            "overlap": {
-                              "type": "boolean"
-                            },
                             "instant": {
                               "type": "string",
                               "format": "date-time"
+                            },
+                            "overlap": {
+                              "type": "boolean"
                             }
                           }
                         }

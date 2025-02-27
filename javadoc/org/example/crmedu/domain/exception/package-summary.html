@@ -69,7 +69,13 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="package-signature">package <span class="element-name">org.example.crmedu.domain.exception</span></div>
 <section class="package-description" id="package-description">
-<div class="block">This package contains all exceptions that may arise in the business-logic of application.</div>
+<div class="block">This package contains all exceptions that may arise in the business logic of the application.
+ <p>
+ The <code>EntityExistsException</code> class represents an error that occurs when an entity with the given field(s) already exists in the system. The
+ <code>EntityNotFoundException</code> class represents an error that occurs when an entity with the given ID does not exist in the system. The
+ <code>TutorScheduleOverlapsException</code> class represents an error that occurs when a user tries to add or update a schedule that overlaps with an existing
+ one.
+ </p></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
