@@ -40,7 +40,7 @@ public interface TutorDTOMapper {
   /**
    * Converts a {@link Tutor} model to a {@link CreateTutorResponse} DTO.
    *
-   * @param tutor the created tutor model
+   * @param tutor the creawted tutor model
    * @return the corresponding {@link CreateTutorResponse} DTO
    */
   CreateTutorResponse tutorToCreateResponse(Tutor tutor);

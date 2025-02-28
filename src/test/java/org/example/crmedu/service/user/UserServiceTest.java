@@ -111,4 +111,34 @@ public class UserServiceTest extends BaseUnitTest {
     assertEquals(user1, resultPages.getContent().get(0));
     assertEquals(user2, resultPages.getContent().get(1));
   }
+
+  @Test
+  void findByEmail_shouldNotThrowException_whenSelectedEmailExists() {
+    var user = getMockObject(User.class);
+    var email = user.getEmail();
+    when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
+    assertDoesNotThrow(() -> userService.findByEmail(email));
+  }
+
+  @Test
+  void findByEmail_shouldThrowException_whenSelectedEmailDoesNotExist() {
+    var email = "example@mail.com";
+    when(userRepository.findByEmail(email)).thenReturn(Optional.empty());
+    assertThrows(EntityNotFoundException.class, () -> userService.findByEmail(email));
+  }
+
+  @Test
+  void findByVerificationToken_shouldNotThrowException_whenSelectedTokenExists() {
+    var user = getMockObject(User.class);
+    var token = user.getVerificationToken();
+    when(userRepository.findByVerificationToken(token)).thenReturn(Optional.of(user));
+    assertDoesNotThrow(() -> userService.findByVerificationToken(token));
+  }
+
+  @Test
+  void findByVerificationToken_shouldThrowException_whenSelectedTokenNotExists() {
+    var token = "abab";
+    when(userRepository.findByVerificationToken(token)).thenReturn(Optional.empty());
+    assertThrows(EntityNotFoundException.class, () -> userService.findByVerificationToken(token));
+  }
 }

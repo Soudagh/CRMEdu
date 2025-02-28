@@ -28,6 +28,8 @@ public interface UserService {
 
   User findByEmail(String email);
 
+  User findByVerificationToken(String token);
+
   /**
    * Retrieves a paginated list of users.
    *
@@ -54,5 +56,5 @@ public interface UserService {
    */
   void delete(Long id);
 
-  void validateVerificationToken(String token);
+  void verifyUserByVerificationToken(String token);
 }

@@ -2,12 +2,14 @@ package org.example.crmedu.service.user;
 
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.example.crmedu.BaseIntegrationTest;
 import org.example.crmedu.domain.enums.Role;
+import org.example.crmedu.domain.enums.UserStatus;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
 import org.example.crmedu.domain.model.Organization;
 import org.example.crmedu.domain.model.User;
@@ -71,5 +73,22 @@ class UserServiceIntegrationTest extends BaseIntegrationTest {
     userService.update(updatedUser, userId);
     var updatedUserEntity = assertDoesNotThrow(() -> userService.findById(userId));
     assertNotEquals(userEntity, updatedUserEntity);
+  }
+
+  @Test
+  void verifyUserByVerificationToken_shouldVerifyUser() {
+    var organization = getMockObject(Organization.class).setId(null);
+    var organizationEntity = organizationService.create(organization);
+    assertNotNull(organizationEntity.getId());
+    var user = getMockObject(User.class).setId(null).setOrganization(organizationEntity).setStatus(UserStatus.PENDING);
+    assertNotNull(user);
+    assertEquals(UserStatus.PENDING, user.getStatus());
+    var userEntity = userService.create(user);
+    assertNotNull(userEntity);
+    var userToken = userEntity.getVerificationToken();
+    assertNotNull(userToken);
+    userService.verifyUserByVerificationToken(userToken);
+    var updatedUser = assertDoesNotThrow(() -> userService.findById(userEntity.getId()));
+    assertEquals(UserStatus.ACTIVE, updatedUser.getStatus());
   }
 }

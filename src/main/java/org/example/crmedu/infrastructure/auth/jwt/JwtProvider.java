@@ -11,6 +11,7 @@ import io.jsonwebtoken.security.Keys;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.UUID;
 import javax.crypto.SecretKey;
 import lombok.NonNull;
 import org.example.crmedu.domain.model.User;
@@ -50,6 +51,7 @@ public class JwtProvider {
     return Jwts.builder()
         .subject(user.getEmail())
         .expiration(refreshExpiration)
+        .claim("rnd", UUID.randomUUID().toString())
         .signWith(jwtRefreshSecretKey)
         .compact();
   }
@@ -60,6 +62,14 @@ public class JwtProvider {
 
   public boolean isRefreshTokenValid(@NonNull String refreshToken) {
     return validateToken(refreshToken, jwtRefreshSecretKey);
+  }
+
+  public Claims getAccessClaims(@NonNull String token) {
+    return getClaims(token, jwtAccessSecretKey);
+  }
+
+  public Claims getRefreshClaims(@NonNull String token) {
+    return getClaims(token, jwtRefreshSecretKey);
   }
 
   private boolean validateToken(@NonNull String token, @NonNull SecretKey secret) {
@@ -78,14 +88,6 @@ public class JwtProvider {
     } catch (Exception e) {
       throw new JwtException("Invalid JWT token");
     }
-  }
-
-  public Claims getAccessClaims(@NonNull String token) {
-    return getClaims(token, jwtAccessSecretKey);
-  }
-
-  public Claims getRefreshClaims(@NonNull String token) {
-    return getClaims(token, jwtRefreshSecretKey);
   }
 
   private Claims getClaims(@NonNull String token, @NonNull SecretKey secret) {

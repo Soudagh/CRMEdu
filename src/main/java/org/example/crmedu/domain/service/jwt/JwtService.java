@@ -10,6 +10,4 @@ public interface JwtService {
   Jwt getAccessToken(String refreshToken);
 
   Jwt refresh(String refreshToken);
-
-  User getCurrentUser();
 }

@@ -50,7 +50,7 @@ public interface UserRepository {
    * Saves a new user or updates an existing one.
    *
    * @param user the user to save
-   * @return the saved {@link User} entity
+   * @return the saved {@link User} entityw
    */
   User save(User user);
 

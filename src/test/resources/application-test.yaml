@@ -15,6 +15,17 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 springdoc:
   api-docs:
@@ -27,3 +38,7 @@ logging:
     root: ERROR
     org.springframework: ERROR
     org.hibernate: ERROR
+jwt:
+  secret:
+    access: ${JWT_ACCESS}
+    refresh: ${JWT_REFRESH}

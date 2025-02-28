@@ -52,9 +52,17 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public User findByEmail(String email) {
     return userRepository.findByEmail(email)
         .orElseThrow(() -> new EntityNotFoundException(User.class, email));
+  }
+
+  @Override
+  @Transactional
+  public User findByVerificationToken(String token) {
+    return userRepository.findByVerificationToken(token)
+        .orElseThrow(() -> new EntityNotFoundException(User.class, token));
   }
 
   @Override
@@ -81,9 +89,9 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void validateVerificationToken(String token) {
-    var user = userRepository.findByVerificationToken(token)
-        .orElseThrow(() -> new EntityNotFoundException(User.class, token));
+  @Transactional
+  public void verifyUserByVerificationToken(String token) {
+    var user = findByVerificationToken(token);
     user.setStatus(UserStatus.ACTIVE);
     userRepository.save(user);
   }

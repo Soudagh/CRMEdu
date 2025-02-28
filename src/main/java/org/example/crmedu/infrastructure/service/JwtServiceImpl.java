@@ -2,16 +2,13 @@ package org.example.crmedu.infrastructure.service;
 
 import java.util.HashMap;
 import java.util.Map;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.example.crmedu.domain.model.Jwt;
 import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.service.jwt.JwtService;
 import org.example.crmedu.domain.service.user.UserService;
-import org.example.crmedu.infrastructure.auth.jwt.JwtAuthentication;
 import org.example.crmedu.infrastructure.auth.jwt.JwtProvider;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,39 +34,32 @@ public class JwtServiceImpl implements JwtService {
     }
     var accessToken = jwtProvider.generateAccessToken(user);
     var refreshToken = jwtProvider.generateRefreshToken(user);
-    refreshStorage.put(accessToken, refreshToken);
+    refreshStorage.put(user.getEmail(), refreshToken);
     return new Jwt().setType(BEARER_HEADER_TYPE).setAccessToken(accessToken).setRefreshToken(refreshToken);
   }
 
-  public Jwt getAccessToken(@NonNull String refreshToken) {
+  @Override
+  public Jwt getAccessToken(String refreshToken) {
     var accessToken = getNewAccessToken(refreshToken);
     return new Jwt().setType(BEARER_HEADER_TYPE).setAccessToken(accessToken).setRefreshToken(refreshToken);
   }
 
   @Override
   public Jwt refresh(String refreshToken) {
-    var accessToken = getNewAccessToken(refreshToken);
+    var user = getUserByClaimsOrThrow(refreshToken);
     var newRefreshToken = getNewRefreshToken(refreshToken);
-    refreshStorage.put(accessToken, newRefreshToken);
-    return new Jwt().setType(BEARER_HEADER_TYPE).setAccessToken(accessToken).setRefreshToken(refreshToken);
-  }
-
-  @Override
-  public User getCurrentUser() {
-    return userService.findByEmail(getAuthInfo().getEmail());
-  }
-
-  private JwtAuthentication getAuthInfo() {
-    return (JwtAuthentication) SecurityContextHolder.getContext().getAuthentication();
+    var accessToken = getNewAccessToken(refreshToken);
+    refreshStorage.put(user.getEmail(), newRefreshToken);
+    return new Jwt().setType(BEARER_HEADER_TYPE).setAccessToken(accessToken).setRefreshToken(newRefreshToken);
   }
 
   private String getNewAccessToken(String refreshToken) {
     var user = getUserByClaimsOrThrow(refreshToken);
-    return jwtProvider.generateRefreshToken(user);
+    return jwtProvider.generateAccessToken(user);
   }
 
   private User getUserByClaimsOrThrow(String refreshToken) {
-    if (jwtProvider.isRefreshTokenValid(refreshToken)) {
+    if (!jwtProvider.isRefreshTokenValid(refreshToken)) {
       throw new BadCredentialsException("Invalid refresh token");
     }
     var claims = jwtProvider.getRefreshClaims(refreshToken);

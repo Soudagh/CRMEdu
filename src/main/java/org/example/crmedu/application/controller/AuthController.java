@@ -50,7 +50,7 @@ public class AuthController {
 
   @GetMapping("/verify-email")
   public ResponseEntity<String> verifyEmail(@RequestParam String token) {
-    userService.validateVerificationToken(token);
+    userService.verifyUserByVerificationToken(token);
     return ResponseEntity.ok("verified");
   }
 
