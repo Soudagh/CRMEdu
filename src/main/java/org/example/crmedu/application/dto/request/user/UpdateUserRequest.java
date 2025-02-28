@@ -32,6 +32,9 @@ public class UpdateUserRequest {
   @Size(max = 254)
   private String email;
 
+  @Size(min = 8)
+  private String password;
+
   @Pattern(regexp = "^\\+\\d{1,3}\\d{10}$", message = "Invalid phone number. Expected format: +[country code]XXXXXXXXXX")
   private String phone;
 

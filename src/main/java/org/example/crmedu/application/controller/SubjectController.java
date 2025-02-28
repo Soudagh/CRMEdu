@@ -12,6 +12,7 @@ import org.example.crmedu.domain.service.subject.SubjectService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,7 @@ public class SubjectController {
    * @return a {@link ResponseEntity} containing a paginated list of subjects wrapped in {@link PageDTO} of {@link GetSubjectResponse}
    */
   @GetMapping
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   public ResponseEntity<PageDTO<GetSubjectResponse>> getSubjects(Pageable pageable) {
     var subjectsPage = subjectService.findAll(pageable.getPageNumber(), pageable.getPageSize());
     return ResponseEntity.ok(subjectMapper.pageSubjectToPageDTO(subjectsPage));
@@ -52,6 +54,7 @@ public class SubjectController {
    * @return a {@link ResponseEntity} containing the subject data in {@link GetSubjectResponse}
    */
   @GetMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   public ResponseEntity<GetSubjectResponse> getSubject(@PathVariable Long id) {
     var subject = subjectService.findById(id);
     return ResponseEntity.ok(subjectMapper.subjectToGetSubjectResponse(subject));
@@ -64,6 +67,7 @@ public class SubjectController {
    * @return a {@link ResponseEntity} with the created subject data in {@link CreateSubjectResponse}
    */
   @PostMapping
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   public ResponseEntity<CreateSubjectResponse> createSubject(@Valid @RequestBody CreateSubjectRequest request) {
     var subject = subjectService.create(subjectMapper.createRequestToSubject(request));
     return ResponseEntity.status(HttpStatus.CREATED)
@@ -78,6 +82,7 @@ public class SubjectController {
    * @return a {@link ResponseEntity}
    */
   @PutMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   public ResponseEntity<Void> updateSubject(@PathVariable Long id, @Valid @RequestBody UpdateSubjectRequest request) {
     subjectService.update(subjectMapper.updateRequestToSubject(request), id);
     return ResponseEntity.ok().build();
@@ -90,6 +95,7 @@ public class SubjectController {
    * @return a {@link ResponseEntity}
    */
   @DeleteMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   public ResponseEntity<Void> deleteSubject(@PathVariable Long id) {
     subjectService.delete(id);
     return ResponseEntity.ok().build();

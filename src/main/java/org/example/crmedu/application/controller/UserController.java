@@ -12,6 +12,7 @@ import org.example.crmedu.domain.service.user.UserService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,7 @@ public class UserController {
    * @return a {@link ResponseEntity} containing a paginated list of users wrapped in {@link PageDTO} of {@link GetUserResponse}
    */
   @GetMapping
+  @Secured({"SUPERUSER", "ORG_ADMIN"})
   public ResponseEntity<PageDTO<GetUserResponse>> getUsers(Pageable pageable) {
     var page = userService.findAll(pageable.getPageNumber(), pageable.getPageSize());
     return ResponseEntity.ok(userDTOMapper.pageUserToPageGetResponse(page));
@@ -52,6 +54,7 @@ public class UserController {
    * @return a {@link ResponseEntity} containing the subject data in {@link GetUserResponse}
    */
   @GetMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN"})
   public ResponseEntity<GetUserResponse> getUser(@PathVariable Long id) {
     var user = userService.findById(id);
     return ResponseEntity.ok(userDTOMapper.userToGetResponse(user));
@@ -64,6 +67,7 @@ public class UserController {
    * @return a {@link ResponseEntity} with the created subject data in {@link CreateUserResponse}
    */
   @PostMapping
+  @Secured({"SUPERUSER", "ORG_ADMIN"})
   public ResponseEntity<CreateUserResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
     var user = userService.create(userDTOMapper.createUserRequestToUser(request));
     return ResponseEntity.status(HttpStatus.CREATED)
@@ -78,6 +82,7 @@ public class UserController {
    * @return a {@link ResponseEntity}
    */
   @PutMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN"})
   public ResponseEntity<Void> updateUser(@Valid @RequestBody UpdateUserRequest request, @PathVariable Long id) {
     userService.update(userDTOMapper.updateUserRequestToUser(request), id);
     return ResponseEntity.ok().build();
@@ -90,6 +95,7 @@ public class UserController {
    * @return a {@link ResponseEntity}
    */
   @DeleteMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN"})
   public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
     userService.delete(id);
     return ResponseEntity.ok().build();

@@ -15,11 +15,13 @@ import org.example.crmedu.controller.MockCreator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 /**
  * Integration tests for {@code OrganizationController}. This class verifies the functionality of organization-related API endpoints.
  */
+@WithMockUser(roles = "SUPERUSER")
 public class OrganizationControllerTest extends BaseIntegrationTest {
 
   @Autowired

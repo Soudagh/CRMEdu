@@ -15,6 +15,7 @@ import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.repository.OrganizationRepository;
 import org.example.crmedu.domain.repository.UserRepository;
+import org.example.crmedu.domain.service.jwt.PasswordEncode;
 import org.example.crmedu.domain.service.tutor.TutorService;
 import org.example.crmedu.domain.service.user.UserServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,9 @@ public class UserServiceTest extends BaseUnitTest {
 
   @Mock
   private TutorService tutorService;
+
+  @Mock
+  private PasswordEncode passwordEncode;
 
   @Test
   void findById_shouldThrowException_whenSelectedIdNotFound() {

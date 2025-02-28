@@ -12,6 +12,7 @@ import org.example.crmedu.domain.service.student.StudentService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,7 @@ public class StudentController {
    * @return a {@link ResponseEntity} containing a paginated list of students wrapped in {@link PageDTO} of {@link GetStudentResponse}
    */
   @GetMapping
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<PageDTO<GetStudentResponse>> getStudents(Pageable pageable) {
     var page = studentService.getStudents(pageable.getPageNumber(), pageable.getPageSize());
     return ResponseEntity.ok(mapper.pageStudentToPageDtoGetTutorResponse(page));
@@ -52,6 +54,7 @@ public class StudentController {
    * @return a {@link ResponseEntity} containing a paginated list of students wrapped in {@link PageDTO} of {@link GetStudentResponse}
    */
   @GetMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR", "TUTOR"})
   ResponseEntity<GetStudentResponse> getStudentById(@PathVariable Long id) {
     var student = studentService.findById(id);
     return ResponseEntity.ok(mapper.studentToGetStudentResponse(student));
@@ -64,6 +67,7 @@ public class StudentController {
    * @return a {@link ResponseEntity} with the created student data in {@link CreateStudentResponse}
    */
   @PostMapping
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<CreateStudentResponse> createStudent(@Valid @RequestBody CreateStudentRequest request) {
     var student = studentService.create(mapper.createStudentRequestToStudent(request));
     return ResponseEntity.status(HttpStatus.CREATED).body(mapper.studentToCreateStudentResponse(student));
@@ -77,6 +81,7 @@ public class StudentController {
    * @return a {@link ResponseEntity}
    */
   @PutMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<Void> updateStudent(@Valid @RequestBody UpdateStudentRequest request, @PathVariable Long id) {
     studentService.updateStudent(mapper.updateStudentRequestToStudent(request), id);
     return ResponseEntity.ok().build();
@@ -89,6 +94,7 @@ public class StudentController {
    * @return a {@link ResponseEntity}
    */
   @DeleteMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
     studentService.deleteStudent(id);
     return ResponseEntity.ok().build();
