@@ -3,10 +3,12 @@ package org.example.crmedu.component;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import io.jsonwebtoken.Claims;
+import java.lang.reflect.Modifier;
 import org.example.crmedu.BaseUnitTest;
 import org.example.crmedu.domain.enums.Role;
 import org.example.crmedu.infrastructure.auth.jwt.JwtUtils;
@@ -41,5 +43,11 @@ public class JwtUtilsTest extends BaseUnitTest {
     var claims = mock(Claims.class);
     when(claims.get("role", String.class)).thenReturn("INVALID_ROLE");
     assertThrows(IllegalArgumentException.class, () -> JwtUtils.generate(claims));
+  }
+
+  @Test
+  void jwtUtils_shouldBeFinal() {
+    int modifiers = JwtUtils.class.getModifiers();
+    assertTrue(Modifier.isFinal(modifiers));
   }
 }
