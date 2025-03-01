@@ -11,6 +11,5 @@
  *   <li>{@code JwtUtils} – utility class for extracting user details from JWT claims.</li>
  *   <li>{@code PasswordEncodeImpl} – handles password encryption for secure authentication.</li>
  * </ul>
- * </p>
  */
 package org.example.crmedu.infrastructure.auth.jwt;
