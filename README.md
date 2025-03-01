@@ -19,7 +19,16 @@ It provides functionalities for:
 ```git clone https://github.com/Soudagh/CRMEdu.git```
 
 #### 2. Set up configuration properties (env)
-Add variables `DATABASE_URL`, `DATABASE_USERNAME`, `DATABASE_PASSWORD` to configuration properties or env file.
+Add variables to configuration properties or env file.
++ `DATABASE_URL`
++ `DATABASE_USERNAME`
++ `DATABASE_PASSWORD`
++ `JWT_ACCESS`
++ `JWT_REFRESH`
++ `SMTP_HOST`
++ `SMTP_PORT`
++ `SMTP_USERNAME`
++ `SMTP_PASSWORD`
 
 #### 3. Initialize environment
 ```docker compose up -d```
