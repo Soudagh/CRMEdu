@@ -118,6 +118,16 @@ loadScripts(document, 'script');</script>
 <div class="block">Converts a paginated <a href="../../domain/model/Page.html" title="class in org.example.crmedu.domain.model"><code>Page</code></a> of <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> entities to a paginated <a href="../dto/PageDTO.html" title="class in org.example.crmedu.application.dto"><code>PageDTO</code></a> of <a href="../dto/response/user/GetUserResponse.html" title="class in org.example.crmedu.application.dto.response.user"><code>GetUserResponse</code></a> DTOs.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#singInRequestToUser(org.example.crmedu.application.dto.request.auth.SignInRequest)" class="member-name-link">singInRequestToUser</a><wbr>(<a href="../dto/request/auth/SignInRequest.html" title="class in org.example.crmedu.application.dto.request.auth">SignInRequest</a>&nbsp;signInRequest)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Converts a <a href="../dto/request/auth/SignInRequest.html" title="class in org.example.crmedu.application.dto.request.auth"><code>SignInRequest</code></a> DTO to a <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#singUpRequestToUser(org.example.crmedu.application.dto.request.auth.SignUpRequest)" class="member-name-link">singUpRequestToUser</a><wbr>(<a href="../dto/request/auth/SignUpRequest.html" title="class in org.example.crmedu.application.dto.request.auth">SignUpRequest</a>&nbsp;signUpRequest)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Converts a <a href="../dto/request/auth/SignUpRequest.html" title="class in org.example.crmedu.application.dto.request.auth"><code>SignUpRequest</code></a> DTO to a <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#updateUserRequestToUser(org.example.crmedu.application.dto.request.user.UpdateUserRequest)" class="member-name-link">updateUserRequestToUser</a><wbr>(<a href="../dto/request/user/UpdateUserRequest.html" title="class in org.example.crmedu.application.dto.request.user">UpdateUserRequest</a>&nbsp;request)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Converts an <a href="../dto/request/user/UpdateUserRequest.html" title="class in org.example.crmedu.application.dto.request.user"><code>UpdateUserRequest</code></a> DTO to a <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model.</div>
@@ -131,6 +141,11 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#userToGetResponse(org.example.crmedu.domain.model.User)" class="member-name-link">userToGetResponse</a><wbr>(<a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a>&nbsp;user)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Converts a <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> domain model to a <a href="../dto/response/user/GetUserResponse.html" title="class in org.example.crmedu.application.dto.response.user"><code>GetUserResponse</code></a> DTO.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../dto/response/auth/SignUpResponse.html" title="class in org.example.crmedu.application.dto.response.auth">SignUpResponse</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#userToSignUpResponse(org.example.crmedu.domain.model.User)" class="member-name-link">userToSignUpResponse</a><wbr>(<a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a>&nbsp;user)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Converts a <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model to a <a href="../dto/response/auth/SignUpResponse.html" title="class in org.example.crmedu.application.dto.response.auth"><code>SignUpResponse</code></a> DTO.</div>
 </div>
 </div>
 </div>
@@ -221,6 +236,45 @@ loadScripts(document, 'script');</script>
 <dd><code>id</code> - the unique identifier of user</dd>
 <dt>Returns:</dt>
 <dd>the corresponding <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="singInRequestToUser(org.example.crmedu.application.dto.request.auth.SignInRequest)">
+<h3>singInRequestToUser</h3>
+<div class="member-signature"><span class="return-type"><a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a></span>&nbsp;<span class="element-name">singInRequestToUser</span><wbr><span class="parameters">(<a href="../dto/request/auth/SignInRequest.html" title="class in org.example.crmedu.application.dto.request.auth">SignInRequest</a>&nbsp;signInRequest)</span></div>
+<div class="block">Converts a <a href="../dto/request/auth/SignInRequest.html" title="class in org.example.crmedu.application.dto.request.auth"><code>SignInRequest</code></a> DTO to a <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>signInRequest</code> - the DTO containing data for log in</dd>
+<dt>Returns:</dt>
+<dd>the corresponding <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="singUpRequestToUser(org.example.crmedu.application.dto.request.auth.SignUpRequest)">
+<h3>singUpRequestToUser</h3>
+<div class="member-signature"><span class="return-type"><a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a></span>&nbsp;<span class="element-name">singUpRequestToUser</span><wbr><span class="parameters">(<a href="../dto/request/auth/SignUpRequest.html" title="class in org.example.crmedu.application.dto.request.auth">SignUpRequest</a>&nbsp;signUpRequest)</span></div>
+<div class="block">Converts a <a href="../dto/request/auth/SignUpRequest.html" title="class in org.example.crmedu.application.dto.request.auth"><code>SignUpRequest</code></a> DTO to a <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>signUpRequest</code> - the DTO containing data for signing up</dd>
+<dt>Returns:</dt>
+<dd>the corresponding <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="userToSignUpResponse(org.example.crmedu.domain.model.User)">
+<h3>userToSignUpResponse</h3>
+<div class="member-signature"><span class="return-type"><a href="../dto/response/auth/SignUpResponse.html" title="class in org.example.crmedu.application.dto.response.auth">SignUpResponse</a></span>&nbsp;<span class="element-name">userToSignUpResponse</span><wbr><span class="parameters">(<a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a>&nbsp;user)</span></div>
+<div class="block">Converts a <a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model"><code>User</code></a> model to a <a href="../dto/response/auth/SignUpResponse.html" title="class in org.example.crmedu.application.dto.response.auth"><code>SignUpResponse</code></a> DTO.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>user</code> - the user that signed up</dd>
+<dt>Returns:</dt>
+<dd>the corresponding <a href="../dto/response/auth/SignUpResponse.html" title="class in org.example.crmedu.application.dto.response.auth"><code>SignUpResponse</code></a> DTO</dd>
 </dl>
 </section>
 </li>

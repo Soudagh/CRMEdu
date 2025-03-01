@@ -182,6 +182,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getSubjects(org.springframework.data.domain.Pageable)">
 <h3>getSubjects</h3>
 <div class="member-signature"><span class="annotations">@GetMapping
+@Secured({"SUPERUSER","ORG_ADMIN","CURATOR"})
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../dto/PageDTO.html" title="class in org.example.crmedu.application.dto">PageDTO</a>&lt;<a href="../dto/response/subject/GetSubjectResponse.html" title="class in org.example.crmedu.application.dto.response.subject">GetSubjectResponse</a>&gt;&gt;</span>&nbsp;<span class="element-name">getSubjects</span><wbr><span class="parameters">(org.springframework.data.domain.Pageable&nbsp;pageable)</span></div>
 <div class="block">Retrieves a paginated list of subjects.</div>
 <dl class="notes">
@@ -196,6 +197,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getSubject(java.lang.Long)">
 <h3>getSubject</h3>
 <div class="member-signature"><span class="annotations">@GetMapping("/{id}")
+@Secured({"SUPERUSER","ORG_ADMIN","CURATOR"})
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../dto/response/subject/GetSubjectResponse.html" title="class in org.example.crmedu.application.dto.response.subject">GetSubjectResponse</a>&gt;</span>&nbsp;<span class="element-name">getSubject</span><wbr><span class="parameters">(@PathVariable
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block">Retrieves a subject by its unique identifier.</div>
@@ -211,6 +213,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="createSubject(org.example.crmedu.application.dto.request.subject.CreateSubjectRequest)">
 <h3>createSubject</h3>
 <div class="member-signature"><span class="annotations">@PostMapping
+@Secured({"SUPERUSER","ORG_ADMIN","CURATOR"})
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../dto/response/subject/CreateSubjectResponse.html" title="class in org.example.crmedu.application.dto.response.subject">CreateSubjectResponse</a>&gt;</span>&nbsp;<span class="element-name">createSubject</span><wbr><span class="parameters">(@Valid @RequestBody
  @Valid <a href="../dto/request/subject/CreateSubjectRequest.html" title="class in org.example.crmedu.application.dto.request.subject">CreateSubjectRequest</a>&nbsp;request)</span></div>
 <div class="block">Creates a new subject based on the provided request data.</div>
@@ -226,6 +229,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="updateSubject(java.lang.Long,org.example.crmedu.application.dto.request.subject.UpdateSubjectRequest)">
 <h3>updateSubject</h3>
 <div class="member-signature"><span class="annotations">@PutMapping("/{id}")
+@Secured({"SUPERUSER","ORG_ADMIN","CURATOR"})
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Void.html" title="class or interface in java.lang" class="external-link">Void</a>&gt;</span>&nbsp;<span class="element-name">updateSubject</span><wbr><span class="parameters">(@PathVariable
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id,
  @Valid @RequestBody
@@ -244,6 +248,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="deleteSubject(java.lang.Long)">
 <h3>deleteSubject</h3>
 <div class="member-signature"><span class="annotations">@DeleteMapping("/{id}")
+@Secured({"SUPERUSER","ORG_ADMIN","CURATOR"})
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Void.html" title="class or interface in java.lang" class="external-link">Void</a>&gt;</span>&nbsp;<span class="element-name">deleteSubject</span><wbr><span class="parameters">(@PathVariable
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <div class="block">Deletes a subject by its unique identifier.</div>

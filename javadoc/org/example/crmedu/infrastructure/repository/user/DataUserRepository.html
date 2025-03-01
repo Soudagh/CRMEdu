@@ -121,6 +121,16 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../../
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks whether a user with the specified phone exists.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="../../entity/UserEntity.html" title="class in org.example.crmedu.infrastructure.entity">UserEntity</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByEmail(java.lang.String)" class="member-name-link">findByEmail</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;email)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Retrieves user by his email.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="../../entity/UserEntity.html" title="class in org.example.crmedu.infrastructure.entity">UserEntity</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByVerificationToken(java.lang.String)" class="member-name-link">findByVerificationToken</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;verificationToken)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Retrieves user by his verification token.</div>
+</div>
 </div>
 </div>
 </div>
@@ -161,8 +171,7 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../../
 <div class="block">Checks whether a user with the specified email exists.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>email</code> - the email of the user
- * @param id the id of the user</dd>
+<dd><code>email</code> - the email of the user * @param id the id of the user</dd>
 <dt>Returns:</dt>
 <dd><code>true</code> if a user with this email exists. otherwise <code>false</code></dd>
 </dl>
@@ -180,6 +189,32 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../../
 <dd><code>id</code> - the id of the user</dd>
 <dt>Returns:</dt>
 <dd><code>true</code> if a user with this phone exists. otherwise <code>false</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findByEmail(java.lang.String)">
+<h3>findByEmail</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../../entity/UserEntity.html" title="class in org.example.crmedu.infrastructure.entity">UserEntity</a>&gt;</span>&nbsp;<span class="element-name">findByEmail</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;email)</span></div>
+<div class="block">Retrieves user by his email.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>email</code> - the email of the user</dd>
+<dt>Returns:</dt>
+<dd>an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link"><code>Optional</code></a> containing the user if found, otherwise empty</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findByVerificationToken(java.lang.String)">
+<h3>findByVerificationToken</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../../entity/UserEntity.html" title="class in org.example.crmedu.infrastructure.entity">UserEntity</a>&gt;</span>&nbsp;<span class="element-name">findByVerificationToken</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;verificationToken)</span></div>
+<div class="block">Retrieves user by his verification token.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>verificationToken</code> - the verification token of the user</dd>
+<dt>Returns:</dt>
+<dd>an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link"><code>Optional</code></a> containing the user if found, otherwise empty</dd>
 </dl>
 </section>
 </li>
