@@ -5,6 +5,9 @@ import org.example.crmedu.domain.service.jwt.PasswordEncode;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+/**
+ * This class provides a secure way to encode passwords before storing them in the system.
+ */
 @Component
 @RequiredArgsConstructor
 public class PasswordEncodeImpl implements PasswordEncode {

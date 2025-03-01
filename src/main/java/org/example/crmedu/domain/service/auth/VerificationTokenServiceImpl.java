@@ -1,11 +1,14 @@
-package org.example.crmedu.infrastructure.service;
+package org.example.crmedu.domain.service.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.repository.UserRepository;
-import org.example.crmedu.domain.service.auth.VerificationTokenService;
 import org.springframework.stereotype.Service;
 
+
+/**
+ * The implementation of the {@code VerificationTokenService}. Creates new verification token for user.
+ */
 @Service
 @RequiredArgsConstructor
 public class VerificationTokenServiceImpl implements VerificationTokenService {

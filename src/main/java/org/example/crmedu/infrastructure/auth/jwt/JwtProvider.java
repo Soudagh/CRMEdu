@@ -18,12 +18,22 @@ import org.example.crmedu.domain.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+/**
+ * This class manages access and refresh tokens, ensuring secure authentication. It generates signed JWTs for users, validates incoming tokens, and extracts
+ * claims.
+ */
 @Component
 public class JwtProvider {
 
   private final SecretKey jwtAccessSecretKey;
   private final SecretKey jwtRefreshSecretKey;
 
+  /**
+   * Initializes secret keys for JWT signing.
+   *
+   * @param jwtAccessSecret the secret key for access tokens
+   * @param jwtRefreshSecret the secret key for refresh tokens
+   */
   public JwtProvider(
       @Value("${jwt.secret.access}") String jwtAccessSecret,
       @Value("${jwt.secret.refresh}") String jwtRefreshSecret
@@ -32,6 +42,12 @@ public class JwtProvider {
     this.jwtRefreshSecretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtRefreshSecret));
   }
 
+  /**
+   * Generates an access token for a user.
+   *
+   * @param user the authenticated user
+   * @return the signed JWT access token
+   */
   public String generateAccessToken(@NonNull User user) {
     final var now = LocalDateTime.now();
     final var accessExpirationInstant = now.plusHours(5).atZone(ZoneId.systemDefault()).toInstant();
@@ -44,6 +60,12 @@ public class JwtProvider {
         .compact();
   }
 
+  /**
+   * Generates a refresh token for a user.
+   *
+   * @param user the authenticated user
+   * @return the signed JWT refresh token
+   */
   public String generateRefreshToken(@NonNull User user) {
     final var now = LocalDateTime.now();
     final var refreshExpirationInstant = now.plusDays(30).atZone(ZoneId.systemDefault()).toInstant();
@@ -56,18 +78,42 @@ public class JwtProvider {
         .compact();
   }
 
+  /**
+   * Validates the given access token.
+   *
+   * @param accessToken the token to validate
+   * @return true if valid, otherwise throws an exception
+   */
   public boolean isAccessTokenValid(@NonNull String accessToken) {
     return validateToken(accessToken, jwtAccessSecretKey);
   }
 
+  /**
+   * Validates the given refresh token.
+   *
+   * @param refreshToken the token to validate
+   * @return true if valid, otherwise throws an exception
+   */
   public boolean isRefreshTokenValid(@NonNull String refreshToken) {
     return validateToken(refreshToken, jwtRefreshSecretKey);
   }
 
+  /**
+   * Extracts claims from an access token.
+   *
+   * @param token the JWT token
+   * @return the extracted claims
+   */
   public Claims getAccessClaims(@NonNull String token) {
     return getClaims(token, jwtAccessSecretKey);
   }
 
+  /**
+   * Extracts claims from a refresh token.
+   *
+   * @param token the JWT token
+   * @return the extracted claims
+   */
   public Claims getRefreshClaims(@NonNull String token) {
     return getClaims(token, jwtRefreshSecretKey);
   }

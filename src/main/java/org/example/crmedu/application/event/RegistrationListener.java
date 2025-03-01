@@ -8,6 +8,12 @@ import org.example.crmedu.domain.service.auth.VerificationTokenService;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+/**
+ * Listens for {@link OnRegistrationCompleteEvent} and sends a verification email to the user.
+ * <p>
+ * Generates a verification token, saves it via {@link VerificationTokenService}, and sends a confirmation email using {@link EmailService}.
+ * </p>
+ */
 @Component
 @RequiredArgsConstructor
 public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {

@@ -26,8 +26,20 @@ public interface UserRepository {
    */
   Optional<User> findById(Long id);
 
+  /**
+   * Retrieves a user by its email.
+   *
+   * @param email the email of the user
+   * @return an {@link Optional} containing the user if found, otherwise empty
+   */
   Optional<User> findByEmail(String email);
 
+  /**
+   * Retrieves a user by its verification token.
+   *
+   * @param token the verification token of the user
+   * @return an {@link Optional} containing the user if found, otherwise empty
+   */
   Optional<User> findByVerificationToken(String token);
 
   /**
@@ -50,7 +62,7 @@ public interface UserRepository {
    * Saves a new user or updates an existing one.
    *
    * @param user the user to save
-   * @return the saved {@link User} entityw
+   * @return the saved {@link User} entity
    */
   User save(User user);
 

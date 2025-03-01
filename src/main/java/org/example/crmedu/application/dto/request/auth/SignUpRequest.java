@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.example.crmedu.domain.enums.Role;
 
+/**
+ * A DTO representing a request to sign up.
+ */
 @Data
 @Accessors(chain = true)
 public class SignUpRequest {

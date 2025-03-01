@@ -69,9 +69,27 @@ public interface UserDTOMapper {
    */
   User idToUser(Long id);
 
+  /**
+   * Converts a {@link SignInRequest} DTO to a {@link User} model
+   *
+   * @param signInRequest the DTO containing data for log in
+   * @return the corresponding {@link User} model
+   */
   User singInRequestToUser(SignInRequest signInRequest);
 
-  User singUpRequestToUser(SignUpRequest signInRequest);
+  /**
+   * Converts a {@link SignUpRequest} DTO to a {@link User} model
+   *
+   * @param signUpRequest the DTO containing data for signing up
+   * @return the corresponding {@link User} model
+   */
+  User singUpRequestToUser(SignUpRequest signUpRequest);
 
+  /**
+   * Converts a {@link User} model to a {@link SignUpResponse} DTO.
+   *
+   * @param user the user that signed up
+   * @return the corresponding {@link SignUpResponse} DTO
+   */
   SignUpResponse userToSignUpResponse(User user);
 }

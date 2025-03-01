@@ -17,8 +17,7 @@ public interface DataUserRepository extends JpaRepository<UserEntity, Long>, Pag
   /**
    * Checks whether a user with the specified email exists.
    *
-   * @param email the email of the user
-   * * @param id the id of the user
+   * @param email the email of the user * @param id the id of the user
    * @return {@code true} if a user with this email exists. otherwise {@code false}
    */
   boolean existsByEmailAndIdIsNot(String email, Long id);
@@ -32,9 +31,19 @@ public interface DataUserRepository extends JpaRepository<UserEntity, Long>, Pag
    */
   boolean existsByPhoneAndIdIsNot(String phone, Long id);
 
+  /**
+   * Retrieves user by his email.
+   *
+   * @param email the email of the user
+   * @return an {@link Optional} containing the user if found, otherwise empty
+   */
   Optional<UserEntity> findByEmail(String email);
 
+  /**
+   * Retrieves user by his verification token.
+   *
+   * @param verificationToken the verification token of the user
+   * @return an {@link Optional} containing the user if found, otherwise empty
+   */
   Optional<UserEntity> findByVerificationToken(String verificationToken);
-
-  boolean existsByEmail(String email);
 }

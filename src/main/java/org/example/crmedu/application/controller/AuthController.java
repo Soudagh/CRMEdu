@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * REST controller for managing authentication operations. Provides endpoints to registration, login, verification and getting new tokens.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/auth")
@@ -37,6 +40,12 @@ public class AuthController {
 
   private final ApplicationEventPublisher eventPublisher;
 
+  /**
+   * Sign up new user in system.
+   *
+   * @param signUpRequest an object containing registration details
+   * @return a {@link ResponseEntity} containing the registration data in {@link SignUpResponse}
+   */
   @PostMapping("/signup")
   public ResponseEntity<SignUpResponse> signUp(@Valid @RequestBody SignUpRequest signUpRequest) {
     var user = userService.create(
@@ -48,26 +57,50 @@ public class AuthController {
         .body(userDTOMapper.userToSignUpResponse(user));
   }
 
+  /**
+   * Verifies user via verification token.
+   *
+   * @param token verification token of the user
+   * @return a {@link ResponseEntity} that send text "verify", if user was verified successfully
+   */
   @GetMapping("/verify-email")
   public ResponseEntity<String> verifyEmail(@RequestParam String token) {
     userService.verifyUserByVerificationToken(token);
     return ResponseEntity.ok("verified");
   }
 
+  /**
+   * Sign in user.
+   *
+   * @param signInRequest an object containing sign in details
+   * @return a {@link ResponseEntity} containing the tokens data in {@link JwtResponse}
+   */
   @PostMapping("/login")
-  public ResponseEntity<JwtResponse> login(@RequestBody SignInRequest signInRequest) {
+  public ResponseEntity<JwtResponse> login(@Valid @RequestBody SignInRequest signInRequest) {
     var token = jwtService.login(userDTOMapper.singInRequestToUser(signInRequest));
     return ResponseEntity.ok(jwtDTOMapper.toJwtResponse(token));
   }
 
+  /**
+   * Updates access token and retrieves it.
+   *
+   * @param request an object containing details about refresh token
+   * @return a {@link ResponseEntity} containing the tokens data in {@link JwtResponse}
+   */
   @PostMapping("/token")
-  public ResponseEntity<JwtResponse> getNewAccessToken(@RequestBody RefreshJwtRequest request) {
+  public ResponseEntity<JwtResponse> getNewAccessToken(@Valid @RequestBody RefreshJwtRequest request) {
     var token = jwtService.getAccessToken(request.getRefreshToken());
     return ResponseEntity.ok(jwtDTOMapper.toJwtResponse(token));
   }
 
+  /**
+   * Updates refresh and access token and retrieves it.
+   *
+   * @param request an object containing details about refresh token
+   * @return a {@link ResponseEntity} containing the tokens data in {@link JwtResponse}
+   */
   @PostMapping("/refresh")
-  public ResponseEntity<JwtResponse> getNewRefreshToken(@RequestBody RefreshJwtRequest request) {
+  public ResponseEntity<JwtResponse> getNewRefreshToken(@Valid @RequestBody RefreshJwtRequest request) {
     var token = jwtService.refresh(request.getRefreshToken());
     return ResponseEntity.ok(jwtDTOMapper.toJwtResponse(token));
   }

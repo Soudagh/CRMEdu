@@ -7,6 +7,12 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of {@link EmailService} for sending emails.
+ * <p>
+ * Uses {@link JavaMailSender} to send MIME-formatted emails with support for HTML content.
+ * </p>
+ */
 @Service
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {

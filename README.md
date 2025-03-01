@@ -7,11 +7,12 @@
 ## Description
 CRMEdu is a backend application for managing online school operations.  
 It provides functionalities for:
-- Managing **organizations**.
-- Specify **subjects** that can be taught in certain organization.
+- **Authentication** using **JWT**.
+- Managing **organizations** within the system.
+- Specify **subjects** that can be taught in a specific organization.
 - Managing **users** and their roles in organization.
 - Managing **tutors** in organization. Specify **subjects** and **grades** of education that they can teach.
-- Managing **work shifts** of the tutors.
+- Managing **work shifts** for tutors to schedule their availability.
 
 ## Installation
 #### 1. Clone the repository

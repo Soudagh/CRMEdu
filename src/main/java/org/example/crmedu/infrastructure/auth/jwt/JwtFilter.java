@@ -11,6 +11,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
+/**
+ * JWT authentication filter that extracts and validates tokens from incoming requests.
+ */
 @Component
 @RequiredArgsConstructor
 public class JwtFilter extends GenericFilterBean {
@@ -21,6 +24,13 @@ public class JwtFilter extends GenericFilterBean {
 
   private final JwtProvider jwtProvider;
 
+  /**
+   * Extracts and validates the JWT token from the request, then sets authentication in the security context.
+   *
+   * @param request the incoming HTTP request.
+   * @param response the outgoing HTTP response.
+   * @param filterChain the filter chain to continue processing.
+   */
   @Override
   @SneakyThrows
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) {

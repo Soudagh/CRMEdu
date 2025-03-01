@@ -12,6 +12,10 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * This service manages user login, access token generation, and refresh token handling. It validates credentials, issues JWT tokens, and ensures secure token
+ * refreshing.
+ */
 @Service
 @RequiredArgsConstructor
 public class JwtServiceImpl implements JwtService {
