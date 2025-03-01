@@ -27,6 +27,22 @@ public interface UserRepository {
   Optional<User> findById(Long id);
 
   /**
+   * Retrieves a user by its email.
+   *
+   * @param email the email of the user
+   * @return an {@link Optional} containing the user if found, otherwise empty
+   */
+  Optional<User> findByEmail(String email);
+
+  /**
+   * Retrieves a user by its verification token.
+   *
+   * @param token the verification token of the user
+   * @return an {@link Optional} containing the user if found, otherwise empty
+   */
+  Optional<User> findByVerificationToken(String token);
+
+  /**
    * Checks whether a user with the same email already exists.
    *
    * @param user the user to check

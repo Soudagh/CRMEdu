@@ -78,4 +78,6 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
   public void delete(Long id) {
     organizationRepository.deleteById(id);
   }
+
+
 }

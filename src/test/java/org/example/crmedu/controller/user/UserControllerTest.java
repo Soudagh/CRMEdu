@@ -16,11 +16,13 @@ import org.example.crmedu.domain.enums.Role;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 /**
  * Integration tests for {@code UserController}. This class verifies the functionality of user-related API endpoints.
  */
+@WithMockUser(roles = "SUPERUSER")
 public class UserControllerTest extends BaseIntegrationTest {
 
   @Autowired
@@ -33,7 +35,7 @@ public class UserControllerTest extends BaseIntegrationTest {
   @SneakyThrows
   void shouldCreateUser() {
     var organizationId = mockCreator.createOrganization().getId();
-    var request = getMockObject(CreateUserRequest.class).setPhone("+79999999999").setEmail("org@mail.ru").setOrganization(organizationId)
+    var request = getMockObject(CreateUserRequest.class).setPassword("password1").setPhone("+79999999999").setEmail("org@mail.ru").setOrganization(organizationId)
         .setRole(Role.SUPERUSER);
     mockMvc.perform(post("/api/v1/users")
             .contentType(MediaType.APPLICATION_JSON)
@@ -75,7 +77,7 @@ public class UserControllerTest extends BaseIntegrationTest {
   void shouldUpdateUser() {
     var createResponse = mockCreator.createUser();
     var id = createResponse.getId();
-    var updateRequest = getMockObject(UpdateUserRequest.class).setPhone("+79999999999").setEmail("org@mail.ru")
+    var updateRequest = getMockObject(UpdateUserRequest.class).setPassword("password2").setPhone("+79999999999").setEmail("org@mail.ru")
         .setOrganization(createResponse.getOrganization());
     mockMvc.perform(put("/api/v1/users/" + id)
             .contentType(MediaType.APPLICATION_JSON)

@@ -21,6 +21,7 @@ import org.example.crmedu.domain.enums.DaysOfWeek;
 import org.example.crmedu.domain.enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 
@@ -28,6 +29,7 @@ import org.springframework.test.web.servlet.MockMvc;
  * Utility class for creating mock entities via API requests during integration testing. It provides methods for creating different domain entities by making
  * HTTP POST requests.
  */
+@WithMockUser(roles = "SUPERUSER")
 public class MockCreator extends BaseIntegrationTest {
 
   @Autowired
@@ -58,7 +60,7 @@ public class MockCreator extends BaseIntegrationTest {
   @SneakyThrows
   public CreateUserResponse createUser() {
     var organizationId = createOrganization().getId();
-    var request = getMockObject(CreateUserRequest.class).setPhone("+79999999999").setEmail("org@mail.ru").setOrganization(organizationId)
+    var request = getMockObject(CreateUserRequest.class).setPassword("password1").setPhone("+79999999999").setEmail("org@mail.ru").setOrganization(organizationId)
         .setRole(Role.SUPERUSER);
     var responseContent = mockMvc.perform(post("/api/v1/users")
             .contentType(MediaType.APPLICATION_JSON)

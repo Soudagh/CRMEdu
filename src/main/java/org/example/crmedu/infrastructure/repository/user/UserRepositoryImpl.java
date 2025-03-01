@@ -42,6 +42,16 @@ public class UserRepositoryImpl implements UserRepository {
   }
 
   @Override
+  public Optional<User> findByEmail(String email) {
+    return userRepository.findByEmail(email).map(userMapper::userEntityToUser);
+  }
+
+  @Override
+  public Optional<User> findByVerificationToken(String token) {
+    return userRepository.findByVerificationToken(token).map(userMapper::userEntityToUser);
+  }
+
+  @Override
   public boolean existsByEmail(User user) {
     return userRepository.existsByEmailAndIdIsNot(user.getEmail(), user.getId());
   }

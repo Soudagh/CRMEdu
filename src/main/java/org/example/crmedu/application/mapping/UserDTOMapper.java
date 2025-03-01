@@ -1,8 +1,11 @@
 package org.example.crmedu.application.mapping;
 
 import org.example.crmedu.application.dto.PageDTO;
+import org.example.crmedu.application.dto.request.auth.SignInRequest;
+import org.example.crmedu.application.dto.request.auth.SignUpRequest;
 import org.example.crmedu.application.dto.request.user.CreateUserRequest;
 import org.example.crmedu.application.dto.request.user.UpdateUserRequest;
+import org.example.crmedu.application.dto.response.auth.SignUpResponse;
 import org.example.crmedu.application.dto.response.user.CreateUserResponse;
 import org.example.crmedu.application.dto.response.user.GetUserResponse;
 import org.example.crmedu.domain.model.Page;
@@ -65,4 +68,28 @@ public interface UserDTOMapper {
    * @return the corresponding {@link User} model
    */
   User idToUser(Long id);
+
+  /**
+   * Converts a {@link SignInRequest} DTO to a {@link User} model
+   *
+   * @param signInRequest the DTO containing data for log in
+   * @return the corresponding {@link User} model
+   */
+  User singInRequestToUser(SignInRequest signInRequest);
+
+  /**
+   * Converts a {@link SignUpRequest} DTO to a {@link User} model
+   *
+   * @param signUpRequest the DTO containing data for signing up
+   * @return the corresponding {@link User} model
+   */
+  User singUpRequestToUser(SignUpRequest signUpRequest);
+
+  /**
+   * Converts a {@link User} model to a {@link SignUpResponse} DTO.
+   *
+   * @param user the user that signed up
+   * @return the corresponding {@link SignUpResponse} DTO
+   */
+  SignUpResponse userToSignUpResponse(User user);
 }

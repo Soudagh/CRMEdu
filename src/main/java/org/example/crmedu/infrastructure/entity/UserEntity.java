@@ -47,6 +47,12 @@ public class UserEntity {
   @Column(name = "email", nullable = false, unique = true)
   private String email;
 
+  @Column(name = "password", nullable = false)
+  private String password;
+
+  @Column(name = "verification_token")
+  private String verificationToken;
+
   @Column(name = "phone", nullable = false, unique = true)
   private String phone;
 

@@ -12,6 +12,7 @@ import org.example.crmedu.domain.service.schedule.TutorScheduleService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,7 @@ public class TutorScheduleController {
    * @return a {@link ResponseEntity} with the created schedule data in {@link CreateTutorScheduleResponse}
    */
   @PostMapping("/tutor/{tutorId}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<CreateTutorScheduleResponse> createSchedule(@Valid @RequestBody CreateTutorScheduleRequest request, @PathVariable Long tutorId) {
     var schedule = tutorScheduleService.createSchedule(mapper.createTutorScheduleRequestToTutorSchedule(request), tutorId);
     return ResponseEntity.status(HttpStatus.CREATED).body(mapper.tutorScheduleToCreateTutorResponse(schedule));
@@ -53,6 +55,7 @@ public class TutorScheduleController {
    * @return a {@link ResponseEntity} containing the schedule data in {@link GetTutorScheduleResponse}
    */
   @GetMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<GetTutorScheduleResponse> getTutorScheduleById(@PathVariable Long id) {
     var schedule = tutorScheduleService.findById(id);
     return ResponseEntity.ok(mapper.tutorScheduleToGetTutorScheduleResponse(schedule));
@@ -66,6 +69,7 @@ public class TutorScheduleController {
    * @return a {@link ResponseEntity} containing the schedule data in {@link PageDTO} of {@link GetTutorScheduleResponse}
    */
   @GetMapping("/tutor/{tutorId}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<PageDTO<GetTutorScheduleResponse>> getTutorSchedulesOfTutor(Pageable pageable, @PathVariable Long tutorId) {
     var page = tutorScheduleService.getTutorSchedules(pageable.getPageNumber(), pageable.getPageSize(), tutorId);
     return ResponseEntity.ok(mapper.pageTutorScheduleToPageDTOGetTutorSchedule(page));
@@ -79,6 +83,7 @@ public class TutorScheduleController {
    * @return a {@link ResponseEntity}
    */
   @PutMapping("{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<Void> updateSchedule(@Valid @RequestBody UpdateTutorScheduleRequest request, @PathVariable Long id) {
     tutorScheduleService.update(mapper.updateTutorScheduleRequestToTutorSchedule(request), id);
     return ResponseEntity.ok().build();
@@ -91,6 +96,7 @@ public class TutorScheduleController {
    * @return a {@link ResponseEntity}
    */
   @DeleteMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<Void> deleteSchedule(@PathVariable Long id) {
     tutorScheduleService.delete(id);
     return ResponseEntity.ok().build();

@@ -15,6 +15,7 @@ import org.example.crmedu.domain.service.tutor.TutorService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -46,6 +47,7 @@ public class TutorController {
    * @return a {@link ResponseEntity} containing a paginated list of tutors wrapped in {@link PageDTO} of {@link GetTutorResponse}
    */
   @GetMapping
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   public ResponseEntity<PageDTO<GetTutorResponse>> getTutors(Pageable pageable) {
     var page = tutorService.findAll(pageable.getPageNumber(), pageable.getPageSize());
     return ResponseEntity.ok(tutorMapper.pageTutorToPageGetResponse(page));
@@ -58,6 +60,7 @@ public class TutorController {
    * @return a {@link ResponseEntity} with the created tutor data in {@link CreateTutorResponse}
    */
   @PostMapping
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   public ResponseEntity<CreateTutorResponse> createTutors(@Valid @RequestBody CreateTutorRequest request) {
     var tutor = tutorService.create(tutorMapper.createRequestToTutor(request));
     return ResponseEntity.status(HttpStatus.CREATED).body(tutorMapper.tutorToCreateResponse(tutor));
@@ -70,6 +73,7 @@ public class TutorController {
    * @return a {@link ResponseEntity} containing the tutor data in {@link GetTutorResponse}
    */
   @GetMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   public ResponseEntity<GetTutorResponse> getTutor(@PathVariable Long id) {
     return ResponseEntity.ok(tutorMapper.tutorToGetResponse(tutorService.findById(id)));
   }
@@ -82,6 +86,7 @@ public class TutorController {
    * @return a {@link ResponseEntity}
    */
   @PutMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   public ResponseEntity<Void> updateTutor(@Valid @RequestBody UpdateTutorRequest request, @PathVariable Long id) {
     tutorService.update(tutorMapper.updateRequestToUser(request), id);
     return ResponseEntity.ok().build();
@@ -94,6 +99,7 @@ public class TutorController {
    * @return a {@link ResponseEntity}
    */
   @DeleteMapping("/{id}")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   public ResponseEntity<Void> deleteTutor(@PathVariable Long id) {
     tutorService.delete(id);
     return ResponseEntity.ok().build();
@@ -107,6 +113,7 @@ public class TutorController {
    * @return a {@link ResponseEntity}
    */
   @PatchMapping("/{id}/subjects")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<Void> updateSubjects(@Valid @RequestBody PatchTutorSubjectsRequest subjects, @PathVariable Long id) {
     tutorService.patchSubjects(tutorMapper.patchTutorsSubjectRequestToSubjectSet(subjects, subjectMapper), id);
     return ResponseEntity.ok().build();
@@ -120,6 +127,7 @@ public class TutorController {
    * @return a {@link ResponseEntity}
    */
   @PatchMapping("/{id}/grades")
+  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<Void> updateGrades(@Valid @RequestBody PatchTutorGradesRequest grades, @PathVariable Long id) {
     tutorService.patchGrades(tutorMapper.patchTutorsGradesRequestToGradesSet(grades), id);
     return ResponseEntity.ok().build();

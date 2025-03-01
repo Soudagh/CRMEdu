@@ -12,6 +12,7 @@ import org.example.crmedu.domain.service.organization.OrganizationService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,7 @@ public class OrganizationController {
    * @param pageable an object specifying pagination parameters (page number and size)
    * @return return a {@link ResponseEntity} containing a paginated list of organizations wrapped in {@link PageDTO} of {@link GetOrganizationResponse}
    */
+  @Secured("SUPERUSER")
   @GetMapping
   private ResponseEntity<PageDTO<GetOrganizationResponse>> getOrganizations(Pageable pageable) {
     var page = organizationService.findAll(pageable.getPageNumber(), pageable.getPageSize());
@@ -77,6 +79,7 @@ public class OrganizationController {
    * @param request an object containing the updated organization details
    * @return a {@link ResponseEntity}
    */
+  @Secured({"SUPERUSER", "ORG_ADMIN"})
   @PutMapping("/{id}")
   private ResponseEntity<Void> updateOrganization(@Valid @RequestBody UpdateOrganizationRequest request, @PathVariable Long id) {
     organizationService.update(mapper.updateRequestToOrganization(request), id);
@@ -89,6 +92,7 @@ public class OrganizationController {
    * @param id the unique identifier of the organization to delete
    * @return a {@link ResponseEntity}
    */
+  @Secured({"SUPERUSER", "ORG_ADMIN"})
   @DeleteMapping("/{id}")
   private ResponseEntity<Void> deleteOrganization(@PathVariable Long id) {
     organizationService.delete(id);

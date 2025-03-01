@@ -15,6 +15,7 @@ import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.repository.OrganizationRepository;
 import org.example.crmedu.domain.repository.UserRepository;
+import org.example.crmedu.domain.service.jwt.PasswordEncode;
 import org.example.crmedu.domain.service.tutor.TutorService;
 import org.example.crmedu.domain.service.user.UserServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,9 @@ public class UserServiceTest extends BaseUnitTest {
 
   @Mock
   private TutorService tutorService;
+
+  @Mock
+  private PasswordEncode passwordEncode;
 
   @Test
   void findById_shouldThrowException_whenSelectedIdNotFound() {
@@ -106,5 +110,35 @@ public class UserServiceTest extends BaseUnitTest {
     assertEquals(2, resultPages.getContent().size());
     assertEquals(user1, resultPages.getContent().get(0));
     assertEquals(user2, resultPages.getContent().get(1));
+  }
+
+  @Test
+  void findByEmail_shouldNotThrowException_whenSelectedEmailExists() {
+    var user = getMockObject(User.class);
+    var email = user.getEmail();
+    when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
+    assertDoesNotThrow(() -> userService.findByEmail(email));
+  }
+
+  @Test
+  void findByEmail_shouldThrowException_whenSelectedEmailDoesNotExist() {
+    var email = "example@mail.com";
+    when(userRepository.findByEmail(email)).thenReturn(Optional.empty());
+    assertThrows(EntityNotFoundException.class, () -> userService.findByEmail(email));
+  }
+
+  @Test
+  void findByVerificationToken_shouldNotThrowException_whenSelectedTokenExists() {
+    var user = getMockObject(User.class);
+    var token = user.getVerificationToken();
+    when(userRepository.findByVerificationToken(token)).thenReturn(Optional.of(user));
+    assertDoesNotThrow(() -> userService.findByVerificationToken(token));
+  }
+
+  @Test
+  void findByVerificationToken_shouldThrowException_whenSelectedTokenNotExists() {
+    var token = "abab";
+    when(userRepository.findByVerificationToken(token)).thenReturn(Optional.empty());
+    assertThrows(EntityNotFoundException.class, () -> userService.findByVerificationToken(token));
   }
 }

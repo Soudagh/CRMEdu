@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.Field;
 import lombok.SneakyThrows;
 import org.instancio.Instancio;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -72,6 +73,13 @@ public abstract class BaseUnitTest {
         .of(mockClass)
         .lenient()
         .create();
+  }
+
+  @SneakyThrows
+  protected void setPrivateField(Object target, String fieldName, Object value) {
+    Field field = target.getClass().getDeclaredField(fieldName);
+    field.setAccessible(true);
+    field.set(target, value);
   }
 
   /**

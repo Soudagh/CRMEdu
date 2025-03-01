@@ -49,6 +49,16 @@ public class User {
   private String timezone;
 
   /**
+   * The password of the user.
+   */
+  private String password;
+
+  /**
+   * The verification token of user. Needs for verify account via email.
+   */
+  private String verificationToken;
+
+  /**
    * Timestamp with time zone when user was signed up.
    */
   private ZonedDateTime createdAt;

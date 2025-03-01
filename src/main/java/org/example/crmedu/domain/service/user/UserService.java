@@ -27,6 +27,24 @@ public interface UserService {
   User findById(Long id);
 
   /**
+   * Retrieves a user by its email.
+   *
+   * @param email the email of the user
+   * @return the found {@link User}
+   * @throws org.example.crmedu.domain.exception.EntityNotFoundException if no user with the given email is found
+   */
+  User findByEmail(String email);
+
+  /**
+   * Retrieves a user by its token.
+   *
+   * @param token the verification token of the user
+   * @return the found {@link User}
+   * @throws org.example.crmedu.domain.exception.EntityNotFoundException if no user with the given token is found
+   */
+  User findByVerificationToken(String token);
+
+  /**
    * Retrieves a paginated list of users.
    *
    * @param pageNumber the page number (starting from 0)
@@ -51,4 +69,11 @@ public interface UserService {
    * @param id the unique identifier of the user to delete
    */
   void delete(Long id);
+
+  /**
+   * Verifies user in system by his verification token.
+   *
+   * @param token verification token of the user
+   */
+  void verifyUserByVerificationToken(String token);
 }

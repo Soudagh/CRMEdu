@@ -7,18 +7,28 @@
 ## Description
 CRMEdu is a backend application for managing online school operations.  
 It provides functionalities for:
-- Managing **organizations**.
-- Specify **subjects** that can be taught in certain organization.
+- **Authentication** using **JWT**.
+- Managing **organizations** within the system.
+- Specify **subjects** that can be taught in a specific organization.
 - Managing **users** and their roles in organization.
 - Managing **tutors** in organization. Specify **subjects** and **grades** of education that they can teach.
-- Managing **work shifts** of the tutors.
+- Managing **work shifts** for tutors to schedule their availability.
 
 ## Installation
 #### 1. Clone the repository
 ```git clone https://github.com/Soudagh/CRMEdu.git```
 
 #### 2. Set up configuration properties (env)
-Add variables `DATABASE_URL`, `DATABASE_USERNAME`, `DATABASE_PASSWORD` to configuration properties or env file.
+Add variables to configuration properties or env file.
++ `DATABASE_URL`
++ `DATABASE_USERNAME`
++ `DATABASE_PASSWORD`
++ `JWT_ACCESS`
++ `JWT_REFRESH`
++ `SMTP_HOST`
++ `SMTP_PORT`
++ `SMTP_USERNAME`
++ `SMTP_PASSWORD`
 
 #### 3. Initialize environment
 ```docker compose up -d```
