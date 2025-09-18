@@ -1,35 +1,29 @@
 package org.example.crmedu.infrastructure.repository.schedule;
 
-import java.util.Optional;
 import java.util.Set;
-import lombok.RequiredArgsConstructor;
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.TutorSchedule;
 import org.example.crmedu.domain.repository.TutorScheduleRepository;
+import org.example.crmedu.infrastructure.entity.TutorScheduleEntity;
 import org.example.crmedu.infrastructure.mapping.TutorScheduleEntityMapper;
+import org.example.crmedu.infrastructure.repository.BaseRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-public class TutorScheduleRepositoryImpl implements TutorScheduleRepository {
+public class TutorScheduleRepositoryImpl extends BaseRepository<TutorSchedule, TutorScheduleEntity, Long> implements TutorScheduleRepository {
 
   private final DataTutorScheduleRepository tutorScheduleRepository;
 
   private final TutorScheduleEntityMapper mapper;
 
-
-  @Override
-  public TutorSchedule save(TutorSchedule schedule) {
-    var requestedEntity = mapper.toTutorScheduleEntity(schedule);
-    var responsedEntity = tutorScheduleRepository.save(requestedEntity);
-    return mapper.toTutorSchedule(responsedEntity);
-  }
-
-  @Override
-  public Optional<TutorSchedule> findById(Long id) {
-    return tutorScheduleRepository.findById(id)
-        .map(mapper::toTutorSchedule);
+  public TutorScheduleRepositoryImpl(
+      DataTutorScheduleRepository tutorScheduleRepository,
+      TutorScheduleEntityMapper mapper
+  ) {
+    super(tutorScheduleRepository, mapper);
+    this.tutorScheduleRepository = tutorScheduleRepository;
+    this.mapper = mapper;
   }
 
   @Override
@@ -38,7 +32,7 @@ public class TutorScheduleRepositoryImpl implements TutorScheduleRepository {
             tutorId,
             PageRequest.of(pageNumber, pageSize)
         )
-        .map(mapper::toTutorSchedule);
+        .map(mapper::toDomain);
     return new Page<TutorSchedule>()
         .setContent(page.getContent())
         .setPage(pageNumber)
@@ -50,16 +44,5 @@ public class TutorScheduleRepositoryImpl implements TutorScheduleRepository {
   @Override
   public Set<TutorSchedule> findByTutorId(Long tutorId) {
     return mapper.setTutorScheduleEntityToSetTutorSchedule(tutorScheduleRepository.findTutorScheduleEntitiesByTutor_Id(tutorId));
-  }
-
-
-  @Override
-  public void update(TutorSchedule schedule) {
-    tutorScheduleRepository.save(mapper.toTutorScheduleEntity(schedule));
-  }
-
-  @Override
-  public void delete(Long id) {
-    tutorScheduleRepository.deleteById(id);
   }
 }

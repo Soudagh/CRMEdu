@@ -9,8 +9,8 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import java.util.Optional;
 import org.example.crmedu.BaseUnitTest;
-import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
+import org.example.crmedu.domain.exception.UniqueConstraintsException;
 import org.example.crmedu.domain.model.Organization;
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.repository.OrganizationRepository;
@@ -78,21 +78,21 @@ public class OrganizationServiceTest extends BaseUnitTest {
   void checkOrganizationConstraint_shouldThrowException_whenOrganizationEmailExists() {
     var organization = getMockObject(Organization.class).setId(null);
     when(organizationRepository.existsByEmail(organization)).thenReturn(true);
-    assertThrows(EntityExistsException.class, () -> organizationService.create(organization));
+    assertThrows(UniqueConstraintsException.class, () -> organizationService.create(organization));
   }
 
   @Test
   void checkOrganizationConstraint_shouldThrowException_whenOrganizationPhoneExists() {
     var organization = getMockObject(Organization.class).setId(null);
     when(organizationRepository.existsByPhone(organization)).thenReturn(true);
-    assertThrows(EntityExistsException.class, () -> organizationService.create(organization));
+    assertThrows(UniqueConstraintsException.class, () -> organizationService.create(organization));
   }
 
   @Test
   void checkOrganizationConstraint_shouldThrowException_whenOrganizationNameExists() {
     var organization = getMockObject(Organization.class).setId(null);
     when(organizationRepository.existsByName(organization)).thenReturn(true);
-    assertThrows(EntityExistsException.class, () -> organizationService.create(organization));
+    assertThrows(UniqueConstraintsException.class, () -> organizationService.create(organization));
   }
 
   @Test

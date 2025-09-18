@@ -1,12 +1,11 @@
 package org.example.crmedu.domain.service.schedule;
 
 import java.util.Set;
-import lombok.RequiredArgsConstructor;
-import org.example.crmedu.domain.exception.EntityNotFoundException;
 import org.example.crmedu.domain.exception.TutorScheduleOverlapsException;
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.TutorSchedule;
 import org.example.crmedu.domain.repository.TutorScheduleRepository;
+import org.example.crmedu.domain.service.BaseService;
 import org.example.crmedu.domain.service.tutor.TutorService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,29 +14,26 @@ import org.springframework.transaction.annotation.Transactional;
  * Implementation of the {@link TutorScheduleService} interface. Provides business logic for managing {@link TutorSchedule} entities.
  */
 @Service
-@RequiredArgsConstructor
-public class TutorScheduleServiceImpl implements TutorScheduleService {
+public class TutorScheduleServiceImpl extends BaseService<TutorSchedule> implements TutorScheduleService {
 
   private final TutorScheduleRepository tutorScheduleRepository;
 
   private final TutorService tutorService;
 
+  public TutorScheduleServiceImpl(TutorScheduleRepository tutorScheduleRepository, TutorService tutorService) {
+    super(tutorScheduleRepository, TutorSchedule.class);
+    this.tutorScheduleRepository = tutorScheduleRepository;
+    this.tutorService = tutorService;
+  }
+
   @Override
   public TutorSchedule createSchedule(TutorSchedule schedule, Long tutorId) {
     validateScheduleOverlap(schedule, getSchedulesByTutorId(tutorId));
     var tutor = tutorService.findById(tutorId);
-    return tutorScheduleRepository.save(schedule.setTutor(tutor));
+    return tutorScheduleRepository.create(schedule.setTutor(tutor));
   }
-
   @Override
-  @Transactional
-  public TutorSchedule findById(Long id) {
-    return tutorScheduleRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(TutorSchedule.class, id));
-  }
-
-  @Override
-  public Page<TutorSchedule> getTutorSchedules(int pageNumber, int pageSize, Long tutorId) {
+  public Page<TutorSchedule> findAll(int pageNumber, int pageSize, Long tutorId) {
     return tutorScheduleRepository.findPagesByTutorId(pageNumber, pageSize, tutorId);
   }
 
@@ -50,11 +46,6 @@ public class TutorScheduleServiceImpl implements TutorScheduleService {
     var existingSchedules = getSchedulesByTutorId(tutorId);
     validateScheduleOverlap(updatedSchedule, existingSchedules);
     tutorScheduleRepository.update(updatedSchedule.setId(id).setTutor(scheduleEntity.getTutor()));
-  }
-
-  @Override
-  public void delete(Long id) {
-    tutorScheduleRepository.delete(id);
   }
 
   private Set<TutorSchedule> getSchedulesByTutorId(Long tutorId) {

@@ -1,8 +1,9 @@
-package org.example.crmedu.application.event;
+package org.example.crmedu.infrastructure.event;
 
 import java.util.UUID;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.example.crmedu.domain.event.OnRegistrationCompleteEvent;
 import org.example.crmedu.domain.service.auth.EmailService;
 import org.example.crmedu.domain.service.auth.VerificationTokenService;
 import org.springframework.context.ApplicationListener;

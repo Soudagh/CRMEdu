@@ -1,0 +1,31 @@
+databaseChangeLog:
+- changeSet:
+    id: 019-create-attendance-status-table
+    author: soudagh
+    changes:
+      - createTable:
+          tableName: attendance_status
+          schemaName: crmedu
+          remarks: "Таблица для хранения статуса посещаемости студентов"
+          columns:
+            - column:
+                name: id
+                type: bigint
+                autoIncrement: true
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: pk_attendance_status
+            - column:
+                name: student_id
+                type: bigint
+                constraints:
+                  nullable: false
+                  foreignKeyName: fk_attendance_status_student_id
+                  references: student(id)
+            - column:
+                name: attendance_status
+                type: varchar(20)
+                defaultValue: 'NOT_PRESENCE'
+                constraints:
+                  nullable: false

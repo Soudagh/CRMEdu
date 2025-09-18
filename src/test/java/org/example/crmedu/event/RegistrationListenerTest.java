@@ -3,7 +3,7 @@ package org.example.crmedu.event;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.example.crmedu.BaseUnitTest;
-import org.example.crmedu.application.event.RegistrationListener;
+import org.example.crmedu.infrastructure.event.RegistrationListener;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

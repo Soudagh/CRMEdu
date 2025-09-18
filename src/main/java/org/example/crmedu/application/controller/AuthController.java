@@ -7,9 +7,10 @@ import org.example.crmedu.application.dto.request.auth.SignInRequest;
 import org.example.crmedu.application.dto.request.auth.SignUpRequest;
 import org.example.crmedu.application.dto.response.auth.JwtResponse;
 import org.example.crmedu.application.dto.response.auth.SignUpResponse;
-import org.example.crmedu.application.event.OnRegistrationCompleteEvent;
+import org.example.crmedu.domain.event.OnRegistrationCompleteEvent;
 import org.example.crmedu.application.mapping.JwtDTOMapper;
 import org.example.crmedu.application.mapping.UserDTOMapper;
+import org.example.crmedu.domain.service.auth.AuthService;
 import org.example.crmedu.domain.service.jwt.JwtService;
 import org.example.crmedu.domain.service.user.UserService;
 import org.springframework.context.ApplicationEventPublisher;
@@ -30,15 +31,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/auth")
 public class AuthController {
 
-  private final UserService userService;
-
-  private final JwtService jwtService;
+  private final AuthService authService;
 
   private final UserDTOMapper userDTOMapper;
 
   private final JwtDTOMapper jwtDTOMapper;
-
-  private final ApplicationEventPublisher eventPublisher;
 
   /**
    * Sign up new user in system.
@@ -48,11 +45,7 @@ public class AuthController {
    */
   @PostMapping("/signup")
   public ResponseEntity<SignUpResponse> signUp(@Valid @RequestBody SignUpRequest signUpRequest) {
-    var user = userService.create(
-        userDTOMapper
-            .singUpRequestToUser(signUpRequest)
-    );
-    eventPublisher.publishEvent(new OnRegistrationCompleteEvent(user));
+    var user = authService.signUp(userDTOMapper.singUpRequestToUser(signUpRequest));
     return ResponseEntity.status(HttpStatus.CREATED)
         .body(userDTOMapper.userToSignUpResponse(user));
   }
@@ -65,8 +58,8 @@ public class AuthController {
    */
   @GetMapping("/verify-email")
   public ResponseEntity<String> verifyEmail(@RequestParam String token) {
-    userService.verifyUserByVerificationToken(token);
-    return ResponseEntity.ok("verified");
+    authService.verifyEmail(token);
+    return ResponseEntity.ok().build();
   }
 
   /**
@@ -77,7 +70,7 @@ public class AuthController {
    */
   @PostMapping("/login")
   public ResponseEntity<JwtResponse> login(@Valid @RequestBody SignInRequest signInRequest) {
-    var token = jwtService.login(userDTOMapper.singInRequestToUser(signInRequest));
+    var token = authService.signIn(userDTOMapper.singInRequestToUser(signInRequest));
     return ResponseEntity.ok(jwtDTOMapper.toJwtResponse(token));
   }
 
@@ -89,7 +82,7 @@ public class AuthController {
    */
   @PostMapping("/token")
   public ResponseEntity<JwtResponse> getNewAccessToken(@Valid @RequestBody RefreshJwtRequest request) {
-    var token = jwtService.getAccessToken(request.getRefreshToken());
+    var token = authService.getNewAccessToken(request.refreshToken);
     return ResponseEntity.ok(jwtDTOMapper.toJwtResponse(token));
   }
 
@@ -101,7 +94,7 @@ public class AuthController {
    */
   @PostMapping("/refresh")
   public ResponseEntity<JwtResponse> getNewRefreshToken(@Valid @RequestBody RefreshJwtRequest request) {
-    var token = jwtService.refresh(request.getRefreshToken());
+    var token = authService.getNewRefreshToken(request.getRefreshToken());
     return ResponseEntity.ok(jwtDTOMapper.toJwtResponse(token));
   }
 }

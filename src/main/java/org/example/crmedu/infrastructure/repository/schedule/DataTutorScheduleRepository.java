@@ -2,10 +2,10 @@ package org.example.crmedu.infrastructure.repository.schedule;
 
 import java.util.Set;
 import org.example.crmedu.infrastructure.entity.TutorScheduleEntity;
+import org.example.crmedu.infrastructure.repository.BaseDataRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * provide CRUD operations and pagination.
  */
 @Repository
-public interface DataTutorScheduleRepository extends CrudRepository<TutorScheduleEntity, Long>, PagingAndSortingRepository<TutorScheduleEntity, Long> {
+public interface DataTutorScheduleRepository extends BaseDataRepository<TutorScheduleEntity, Long> {
 
   /**
    * Retrieves a paginated list of schedules by tutorId.

@@ -10,8 +10,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.ZonedDateTime;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -59,6 +61,12 @@ public class UserEntity {
   @Column(name = "timezone", nullable = false)
   private String timezone = "UTC";
 
+  @Column(name = "notifications_enabled", nullable = false)
+  private Boolean notificationsEnabled = true;
+
+  @Column(name = "hex", nullable = false)
+  private String hex = "#00FF00";
+
   @CreationTimestamp
   @Column(name = "created_at", nullable = false)
   private ZonedDateTime createdAt;
@@ -78,6 +86,9 @@ public class UserEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "organization_id")
   private OrganizationEntity organization;
+
+  @OneToMany(mappedBy = "user")
+  private List<NotificationEntity> notifications;
 
   @Override
   public boolean equals(Object o) {

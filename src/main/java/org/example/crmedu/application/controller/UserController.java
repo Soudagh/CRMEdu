@@ -1,13 +1,19 @@
 package org.example.crmedu.application.controller;
 
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.crmedu.application.dto.PageDTO;
 import org.example.crmedu.application.dto.request.user.CreateUserRequest;
+import org.example.crmedu.application.dto.request.user.UpdateUserNotificationsRequest;
 import org.example.crmedu.application.dto.request.user.UpdateUserRequest;
 import org.example.crmedu.application.dto.response.user.CreateUserResponse;
 import org.example.crmedu.application.dto.response.user.GetUserResponse;
+import org.example.crmedu.application.dto.response.user.GetUserScheduleResponse;
+import org.example.crmedu.application.mapping.LessonDTOMapper;
 import org.example.crmedu.application.mapping.UserDTOMapper;
+import org.example.crmedu.domain.model.Notification;
+import org.example.crmedu.domain.service.jwt.JwtService;
 import org.example.crmedu.domain.service.user.UserService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -33,6 +40,10 @@ public class UserController {
   private final UserService userService;
 
   private final UserDTOMapper userDTOMapper;
+
+  private final LessonDTOMapper lessonDTOMapper;
+
+  private final JwtService jwtService;
 
   /**
    * Retrieves a paginates list of users.
@@ -98,6 +109,30 @@ public class UserController {
   @Secured({"SUPERUSER", "ORG_ADMIN"})
   public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
     userService.delete(id);
+    return ResponseEntity.ok().build();
+  }
+
+  @GetMapping("/me")
+  public ResponseEntity<GetUserResponse> getCurrentUser() {
+    return ResponseEntity.ok(userDTOMapper.userToGetResponse(jwtService.getCurrentUser()));
+  }
+
+  @GetMapping("/notifications")
+  public ResponseEntity<List<Notification>> getUserNotifications() {
+    return ResponseEntity.ok(jwtService.getCurrentUser().getNotifications());
+  }
+
+  @GetMapping("/schedule")
+  public ResponseEntity<GetUserScheduleResponse> getUserSchedule() {
+    var lessons = userService.getUserSchedule(jwtService.getCurrentUser());
+    var getLessonResponse = lessonDTOMapper.getLessonResponse(lessons);
+    var response = new GetUserScheduleResponse().setLessons(getLessonResponse);
+    return ResponseEntity.ok(response);
+  }
+
+  @PatchMapping("/me")
+  public ResponseEntity<Void> updateNotificationsMode(@RequestBody UpdateUserNotificationsRequest request) {
+    userService.updateNotificationsMode(jwtService.getCurrentUser(), request.getNotifyMode());
     return ResponseEntity.ok().build();
   }
 }

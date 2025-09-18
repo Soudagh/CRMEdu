@@ -1,13 +1,16 @@
 package org.example.crmedu.domain.service.tutor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
-import lombok.RequiredArgsConstructor;
-import org.example.crmedu.domain.exception.EntityExistsException;
-import org.example.crmedu.domain.exception.EntityNotFoundException;
-import org.example.crmedu.domain.model.Page;
+import org.example.crmedu.domain.exception.UniqueConstraintsException;
+import org.example.crmedu.domain.model.Lesson;
 import org.example.crmedu.domain.model.Subject;
 import org.example.crmedu.domain.model.Tutor;
+import org.example.crmedu.domain.exception.UniqueConstraintError;
 import org.example.crmedu.domain.repository.TutorRepository;
+import org.example.crmedu.domain.service.BaseService;
+import org.example.crmedu.domain.repository.LessonRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,27 +18,22 @@ import org.springframework.transaction.annotation.Transactional;
  * Implementation of the {@link TutorService} interface. Provides business logic for managing {@link Tutor} entities.
  */
 @Service
-@RequiredArgsConstructor
-public class TutorServiceImpl implements TutorService {
+public class TutorServiceImpl extends BaseService<Tutor> implements TutorService {
 
   private final TutorRepository tutorRepository;
+
+  private final LessonRepository lessonRepository;
+
+  public TutorServiceImpl(TutorRepository tutorRepository, LessonRepository lessonRepository) {
+    super(tutorRepository, Tutor.class);
+    this.tutorRepository = tutorRepository;
+    this.lessonRepository = lessonRepository;
+  }
 
   @Override
   public Tutor create(Tutor tutor) {
     checkTutorBelongsToUser(tutor);
-    return tutorRepository.save(tutor);
-  }
-
-  @Override
-  @Transactional(readOnly = true)
-  public Tutor findById(Long id) {
-    return tutorRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(Tutor.class, id));
-  }
-
-  @Override
-  public Page<Tutor> findAll(int pageNumber, int pageSize) {
-    return tutorRepository.findAll(pageNumber, pageSize);
+    return tutorRepository.create(tutor);
   }
 
   @Override
@@ -44,11 +42,6 @@ public class TutorServiceImpl implements TutorService {
     var tutorEntity = findById(id);
     var user = tutorEntity.getUser();
     tutorRepository.update(tutor.setUser(user).setId(id));
-  }
-
-  @Override
-  public void delete(Long id) {
-    tutorRepository.delete(id);
   }
 
   @Override
@@ -65,9 +58,19 @@ public class TutorServiceImpl implements TutorService {
     tutorRepository.update(tutorEntity.setGrades(grades));
   }
 
+  @Override
+  public List<Lesson> getScheduleByUserId(Long userId) {
+    var tutor = tutorRepository.findTutorByUserId(userId);
+    return lessonRepository.getLessonsByTutorId(tutor.getId());
+  }
+
   private void checkTutorBelongsToUser(Tutor tutor) {
+    var violations = new ArrayList<UniqueConstraintError>();
     if (tutorRepository.existsByUser(tutor)) {
-      throw new EntityExistsException(Tutor.class, "user");
+      violations.add(new UniqueConstraintError("user", tutor.getUser().getId().toString()));
+    }
+    if (!violations.isEmpty()) {
+      throw new UniqueConstraintsException(Tutor.class, violations);
     }
   }
 }

@@ -18,6 +18,6 @@ public class VerificationTokenServiceImpl implements VerificationTokenService {
   @Override
   public void createVerificationToken(User user, String token) {
     user.setVerificationToken(token);
-    userRepository.save(user);
+    userRepository.update(user);
   }
 }

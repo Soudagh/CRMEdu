@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.example.crmedu.application.dto.error.SystemError;
 import org.example.crmedu.application.dto.error.ValidationErrorResponse;
-import org.example.crmedu.application.dto.error.Violation;
+import org.example.crmedu.application.dto.error.ViolationDto;
 import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
 import org.example.crmedu.domain.exception.TutorScheduleOverlapsException;
+import org.example.crmedu.domain.exception.UniqueConstraintsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -60,6 +61,18 @@ public class AdviceController {
   }
 
   /**
+   * Handles {@link UniqueConstraintsException} and returns a 400 Bad Request response.
+   *
+   * @param e the thrown exception
+   * @return a {@link ResponseEntity} containing a {@link SystemError} object with error details
+   */
+  @ExceptionHandler(UniqueConstraintsException.class)
+  public ResponseEntity<SystemError> handleUniqueConstraintsException(UniqueConstraintsException e) {
+    var error = getSystemError(e);
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+  }
+
+  /**
    * Handles a {@link MethodArgumentNotValidException} and returns an HTTP 400 Bad Request response.
    * <p>
    * This exception is thrown when validation on an argument annotated with {@code @Valid} fails. The method extracts field validation errors and returns them
@@ -71,8 +84,8 @@ public class AdviceController {
    */
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ValidationErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-    final List<Violation> violations = e.getBindingResult().getFieldErrors().stream()
-        .map(error -> new Violation(error.getField(), error.getDefaultMessage()))
+    final List<ViolationDto> violations = e.getBindingResult().getFieldErrors().stream()
+        .map(error -> new ViolationDto(error.getField(), error.getDefaultMessage()))
         .collect(Collectors.toList());
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ValidationErrorResponse(violations));
   }

@@ -1,32 +1,31 @@
 package org.example.crmedu.domain.service.organization;
 
-import java.util.function.Function;
-import lombok.RequiredArgsConstructor;
-import org.example.crmedu.domain.exception.EntityExistsException;
+import java.util.ArrayList;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
+import org.example.crmedu.domain.exception.UniqueConstraintsException;
 import org.example.crmedu.domain.model.Organization;
-import org.example.crmedu.domain.model.Page;
+import org.example.crmedu.domain.exception.UniqueConstraintError;
 import org.example.crmedu.domain.repository.OrganizationRepository;
+import org.example.crmedu.domain.service.BaseService;
 import org.springframework.stereotype.Service;
 
 /**
  * Implementation of the {@link OrganizationService} interface. Provides business logic for managing {@link Organization} entities.
  */
 @Service
-@RequiredArgsConstructor
-public class OrganizationServiceImpl implements OrganizationService {
+public class OrganizationServiceImpl extends BaseService<Organization> implements OrganizationService {
 
   private final OrganizationRepository organizationRepository;
 
-  @Override
-  public Organization create(Organization organization) {
-    checkOrganizationConstraints(organization);
-    return organizationRepository.save(organization);
+  public OrganizationServiceImpl(OrganizationRepository organizationRepository) {
+    super(organizationRepository, Organization.class);
+    this.organizationRepository = organizationRepository;
   }
 
   @Override
-  public Organization findById(Long id) {
-    return getOrganizationByIdOrThrow(id);
+  public Organization create(Organization organization) {
+    checkOrganizationUniqueConstraints(organization);
+    return organizationRepository.create(organization);
   }
 
   @Override
@@ -37,36 +36,26 @@ public class OrganizationServiceImpl implements OrganizationService {
   }
 
   @Override
-  public Page<Organization> findAll(int pageNumber, int pageSize) {
-    return organizationRepository.findAll(pageNumber, pageSize);
-  }
-
-  @Override
   public void update(Organization organization, Long id) {
     checkExistanceById(id);
-    checkOrganizationConstraints(organization);
-    organizationRepository.update(organization.setId(id));
+    organization.setId(id);
+    checkOrganizationUniqueConstraints(organization);
+    organizationRepository.update(organization);
   }
 
-  @Override
-  public void delete(Long id) {
-    organizationRepository.delete(id);
-  }
-
-  private Organization getOrganizationByIdOrThrow(Long id) {
-    return organizationRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(Organization.class, id));
-  }
-
-  private void checkOrganizationConstraints(Organization organization) {
-    checkOrganizationConstraint("name", organizationRepository::existsByName, organization);
-    checkOrganizationConstraint("email", organizationRepository::existsByEmail, organization);
-    checkOrganizationConstraint("phone", organizationRepository::existsByPhone, organization);
-  }
-
-  private void checkOrganizationConstraint(String field, Function<Organization, Boolean> checker, Organization organization) {
-    if (checker.apply(organization)) {
-      throw new EntityExistsException(Organization.class, field);
+  private void checkOrganizationUniqueConstraints(Organization organization) {
+    var violations = new ArrayList<UniqueConstraintError>();
+    if (organizationRepository.existsByName(organization)) {
+      violations.add(new UniqueConstraintError("name", organization.getName()));
+    }
+    if (organizationRepository.existsByEmail(organization)) {
+      violations.add(new UniqueConstraintError("email", organization.getEmail()));
+    }
+    if (organizationRepository.existsByPhone(organization)) {
+      violations.add(new UniqueConstraintError("phone", organization.getPhone()));
+    }
+    if (!violations.isEmpty()) {
+      throw new UniqueConstraintsException(Organization.class, violations);
     }
   }
 }

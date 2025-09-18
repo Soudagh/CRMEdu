@@ -25,6 +25,8 @@ public enum Role {
    */
   CURATOR,
 
+  STUDENT,
+
   /**
    * Role that has no rights in the system. Could be an account, which status is "pending".
    */

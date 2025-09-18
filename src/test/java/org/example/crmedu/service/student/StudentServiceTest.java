@@ -17,7 +17,6 @@ import org.example.crmedu.domain.model.Student;
 import org.example.crmedu.domain.repository.StudentRepository;
 import org.example.crmedu.domain.service.organization.OrganizationService;
 import org.example.crmedu.domain.service.student.StudentServiceImpl;
-import org.example.crmedu.domain.service.user.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -51,7 +50,7 @@ public class StudentServiceTest extends BaseUnitTest {
     var organization = getMockObject(Organization.class);
     var student = getMockObject(Student.class).setId(null).setOrganization(organization);
     when(studentRepository.existsByEmailAndPhoneInOrganization(student)).thenReturn(false);
-    when(studentRepository.save(student)).thenReturn(student.setId(1L));
+    when(studentRepository.create(student)).thenReturn(student.setId(1L));
     var studentEntity = assertDoesNotThrow(() -> studentService.create(student));
     assertNotNull(studentEntity);
     assertNotNull(studentEntity.getId());
@@ -84,7 +83,7 @@ public class StudentServiceTest extends BaseUnitTest {
         .setLimit(pageSize)
         .setTotalCount(students.size());
     when(studentRepository.findAll(pageNumber, pageSize)).thenReturn(mockPage);
-    var resultPages = studentService.getStudents(pageNumber, pageSize);
+    var resultPages = studentService.findAll(pageNumber, pageSize);
     assertNotNull(resultPages);
     assertEquals(2, resultPages.getContent().size());
     assertEquals(student1, resultPages.getContent().get(0));

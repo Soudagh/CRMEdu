@@ -87,7 +87,7 @@ public class UserServiceTest extends BaseUnitTest {
     var userId = user.getId();
     user.setId(null);
     when(organizationRepository.existsById(user.getOrganization().getId())).thenReturn(true);
-    when(userRepository.save(user)).thenReturn(user.setId(userId));
+    when(userRepository.create(user)).thenReturn(user.setId(userId));
     var userEntity = userService.create(user);
     assertNotNull(userEntity);
   }

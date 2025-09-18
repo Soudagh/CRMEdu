@@ -4,5 +4,6 @@
  * The {@code OrganizationRepository}, {@code StudentRepository}, {@code SubjectRepository}, {@code TutorRepository}, {@code TutorScheduleRepository}, and
  * {@code UserRepository} interfaces provide methods for interacting with the database and handling CRUD operations for their respective entities.
  * </p>
+ * The {@code BaseCrudService} interface contains methods for implement CRUD-operations.
  */
 package org.example.crmedu.domain.repository;

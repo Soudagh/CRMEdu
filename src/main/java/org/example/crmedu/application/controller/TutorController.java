@@ -133,4 +133,7 @@ public class TutorController {
     return ResponseEntity.ok().build();
   }
 
+//  @GetMapping("/{id}/schedule")
+//  @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR", "TUTOR"})
+
 }

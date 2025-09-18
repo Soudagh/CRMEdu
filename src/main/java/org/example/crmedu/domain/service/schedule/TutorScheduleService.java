@@ -36,7 +36,7 @@ public interface TutorScheduleService {
    * @param tutorId the unique identifier of the tutor that owns this schedule
    * @return a {@link Page} containing the requested schedules
    */
-  Page<TutorSchedule> getTutorSchedules(int pageNumber, int pageSize, Long tutorId);
+  Page<TutorSchedule> findAll(int pageNumber, int pageSize, Long tutorId);
 
   /**
    * Updates an existing schedule.

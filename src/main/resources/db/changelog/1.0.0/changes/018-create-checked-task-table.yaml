@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 018-create-checked-task-table
+      author: soudagh
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_checked_task
+              - column:
+                  name: comments
+                  type: text
+              - column:
+                  name: is_checked
+                  type: boolean
+                  defaultValue: "false"
+              - column:
+                  name: completed_task_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_checked_task_completed_task_id_completed_task
+                    references: completed_task(id)
+              - column:
+                  name: tutor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_checked_task_tutor_id_tutor
+                    references: tutor(id)
+            tableName: checked_task
+            schemaName: crmedu
+            remarks: table for persists attachments for checked tasks

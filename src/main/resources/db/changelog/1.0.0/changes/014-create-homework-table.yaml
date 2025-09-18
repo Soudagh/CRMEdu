@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: 014-create-homework-table
+      author: soudagh
+      changes:
+        - createTable:
+            tableName: homework
+            schemaName: crmedu
+            remarks: "Таблица домашних заданий, связанных с уроками"
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_homework
+              - column:
+                  name: lesson_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_homework_lesson_id
+                    references: lesson(id)
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: right_answer
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_date
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_date
+                  type: timestamp with time zone

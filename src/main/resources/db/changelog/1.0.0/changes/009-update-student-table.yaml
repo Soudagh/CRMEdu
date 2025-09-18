@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: 009-update-student-table
+      author: soudagh
+      changes:
+        - dropTable:
+            tableName: student
+            schemaName: crmedu
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_student
+              - column:
+                  name: hex
+                  type: varchar(7)
+                  defaultValue: '#00FF00'
+              - column:
+                  name: birth_date
+                  type: date
+              - column:
+                  name: grade
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: balance
+                  type: int
+                  defaultValue: '0'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: 'ACTIVE'
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_student_user_id_user
+                    references: user(id)
+            tableName: student
+            schemaName: crmedu
+            remarks: table for persists student

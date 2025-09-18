@@ -100,7 +100,7 @@ class ScheduleServiceTest extends BaseUnitTest {
         .setTotalCount(schedules.size());
     var tutorId = tutor.getId();
     when(tutorScheduleRepository.findPagesByTutorId(pageNumber, pageSize, tutorId)).thenReturn(mockPage);
-    var resultPages = tutorScheduleService.getTutorSchedules(pageNumber, pageSize, tutorId);
+    var resultPages = tutorScheduleService.findAll(pageNumber, pageSize, tutorId);
     assertNotNull(resultPages);
     assertEquals(2, resultPages.getContent().size());
     assertEquals(schedule1, resultPages.getContent().get(0));

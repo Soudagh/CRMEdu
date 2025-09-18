@@ -1,83 +1,48 @@
 package org.example.crmedu.infrastructure.repository.organization;
 
-import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 import org.example.crmedu.domain.model.Organization;
-import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.repository.OrganizationRepository;
+import org.example.crmedu.infrastructure.entity.OrganizationEntity;
 import org.example.crmedu.infrastructure.mapping.OrganizationEntityMapper;
-import org.springframework.data.domain.PageRequest;
+import org.example.crmedu.infrastructure.repository.BaseRepository;
 import org.springframework.stereotype.Component;
 
 /**
  * Implementation of the {@link OrganizationRepository} interface. Provides methods for managing {@link Organization} entities in the database.
  */
 @Component
-@RequiredArgsConstructor
-public class OrganizationRepositoryImpl implements OrganizationRepository {
+public class OrganizationRepositoryImpl extends BaseRepository<Organization, OrganizationEntity, Long> implements OrganizationRepository {
 
   private final DataOrganizationRepository organizationRepository;
 
-  private final OrganizationEntityMapper mapper;
-
-  @Override
-  public Organization save(Organization organization) {
-    var requestedOrganizationEntity = mapper.toOrganizationEntity(organization);
-    var responsedOrganizationEntity = organizationRepository.save(requestedOrganizationEntity);
-    return mapper.toOrganization(responsedOrganizationEntity);
+  public OrganizationRepositoryImpl(DataOrganizationRepository organizationRepository,
+      OrganizationEntityMapper organizationEntityMapper) {
+    super(organizationRepository, organizationEntityMapper);
+    this.organizationRepository = organizationRepository;
   }
+
 
   @Override
   public boolean existsByName(Organization organization) {
-    return organizationRepository.existsByNameAndIdIsNot(organization.getName(), organization.getId());
+
+    return organization.getId() == null ? organizationRepository.existsByName(organization.getName())
+        : organizationRepository.existsByNameAndIdIsNot(organization.getName(), organization.getId());
   }
 
   @Override
   public boolean existsByEmail(Organization organization) {
-    return organizationRepository.existsByEmailAndIdIsNot(organization.getEmail(), organization.getId());
+    return organization.getId() == null ? organizationRepository.existsByEmail(organization.getEmail())
+        : organizationRepository.existsByEmailAndIdIsNot(organization.getEmail(), organization.getId());
   }
 
   @Override
   public boolean existsByPhone(Organization organization) {
-    return organizationRepository.existsByPhoneAndIdIsNot(organization.getPhone(), organization.getId());
+    return organization.getId() == null ? organizationRepository.existsByPhone(organization.getPhone())
+        : organizationRepository.existsByPhoneAndIdIsNot(organization.getPhone(), organization.getId());
   }
 
   @Override
   public boolean existsById(Long id) {
     return organizationRepository.existsById(id);
   }
-
-  @Override
-  public Optional<Organization> findById(Long id) {
-    return organizationRepository.findById(id)
-        .map(mapper::toOrganization);
-  }
-
-  @Override
-  public Page<Organization> findAll(int pageNumber, int pageSize) {
-    var page = organizationRepository.findAll(
-        PageRequest.of(
-            pageNumber,
-            pageSize
-        )
-    ).map(mapper::toOrganization);
-    return new Page<Organization>()
-        .setContent(page.getContent())
-        .setPage(pageNumber)
-        .setLimit(pageSize)
-        .setTotalPages(page.getTotalPages())
-        .setTotalCount(page.getTotalElements());
-  }
-
-  @Override
-  public void update(Organization organization) {
-    organizationRepository.save(mapper.toOrganizationEntity(organization));
-  }
-
-  @Override
-  public void delete(Long id) {
-    organizationRepository.deleteById(id);
-  }
-
-
 }

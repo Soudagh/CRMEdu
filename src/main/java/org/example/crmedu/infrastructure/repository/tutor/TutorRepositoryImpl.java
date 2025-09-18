@@ -1,51 +1,28 @@
 package org.example.crmedu.infrastructure.repository.tutor;
 
-import java.util.Optional;
-import lombok.RequiredArgsConstructor;
-import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.Tutor;
 import org.example.crmedu.domain.repository.TutorRepository;
+import org.example.crmedu.infrastructure.entity.TutorEntity;
 import org.example.crmedu.infrastructure.mapping.TutorEntityMapper;
-import org.springframework.data.domain.PageRequest;
+import org.example.crmedu.infrastructure.repository.BaseRepository;
 import org.springframework.stereotype.Component;
 
 /**
  * Implementation of the {@link TutorRepository} interface using JPA. Provides methods for managing {@link Tutor} entities in the database.
  */
 @Component
-@RequiredArgsConstructor
-public class TutorRepositoryImpl implements TutorRepository {
+public class TutorRepositoryImpl extends BaseRepository<Tutor, TutorEntity, Long> implements TutorRepository {
 
   private final DataTutorRepository tutorRepository;
 
-  private final TutorEntityMapper mapper;
+  private final TutorEntityMapper tutorEntityMapper;
 
-  @Override
-  public Tutor save(Tutor tutor) {
-    var requestedTutorEntity = mapper.toTutorEntity(tutor);
-    var responsedTutorEntity = tutorRepository.save(requestedTutorEntity);
-    return mapper.toTutor(responsedTutorEntity);
-  }
 
-  @Override
-  public Optional<Tutor> findById(Long id) {
-    return tutorRepository.findById(id).map(mapper::toTutor);
-  }
-
-  @Override
-  public Page<Tutor> findAll(int pageNumber, int pageSize) {
-    var page = tutorRepository.findAll(
-        PageRequest.of(
-            pageNumber,
-            pageSize
-        )
-    ).map(mapper::toTutor);
-    return new Page<Tutor>()
-        .setContent(page.getContent())
-        .setPage(pageNumber)
-        .setLimit(pageSize)
-        .setTotalPages(page.getTotalPages())
-        .setTotalCount(page.getTotalElements());
+  public TutorRepositoryImpl(DataTutorRepository tutorRepository,
+      TutorEntityMapper mapper) {
+    super(tutorRepository, mapper);
+    this.tutorRepository = tutorRepository;
+    this.tutorEntityMapper = mapper;
   }
 
   @Override
@@ -54,12 +31,8 @@ public class TutorRepositoryImpl implements TutorRepository {
   }
 
   @Override
-  public void update(Tutor tutor) {
-    tutorRepository.save(mapper.toTutorEntity(tutor));
+  public Tutor findTutorByUserId(Long userId) {
+    return tutorEntityMapper.toDomain(tutorRepository.findByUser_Id(userId));
   }
 
-  @Override
-  public void delete(Long id) {
-    tutorRepository.deleteById(id);
-  }
 }

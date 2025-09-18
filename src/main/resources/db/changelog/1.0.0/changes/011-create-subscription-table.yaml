@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 011-create-subscription-table
+      author: soudagh
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_subscription
+              - column:
+                  name: remaining_lessons
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: assignment_date
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: subscription_status
+                  type: varchar(20)
+                  defaultValue: 'ACTIVE'
+              - column:
+                  name: program_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_subscription_program_id_program
+                    references: program(id)
+              - column:
+                  name: student_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_subscription_student_id_student
+                    references: student(id)
+            tableName: subscription
+            schemaName: crmedu
+            remarks: table for persists subscriptions

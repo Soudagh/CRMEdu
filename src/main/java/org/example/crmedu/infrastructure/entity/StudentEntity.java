@@ -9,11 +9,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import java.util.Date;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -34,26 +36,12 @@ public class StudentEntity {
   @Column(name = "id", nullable = false)
   private Long id;
 
-  @Column(name = "surname", nullable = false)
-  private String surname;
-
-  @Column(name = "name", nullable = false)
-  private String name;
-
-  @Column(name = "patronymic")
-  private String patronymic;
-
-  @Column(name = "email", nullable = false)
-  private String email;
-
-  @Column(name = "phone", nullable = false)
-  private String phone;
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id")
+  private UserEntity user;
 
   @Column(name = "hex")
   private String hex = "#00FF00";
-
-  @Column(name = "timezone", nullable = false)
-  private String timezone = "UTC";
 
   @Column(name = "birth_date")
   private Date birthDate;
@@ -62,6 +50,9 @@ public class StudentEntity {
   @Column(name = "status")
   private StudentStatus status = StudentStatus.ACTIVE;
 
+  @OneToMany(mappedBy = "student")
+  private List<SubscriptionEntity> subscriptions;
+
   @Min(1)
   @Max(11)
   @Column(name = "grade", nullable = false)
@@ -69,8 +60,4 @@ public class StudentEntity {
 
   @Column(name = "balance", nullable = false)
   private Integer balance = 0;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "organization_id")
-  private OrganizationEntity organization;
 }

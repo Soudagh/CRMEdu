@@ -1,6 +1,7 @@
 package org.example.crmedu.infrastructure.repository.tutor;
 
 import org.example.crmedu.infrastructure.entity.TutorEntity;
+import org.example.crmedu.infrastructure.repository.BaseDataRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Repository;
  * CRUD operations and pagination.
  */
 @Repository
-public interface DataTutorRepository extends JpaRepository<TutorEntity, Long>, PagingAndSortingRepository<TutorEntity, Long> {
+public interface DataTutorRepository extends BaseDataRepository<TutorEntity, Long> {
 
   boolean existsByUserIdAndIdIsNot(Long userId, Long tutorId);
+
+  TutorEntity findByUser_Id(Long userId);
 }

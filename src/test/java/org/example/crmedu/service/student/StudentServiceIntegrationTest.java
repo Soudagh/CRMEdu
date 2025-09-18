@@ -35,7 +35,7 @@ public class StudentServiceIntegrationTest extends BaseIntegrationTest {
     assertNotNull(studentEntity);
     var studentId = studentEntity.getId();
     assertDoesNotThrow(() -> studentService.findById(studentId));
-    studentService.deleteStudent(studentId);
+    studentService.delete(studentId);
     assertThrows(EntityNotFoundException.class, () -> studentService.findById(studentId));
   }
 
@@ -48,7 +48,7 @@ public class StudentServiceIntegrationTest extends BaseIntegrationTest {
     assertNotNull(studentEntity);
     var studentId = studentEntity.getId();
     var newStudent = getMockObject(Student.class).setId(null).setOrganization(organizationEntity).setHex("#FFFFF2").setGrade(9);
-    studentService.updateStudent(newStudent, studentId);
+    studentService.update(newStudent, studentId);
     var updatedStudentEntity = assertDoesNotThrow(() -> studentService.findById(studentId));
     assertNotEquals(updatedStudentEntity, studentEntity);
   }

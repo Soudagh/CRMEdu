@@ -9,5 +9,6 @@
  * The {@code jwt} and {@code auth} packages contain services that are the rules that needed to implemented for work with authentication. {@code jwt} package
  * provides security utilities, {@code auth} includes authentication-related services.
  * </p>
+ * The {@code BaseCrudService} interface contains methods for implement CRUD-operations.
  */
 package org.example.crmedu.domain.service;

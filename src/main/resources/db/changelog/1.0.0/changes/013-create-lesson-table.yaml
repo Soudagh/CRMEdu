@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: 013-create-lesson-table
+      author: soudagh
+      changes:
+        - createTable:
+            tableName: lesson
+            schemaName: crmedu
+            remarks: "Table for persisting individual lessons"
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_lesson
+              - column:
+                  name: subject_program_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_lesson_subject_program_id
+                    references: subject_program(id)
+              - column:
+                  name: tutor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_lesson_tutor_id
+                    references: tutor(id)
+              - column:
+                  name: lesson_status
+                  type: varchar(20)
+                  defaultValue: 'PENDING'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_time
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_time
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: link
+                  type: text
+              - column:
+                  name: notes
+                  type: text
