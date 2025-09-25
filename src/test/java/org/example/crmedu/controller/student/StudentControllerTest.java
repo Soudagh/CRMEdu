@@ -33,22 +33,21 @@ public class StudentControllerTest extends BaseIntegrationTest {
   @Test
   @SneakyThrows
   void shouldCreateStudent() {
-    var organizationId = mockCreator.createOrganization().getId();
-    var request = getMockObject(CreateStudentRequest.class).setPhone("+79999999999").setEmail("org@mail.ru").setHex("#FFFFFF").setGrade(5)
-        .setOrganization(organizationId);
+    var userId = mockCreator.createUser().getId();
+    var request = getMockObject(CreateStudentRequest.class).setHex("#FFFFFF").setGrade(5)
+        .setUserId(userId);
     mockMvc.perform(post("/api/v1/students")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
-        .andExpect(status().isCreated())
-        .andExpect(jsonPath("$.name").value(request.getName()));
+        .andExpect(status().isCreated());
   }
 
   @Test
   @SneakyThrows
   void createStudent_shouldReturnBadRequest_whenFieldsNotValid() {
-    var organizationId = mockCreator.createOrganization().getId();
-    var request = getMockObject(CreateStudentRequest.class).setPhone("+79999999999").setEmail("org@mail.ru").setHex("#FFFFFF").setGrade(0)
-        .setOrganization(organizationId);
+    var userId = mockCreator.createUser().getId();
+    var request = getMockObject(CreateStudentRequest.class).setHex("#FFFFFF").setGrade(0)
+        .setUserId(userId);
     mockMvc.perform(post("/api/v1/students")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -62,8 +61,7 @@ public class StudentControllerTest extends BaseIntegrationTest {
     var id = response.getId();
     mockMvc.perform(get("/api/v1/students/" + id))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.id").value(id))
-        .andExpect(jsonPath("$.name").value(response.getName()));
+        .andExpect(jsonPath("$.id").value(id));
   }
 
   @Test
@@ -88,7 +86,7 @@ public class StudentControllerTest extends BaseIntegrationTest {
   void shouldUpdateStudent() {
     var createResponse = mockCreator.createStudent();
     var id = createResponse.getId();
-    var updateRequest = getMockObject(UpdateStudentRequest.class).setPhone("+79999999999").setEmail("org@mail.ru").setHex("#FFFFFF").setGrade(5);
+    var updateRequest = getMockObject(UpdateStudentRequest.class).setHex("#FFFFFF").setGrade(5);
     mockMvc.perform(put("/api/v1/students/" + id)
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(updateRequest)))
