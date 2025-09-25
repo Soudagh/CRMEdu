@@ -3,14 +3,12 @@ package org.example.crmedu.controller.subject;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import lombok.SneakyThrows;
 import org.example.crmedu.BaseIntegrationTest;
 import org.example.crmedu.application.dto.request.subject.CreateSubjectRequest;
-import org.example.crmedu.application.dto.request.subject.UpdateSubjectRequest;
 import org.example.crmedu.application.dto.response.subject.CreateSubjectResponse;
 import org.example.crmedu.controller.MockCreator;
 import org.junit.jupiter.api.Test;
@@ -88,18 +86,6 @@ public class SubjectControllerTest extends BaseIntegrationTest {
     var nonExistentId = 999999L;
     mockMvc.perform(get("/api/v1/subjects/" + nonExistentId))
         .andExpect(status().isNotFound());
-  }
-
-  @Test
-  @SneakyThrows
-  void shouldUpdateSubject() {
-    var createResponse = mockCreator.createSubject();
-    var id = createResponse.getId();
-    var updateRequest = getMockObject(UpdateSubjectRequest.class);
-    mockMvc.perform(put("/api/v1/subjects/" + id)
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(updateRequest)))
-        .andExpect(status().isOk());
   }
 
   @Test

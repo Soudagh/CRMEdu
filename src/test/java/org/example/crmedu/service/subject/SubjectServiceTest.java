@@ -9,8 +9,8 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import java.util.Optional;
 import org.example.crmedu.BaseUnitTest;
-import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
+import org.example.crmedu.domain.exception.UniqueConstraintsException;
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.Subject;
 import org.example.crmedu.domain.repository.SubjectRepository;
@@ -55,7 +55,7 @@ public class SubjectServiceTest extends BaseUnitTest {
   void create_shouldThrowException_whenSubjectExistsInOrganization() {
     var subject = getMockObject(Subject.class).setId(null);
     when(subjectRepository.existsByNameAndOrganizationId(subject)).thenReturn(true);
-    assertThrows(EntityExistsException.class, () -> subjectService.create(subject));
+    assertThrows(UniqueConstraintsException.class, () -> subjectService.create(subject));
   }
 
   @Test

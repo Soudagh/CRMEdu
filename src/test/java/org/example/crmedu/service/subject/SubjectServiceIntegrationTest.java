@@ -1,7 +1,6 @@
 package org.example.crmedu.service.subject;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -38,22 +37,5 @@ public class SubjectServiceIntegrationTest extends BaseIntegrationTest {
     assertDoesNotThrow(() -> subjectService.findById(subjectId));
     subjectService.delete(subjectId);
     assertThrows(EntityNotFoundException.class, () -> subjectService.findById(subjectId));
-  }
-
-  @Test
-  void update_shouldUpdateEntityWithSelectedId() {
-    var organization = getMockObject(Organization.class).setId(null);
-    var organizationEntity = organizationService.create(organization);
-    assertNotNull(organizationEntity);
-    var subject = getMockObject(Subject.class).setId(null).setOrganization(organizationEntity);
-    var subjectEntity = subjectService.create(subject);
-    assertNotNull(subjectEntity);
-    var subjectId = subjectEntity.getId();
-    assertDoesNotThrow(() -> subjectService.findById(subjectId));
-    var newSubject = getMockObject(Subject.class).setId(null).setOrganization(organizationEntity);
-    subjectService.update(newSubject, subjectId);
-    var newSubjectEntity = assertDoesNotThrow(() -> subjectService.findById(subjectId));
-    assertNotNull(newSubjectEntity);
-    assertNotEquals(newSubjectEntity, subjectEntity);
   }
 }

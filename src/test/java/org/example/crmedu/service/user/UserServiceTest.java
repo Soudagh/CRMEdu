@@ -9,8 +9,8 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import java.util.Optional;
 import org.example.crmedu.BaseUnitTest;
-import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
+import org.example.crmedu.domain.exception.UniqueConstraintsException;
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.repository.OrganizationRepository;
@@ -64,14 +64,14 @@ public class UserServiceTest extends BaseUnitTest {
   void create_shouldThrowException_whenUserWithThisEmailExists() {
     var user = getMockObject(User.class).setId(null);
     when(userRepository.existsByEmail(user)).thenReturn(true);
-    assertThrows(EntityExistsException.class, () -> userService.create(user));
+    assertThrows(UniqueConstraintsException.class, () -> userService.create(user));
   }
 
   @Test
   void create_shouldThrowException_whenUserWithThisPhoneExists() {
     var user = getMockObject(User.class).setId(null);
     when(userRepository.existsByPhone(user)).thenReturn(true);
-    assertThrows(EntityExistsException.class, () -> userService.create(user));
+    assertThrows(UniqueConstraintsException.class, () -> userService.create(user));
   }
 
   @Test

@@ -6,8 +6,8 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 import org.example.crmedu.BaseUnitTest;
-import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
+import org.example.crmedu.domain.exception.UniqueConstraintsException;
 import org.example.crmedu.domain.model.Tutor;
 import org.example.crmedu.domain.repository.TutorRepository;
 import org.example.crmedu.domain.service.tutor.TutorServiceImpl;
@@ -48,7 +48,7 @@ public class TutorServiceTest extends BaseUnitTest {
   void create_shouldThrowException_whenTutorAlreadyBelongsToUser() {
     var tutor = getMockObject(Tutor.class).setId(null);
     when(tutorRepository.existsByUser(tutor)).thenReturn(true);
-    assertThrows(EntityExistsException.class, () -> tutorService.create(tutor));
+    assertThrows(UniqueConstraintsException.class, () -> tutorService.create(tutor));
   }
 
   @Test
