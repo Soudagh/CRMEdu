@@ -888,6 +888,37 @@
         }
       }
     },
+    "/api/v1/lessons/{id}/qr": {
+      "post": {
+        "tags": [
+          "lesson-controller"
+        ],
+        "operationId": "createLessonQr",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateLessonQrResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/auth/token": {
       "post": {
         "tags": [
@@ -1008,6 +1039,70 @@
         }
       }
     },
+    "/api/v1/attendances/mark": {
+      "post": {
+        "tags": [
+          "attendance-controller"
+        ],
+        "operationId": "markAttendance",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarkAttendanceByQrRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/users/me": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "getCurrentUser",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "updateNotificationsMode",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserNotificationsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/v1/tutors/{id}/subjects": {
       "patch": {
         "tags": [
@@ -1072,6 +1167,182 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/lessons/{id}/notes": {
+      "patch": {
+        "tags": [
+          "lesson-controller"
+        ],
+        "operationId": "patchLessonNotesById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchLessonNotesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/lessons/{id}/link": {
+      "patch": {
+        "tags": [
+          "lesson-controller"
+        ],
+        "operationId": "patchLessonLinkById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchLessonLinkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/attendances/{id}": {
+      "patch": {
+        "tags": [
+          "attendance-controller"
+        ],
+        "operationId": "patchStatusById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchAttendanceStatusRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/users/schedule": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "getUserSchedule",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserScheduleResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/notifications": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "getUserNotifications",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Notification"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/lessons/{id}": {
+      "get": {
+        "tags": [
+          "lesson-controller"
+        ],
+        "operationId": "getLessonById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLessonResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -1213,43 +1484,10 @@
       },
       "UpdateStudentRequest": {
         "required": [
-          "email",
-          "grade",
-          "name",
-          "phone",
-          "surname"
+          "grade"
         ],
         "type": "object",
         "properties": {
-          "surname": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "name": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "patronymic": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "email": {
-            "maxLength": 254,
-            "minLength": 0,
-            "type": "string"
-          },
-          "phone": {
-            "pattern": "^\\+\\d{1,3}\\d{10}$",
-            "type": "string"
-          },
-          "timezone": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
           "hex": {
             "maxLength": 7,
             "minLength": 0,
@@ -1394,6 +1632,7 @@
               "ORG_ADMIN",
               "TUTOR",
               "CURATOR",
+              "STUDENT",
               "USER"
             ]
           }
@@ -1439,6 +1678,7 @@
               "ORG_ADMIN",
               "TUTOR",
               "CURATOR",
+              "STUDENT",
               "USER"
             ]
           },
@@ -1538,6 +1778,43 @@
           "nano": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "notificationType": {
+            "type": "string",
+            "enum": [
+              "LESSON",
+              "HOMEWORK",
+              "PAYMENT",
+              "OTHER"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isRead": {
+            "type": "boolean"
           }
         }
       },
@@ -1709,12 +1986,12 @@
                               "type": "string",
                               "format": "date-time"
                             },
-                            "overlap": {
-                              "type": "boolean"
-                            },
                             "instant": {
                               "type": "string",
                               "format": "date-time"
+                            },
+                            "overlap": {
+                              "type": "boolean"
                             }
                           }
                         }
@@ -1870,12 +2147,12 @@
                               "type": "string",
                               "format": "date-time"
                             },
-                            "overlap": {
-                              "type": "boolean"
-                            },
                             "instant": {
                               "type": "string",
                               "format": "date-time"
+                            },
+                            "overlap": {
+                              "type": "boolean"
                             }
                           }
                         }
@@ -2008,6 +2285,7 @@
               "ORG_ADMIN",
               "TUTOR",
               "CURATOR",
+              "STUDENT",
               "USER"
             ]
           },
@@ -2019,8 +2297,20 @@
               "PENDING"
             ]
           },
+          "notificationsEnabled": {
+            "type": "boolean"
+          },
+          "hex": {
+            "type": "string"
+          },
           "organization": {
             "$ref": "#/components/schemas/Organization"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            }
           }
         }
       },
@@ -2056,42 +2346,14 @@
       },
       "CreateStudentRequest": {
         "required": [
-          "email",
           "grade",
-          "name",
-          "phone",
-          "surname"
+          "userId"
         ],
         "type": "object",
         "properties": {
-          "surname": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "name": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "patronymic": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "email": {
-            "maxLength": 254,
-            "minLength": 0,
-            "type": "string"
-          },
-          "phone": {
-            "pattern": "^\\+\\d{1,3}\\d{10}$",
-            "type": "string"
-          },
-          "timezone": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
+          "userId": {
+            "type": "integer",
+            "format": "int64"
           },
           "hex": {
             "maxLength": 7,
@@ -2118,14 +2380,68 @@
               "ACTIVE",
               "INACTIVE"
             ]
-          },
-          "organization": {
-            "type": "integer",
-            "format": "int64"
           }
         }
       },
       "CreateStudentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "getUserResponse": {
+            "$ref": "#/components/schemas/GetUserResponse"
+          },
+          "hex": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ]
+          }
+        }
+      },
+      "GetOrganizationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "specialization": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+      },
+      "GetUserResponse": {
         "type": "object",
         "properties": {
           "id": {
@@ -2150,27 +2466,38 @@
           "timezone": {
             "type": "string"
           },
-          "hex": {
-            "type": "string"
-          },
-          "birthDate": {
+          "createdAt": {
             "type": "string",
             "format": "date-time"
           },
-          "grade": {
-            "type": "integer",
-            "format": "int32"
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
           },
-          "balance": {
-            "type": "integer",
-            "format": "int32"
+          "role": {
+            "type": "string",
+            "enum": [
+              "SUPERUSER",
+              "ORG_ADMIN",
+              "TUTOR",
+              "CURATOR",
+              "STUDENT",
+              "USER"
+            ]
           },
           "status": {
             "type": "string",
             "enum": [
               "ACTIVE",
-              "INACTIVE"
+              "DISABLED",
+              "PENDING"
             ]
+          },
+          "organization": {
+            "$ref": "#/components/schemas/GetOrganizationResponse"
+          },
+          "notificationsEnabled": {
+            "type": "boolean"
           }
         }
       },
@@ -2291,6 +2618,18 @@
           }
         }
       },
+      "CreateLessonQrResponse": {
+        "type": "object",
+        "properties": {
+          "qrPayload": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "RefreshJwtRequest": {
         "required": [
           "refreshToken"
@@ -2370,6 +2709,7 @@
               "ORG_ADMIN",
               "TUTOR",
               "CURATOR",
+              "STUDENT",
               "USER"
             ]
           }
@@ -2408,6 +2748,22 @@
           }
         }
       },
+      "MarkAttendanceByQrRequest": {
+        "type": "object",
+        "properties": {
+          "qrPayload": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateUserNotificationsRequest": {
+        "type": "object",
+        "properties": {
+          "notifyMode": {
+            "type": "boolean"
+          }
+        }
+      },
       "PatchTutorSubjectsRequest": {
         "required": [
           "subjects"
@@ -2440,6 +2796,35 @@
           }
         }
       },
+      "PatchLessonNotesRequest": {
+        "type": "object",
+        "properties": {
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchLessonLinkRequest": {
+        "type": "object",
+        "properties": {
+          "link": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchAttendanceStatusRequest": {
+        "type": "object",
+        "properties": {
+          "attendanceStatus": {
+            "type": "string",
+            "enum": [
+              "PRESENCE",
+              "NOT_PRESENCE",
+              "REASON"
+            ]
+          }
+        }
+      },
       "Pageable": {
         "type": "object",
         "properties": {
@@ -2458,63 +2843,6 @@
             "items": {
               "type": "string"
             }
-          }
-        }
-      },
-      "GetUserResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "surname": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "patronymic": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "role": {
-            "type": "string",
-            "enum": [
-              "SUPERUSER",
-              "ORG_ADMIN",
-              "TUTOR",
-              "CURATOR",
-              "USER"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "ACTIVE",
-              "DISABLED",
-              "PENDING"
-            ]
-          },
-          "organization": {
-            "type": "integer",
-            "format": "int64"
           }
         }
       },
@@ -2545,6 +2873,148 @@
           }
         }
       },
+      "GetAttendanceResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "student": {
+            "$ref": "#/components/schemas/GetStudentResponse"
+          },
+          "attendanceStatus": {
+            "type": "string",
+            "enum": [
+              "PRESENCE",
+              "NOT_PRESENCE",
+              "REASON"
+            ]
+          }
+        }
+      },
+      "GetLessonResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "subject": {
+            "$ref": "#/components/schemas/GetSubjectResponse"
+          },
+          "program": {
+            "$ref": "#/components/schemas/GetProgramResponse"
+          },
+          "tutor": {
+            "$ref": "#/components/schemas/GetTutorSimpleResponse"
+          },
+          "attendances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAttendanceResponse"
+            }
+          },
+          "notes": {
+            "type": "string"
+          },
+          "lessonStatus": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "HAPPENED",
+              "CANCELLED",
+              "RESCHEDULED"
+            ]
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "link": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          }
+        }
+      },
+      "GetProgramResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/Organization"
+          },
+          "name": {
+            "type": "string"
+          },
+          "lessonCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "programStatus": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "ARCHIVED",
+              "DISABLED"
+            ]
+          },
+          "hex": {
+            "type": "string"
+          }
+        }
+      },
+      "GetStudentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user": {
+            "$ref": "#/components/schemas/GetUserResponse"
+          },
+          "hex": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ]
+          }
+        }
+      },
       "GetSubjectResponse": {
         "type": "object",
         "properties": {
@@ -2556,8 +3026,39 @@
             "type": "string"
           },
           "organization": {
+            "$ref": "#/components/schemas/GetOrganizationResponse"
+          }
+        }
+      },
+      "GetTutorSimpleResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
             "type": "integer",
             "format": "int64"
+          },
+          "user": {
+            "$ref": "#/components/schemas/GetUserResponse"
+          },
+          "socials": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "GetUserScheduleResponse": {
+        "type": "object",
+        "properties": {
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetLessonResponse"
+            }
           }
         }
       },
@@ -2651,55 +3152,6 @@
           }
         }
       },
-      "GetStudentResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "surname": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "patronymic": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "hex": {
-            "type": "string"
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "grade": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "balance": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "ACTIVE",
-              "INACTIVE"
-            ]
-          }
-        }
-      },
       "PageDTOGetStudentResponse": {
         "type": "object",
         "properties": {
@@ -2778,30 +3230,6 @@
           "totalPages": {
             "type": "integer",
             "format": "int32"
-          }
-        }
-      },
-      "GetOrganizationResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          },
-          "specialization": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
           }
         }
       },

@@ -85,8 +85,13 @@ loadScripts(document, 'script');</script>
 <h1 title="Interface TutorEntityMapper" class="title">Interface TutorEntityMapper</h1>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Superinterfaces:</dt>
+<dd><code><a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a>&lt;<a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>,<wbr><a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a>&gt;</code></dd>
+</dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">TutorEntityMapper</span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">TutorEntityMapper</span><span class="extends-implements">
+extends <a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a>&lt;<a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>,<wbr><a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a>&gt;</span></div>
 <div class="block">A mapper interface for converting between Tutor domain model and Tutor JPA-entity. Uses MapStruct for automatic mapping.</div>
 </section>
 <section class="summary">
@@ -103,18 +108,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#toTutor(org.example.crmedu.infrastructure.entity.TutorEntity)" class="member-name-link">toTutor</a><wbr>(<a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a>&nbsp;tutorEntity)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Converts a <a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>TutorEntity</code></a> to <a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model"><code>Tutor</code></a>.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#toTutorEntity(org.example.crmedu.domain.model.Tutor)" class="member-name-link">toTutorEntity</a><wbr>(<a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&nbsp;tutor)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Converts a <a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model"><code>Tutor</code></a> to <a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>TutorEntity</code></a>.</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#toDomain(org.example.crmedu.infrastructure.entity.TutorEntity)" class="member-name-link">toDomain</a><wbr>(<a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a>&nbsp;entity)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 </div>
 </div>
 </div>
-</div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.example.crmedu.infrastructure.mapping.BaseEntityMapper">Methods inherited from interface&nbsp;org.example.crmedu.infrastructure.mapping.<a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a></h3>
+<code><a href="BaseEntityMapper.html#toEntity(D)">toEntity</a></code></div>
 </section>
 </li>
 </ul>
@@ -127,28 +128,12 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="toTutorEntity(org.example.crmedu.domain.model.Tutor)">
-<h3>toTutorEntity</h3>
-<div class="member-signature"><span class="return-type"><a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a></span>&nbsp;<span class="element-name">toTutorEntity</span><wbr><span class="parameters">(<a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&nbsp;tutor)</span></div>
-<div class="block">Converts a <a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model"><code>Tutor</code></a> to <a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>TutorEntity</code></a>.</div>
+<section class="detail" id="toDomain(org.example.crmedu.infrastructure.entity.TutorEntity)">
+<h3>toDomain</h3>
+<div class="member-signature"><span class="return-type"><a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a></span>&nbsp;<span class="element-name">toDomain</span><wbr><span class="parameters">(<a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a>&nbsp;entity)</span></div>
 <dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>tutor</code> - the tutor domain model to convert</dd>
-<dt>Returns:</dt>
-<dd>the <a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>TutorEntity</code></a> JPA-entity</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="toTutor(org.example.crmedu.infrastructure.entity.TutorEntity)">
-<h3>toTutor</h3>
-<div class="member-signature"><span class="return-type"><a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a></span>&nbsp;<span class="element-name">toTutor</span><wbr><span class="parameters">(<a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a>&nbsp;tutorEntity)</span></div>
-<div class="block">Converts a <a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>TutorEntity</code></a> to <a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model"><code>Tutor</code></a>.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>tutorEntity</code> - the tutor entity to convert</dd>
-<dt>Returns:</dt>
-<dd>the <a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model"><code>Tutor</code></a> domain model</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="BaseEntityMapper.html#toDomain(E)">toDomain</a></code>&nbsp;in interface&nbsp;<code><a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a>&lt;<a href="../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>,<wbr><a href="../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a>&gt;</code></dd>
 </dl>
 </section>
 </li>

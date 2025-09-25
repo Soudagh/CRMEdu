@@ -86,11 +86,16 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>All Superinterfaces:</dt>
+<dd><code><a href="BaseCrudRepository.html" title="interface in org.example.crmedu.domain.repository">BaseCrudRepository</a>&lt;<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&gt;</code></dd>
+</dl>
+<dl class="notes">
 <dt>All Known Implementing Classes:</dt>
 <dd><code><a href="../../infrastructure/repository/student/StudentRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.student">StudentRepositoryImpl</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">StudentRepository</span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">StudentRepository</span><span class="extends-implements">
+extends <a href="BaseCrudRepository.html" title="interface in org.example.crmedu.domain.repository">BaseCrudRepository</a>&lt;<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&gt;</span></div>
 <div class="block">Repository interface for managing <a href="../model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a> entities. Defines methods for CRUD operations and querying students.</div>
 </section>
 <section class="summary">
@@ -106,40 +111,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#delete(java.lang.Long)" class="member-name-link">delete</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Deletes a student by its unique identifier.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#existsByEmailAndPhoneInOrganization(org.example.crmedu.domain.model.Student)" class="member-name-link">existsByEmailAndPhoneInOrganization</a><wbr>(<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&nbsp;student)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Checks whether a student with this email and phone exists in this organization.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../model/Page.html" title="class in org.example.crmedu.domain.model">Page</a><wbr>&lt;<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findAll(int,int)" class="member-name-link">findAll</a><wbr>(int&nbsp;pageNumber,
- int&nbsp;pageSize)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Retrieves a paginated list of students.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findById(java.lang.Long)" class="member-name-link">findById</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Retrieves a student by its unique identifier.</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#save(org.example.crmedu.domain.model.Student)" class="member-name-link">save</a><wbr>(<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&nbsp;student)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Saves a new student or updates an existing one.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#update(org.example.crmedu.domain.model.Student)" class="member-name-link">update</a><wbr>(<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&nbsp;student)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Updates an existing student.</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStudentByUserId(java.lang.Long)" class="member-name-link">getStudentByUserId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;userId)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 </div>
 </div>
 </div>
-</div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.example.crmedu.domain.repository.BaseCrudRepository">Methods inherited from interface&nbsp;org.example.crmedu.domain.repository.<a href="BaseCrudRepository.html" title="interface in org.example.crmedu.domain.repository">BaseCrudRepository</a></h3>
+<code><a href="BaseCrudRepository.html#create(T)">create</a>, <a href="BaseCrudRepository.html#delete(java.lang.Long)">delete</a>, <a href="BaseCrudRepository.html#findAll(int,int)">findAll</a>, <a href="BaseCrudRepository.html#findById(java.lang.Long)">findById</a>, <a href="BaseCrudRepository.html#update(T)">update</a></code></div>
 </section>
 </li>
 </ul>
@@ -152,79 +132,9 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="save(org.example.crmedu.domain.model.Student)">
-<h3>save</h3>
-<div class="member-signature"><span class="return-type"><a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a></span>&nbsp;<span class="element-name">save</span><wbr><span class="parameters">(<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&nbsp;student)</span></div>
-<div class="block">Saves a new student or updates an existing one.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>student</code> - the student to save</dd>
-<dt>Returns:</dt>
-<dd>the saved <a href="../model/Student.html" title="class in org.example.crmedu.domain.model"><code>Student</code></a> entity</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="findById(java.lang.Long)">
-<h3>findById</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&gt;</span>&nbsp;<span class="element-name">findById</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
-<div class="block">Retrieves a student by its unique identifier.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>id</code> - the unique identifier of the student</dd>
-<dt>Returns:</dt>
-<dd>an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link"><code>Optional</code></a> containing the student if found, otherwise empty</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="existsByEmailAndPhoneInOrganization(org.example.crmedu.domain.model.Student)">
-<h3>existsByEmailAndPhoneInOrganization</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">existsByEmailAndPhoneInOrganization</span><wbr><span class="parameters">(<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&nbsp;student)</span></div>
-<div class="block">Checks whether a student with this email and phone exists in this organization.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>student</code> - the student to check</dd>
-<dt>Returns:</dt>
-<dd><code>true</code> if a student with the same email and phone exists in this organization, otherwise <code>false</code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="findAll(int,int)">
-<h3>findAll</h3>
-<div class="member-signature"><span class="return-type"><a href="../model/Page.html" title="class in org.example.crmedu.domain.model">Page</a>&lt;<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&gt;</span>&nbsp;<span class="element-name">findAll</span><wbr><span class="parameters">(int&nbsp;pageNumber,
- int&nbsp;pageSize)</span></div>
-<div class="block">Retrieves a paginated list of students.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>pageNumber</code> - the page number (starting from 0)</dd>
-<dd><code>pageSize</code> - the number of students per page</dd>
-<dt>Returns:</dt>
-<dd>a <a href="../model/Page.html" title="class in org.example.crmedu.domain.model"><code>Page</code></a> containing the requested students</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="update(org.example.crmedu.domain.model.Student)">
-<h3>update</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">update</span><wbr><span class="parameters">(<a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a>&nbsp;student)</span></div>
-<div class="block">Updates an existing student.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>student</code> - the student entity with updated information</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="delete(java.lang.Long)">
-<h3>delete</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">delete</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
-<div class="block">Deletes a student by its unique identifier.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>id</code> - the unique identifier of the student to delete</dd>
-</dl>
+<section class="detail" id="getStudentByUserId(java.lang.Long)">
+<h3>getStudentByUserId</h3>
+<div class="member-signature"><span class="return-type"><a href="../model/Student.html" title="class in org.example.crmedu.domain.model">Student</a></span>&nbsp;<span class="element-name">getStudentByUserId</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;userId)</span></div>
 </section>
 </li>
 </ul>

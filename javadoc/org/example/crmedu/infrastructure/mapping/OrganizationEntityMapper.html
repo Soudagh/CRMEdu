@@ -48,7 +48,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li>Field</li>
 <li>Constr</li>
-<li><a href="#method-detail">Method</a></li>
+<li>Method</li>
 </ul>
 </li>
 </ul>
@@ -66,7 +66,7 @@ loadScripts(document, 'script');</script>
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
-<li><a href="#method-detail">Method</a></li>
+<li>Method</li>
 </ul>
 </div>
 <div class="nav-list-search"><a href="../../../../../search.html">SEARCH</a>
@@ -85,8 +85,13 @@ loadScripts(document, 'script');</script>
 <h1 title="Interface OrganizationEntityMapper" class="title">Interface OrganizationEntityMapper</h1>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Superinterfaces:</dt>
+<dd><code><a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a>&lt;<a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model">Organization</a>,<wbr><a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity">OrganizationEntity</a>&gt;</code></dd>
+</dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">OrganizationEntityMapper</span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">OrganizationEntityMapper</span><span class="extends-implements">
+extends <a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a>&lt;<a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model">Organization</a>,<wbr><a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity">OrganizationEntity</a>&gt;</span></div>
 <div class="block">A mapper interface for converting between Organization domain model and Organization JPA-entity. Uses MapStruct for automatic mapping.</div>
 </section>
 <section class="summary">
@@ -95,64 +100,9 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
-<div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button></div>
-<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Method</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model">Organization</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#toOrganization(org.example.crmedu.infrastructure.entity.OrganizationEntity)" class="member-name-link">toOrganization</a><wbr>(<a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity">OrganizationEntity</a>&nbsp;organizationEntity)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Converts an <a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>OrganizationEntity</code></a> to <a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model"><code>Organization</code></a>.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity">OrganizationEntity</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#toOrganizationEntity(org.example.crmedu.domain.model.Organization)" class="member-name-link">toOrganizationEntity</a><wbr>(<a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model">Organization</a>&nbsp;organization)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Converts an <a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model"><code>Organization</code></a> to <a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>OrganizationEntity</code></a>.</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-</li>
-</ul>
-</section>
-<section class="details">
-<ul class="details-list">
-<!-- ============ METHOD DETAIL ========== -->
-<li>
-<section class="method-details" id="method-detail">
-<h2>Method Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="toOrganizationEntity(org.example.crmedu.domain.model.Organization)">
-<h3>toOrganizationEntity</h3>
-<div class="member-signature"><span class="return-type"><a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity">OrganizationEntity</a></span>&nbsp;<span class="element-name">toOrganizationEntity</span><wbr><span class="parameters">(<a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model">Organization</a>&nbsp;organization)</span></div>
-<div class="block">Converts an <a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model"><code>Organization</code></a> to <a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>OrganizationEntity</code></a>.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>organization</code> - the organization domain model to convert</dd>
-<dt>Returns:</dt>
-<dd>the <a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>OrganizationEntity</code></a> JPA-entity</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="toOrganization(org.example.crmedu.infrastructure.entity.OrganizationEntity)">
-<h3>toOrganization</h3>
-<div class="member-signature"><span class="return-type"><a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model">Organization</a></span>&nbsp;<span class="element-name">toOrganization</span><wbr><span class="parameters">(<a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity">OrganizationEntity</a>&nbsp;organizationEntity)</span></div>
-<div class="block">Converts an <a href="../entity/OrganizationEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>OrganizationEntity</code></a> to <a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model"><code>Organization</code></a>.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>organizationEntity</code> - the organization entity to convert</dd>
-<dt>Returns:</dt>
-<dd>the <a href="../../domain/model/Organization.html" title="class in org.example.crmedu.domain.model"><code>Organization</code></a> domain model</dd>
-</dl>
-</section>
-</li>
-</ul>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.example.crmedu.infrastructure.mapping.BaseEntityMapper">Methods inherited from interface&nbsp;org.example.crmedu.infrastructure.mapping.<a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a></h3>
+<code><a href="BaseEntityMapper.html#toDomain(E)">toDomain</a>, <a href="BaseEntityMapper.html#toEntity(D)">toEntity</a></code></div>
 </section>
 </li>
 </ul>

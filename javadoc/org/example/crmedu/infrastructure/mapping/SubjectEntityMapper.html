@@ -85,8 +85,13 @@ loadScripts(document, 'script');</script>
 <h1 title="Interface SubjectEntityMapper" class="title">Interface SubjectEntityMapper</h1>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Superinterfaces:</dt>
+<dd><code><a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a>&lt;<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>,<wbr><a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity">SubjectEntity</a>&gt;</code></dd>
+</dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">SubjectEntityMapper</span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">SubjectEntityMapper</span><span class="extends-implements">
+extends <a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a>&lt;<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>,<wbr><a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity">SubjectEntity</a>&gt;</span></div>
 <div class="block">A mapper interface for converting between Subject domain model and Subject JPA-entity. Uses MapStruct for automatic mapping.</div>
 </section>
 <section class="summary">
@@ -103,18 +108,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#toSubject(org.example.crmedu.infrastructure.entity.SubjectEntity)" class="member-name-link">toSubject</a><wbr>(<a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity">SubjectEntity</a>&nbsp;subjectEntity)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Converts a <a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>SubjectEntity</code></a> to <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a>.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity">SubjectEntity</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#toSubjectEntity(org.example.crmedu.domain.model.Subject)" class="member-name-link">toSubjectEntity</a><wbr>(<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>&nbsp;subject)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Converts a <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a> to <a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>SubjectEntity</code></a>.</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#toDomain(org.example.crmedu.infrastructure.entity.SubjectEntity)" class="member-name-link">toDomain</a><wbr>(<a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity">SubjectEntity</a>&nbsp;subject)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 </div>
 </div>
 </div>
-</div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.example.crmedu.infrastructure.mapping.BaseEntityMapper">Methods inherited from interface&nbsp;org.example.crmedu.infrastructure.mapping.<a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a></h3>
+<code><a href="BaseEntityMapper.html#toEntity(D)">toEntity</a></code></div>
 </section>
 </li>
 </ul>
@@ -127,28 +128,12 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="toSubject(org.example.crmedu.infrastructure.entity.SubjectEntity)">
-<h3>toSubject</h3>
-<div class="member-signature"><span class="return-type"><a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a></span>&nbsp;<span class="element-name">toSubject</span><wbr><span class="parameters">(<a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity">SubjectEntity</a>&nbsp;subjectEntity)</span></div>
-<div class="block">Converts a <a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>SubjectEntity</code></a> to <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a>.</div>
+<section class="detail" id="toDomain(org.example.crmedu.infrastructure.entity.SubjectEntity)">
+<h3>toDomain</h3>
+<div class="member-signature"><span class="return-type"><a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a></span>&nbsp;<span class="element-name">toDomain</span><wbr><span class="parameters">(<a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity">SubjectEntity</a>&nbsp;subject)</span></div>
 <dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>subjectEntity</code> - the subject entity to convert</dd>
-<dt>Returns:</dt>
-<dd>the <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a> domain model</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="toSubjectEntity(org.example.crmedu.domain.model.Subject)">
-<h3>toSubjectEntity</h3>
-<div class="member-signature"><span class="return-type"><a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity">SubjectEntity</a></span>&nbsp;<span class="element-name">toSubjectEntity</span><wbr><span class="parameters">(<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>&nbsp;subject)</span></div>
-<div class="block">Converts a <a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model"><code>Subject</code></a> to <a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>SubjectEntity</code></a>.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>subject</code> - the subject domain model to convert</dd>
-<dt>Returns:</dt>
-<dd>the <a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>SubjectEntity</code></a> JPA-entity</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="BaseEntityMapper.html#toDomain(E)">toDomain</a></code>&nbsp;in interface&nbsp;<code><a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a>&lt;<a href="../../domain/model/Subject.html" title="class in org.example.crmedu.domain.model">Subject</a>,<wbr><a href="../entity/SubjectEntity.html" title="class in org.example.crmedu.infrastructure.entity">SubjectEntity</a>&gt;</code></dd>
 </dl>
 </section>
 </li>

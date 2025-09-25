@@ -85,8 +85,13 @@ loadScripts(document, 'script');</script>
 <h1 title="Interface TutorScheduleEntityMapper" class="title">Interface TutorScheduleEntityMapper</h1>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Superinterfaces:</dt>
+<dd><code><a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a>&lt;<a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>,<wbr><a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorScheduleEntity</a>&gt;</code></dd>
+</dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">TutorScheduleEntityMapper</span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">TutorScheduleEntityMapper</span><span class="extends-implements">
+extends <a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a>&lt;<a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>,<wbr><a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorScheduleEntity</a>&gt;</span></div>
 <div class="block">A mapper interface for converting between Tutor schedule domain model and Tutor schedule JPA-entity. Uses MapStruct for automatic mapping.</div>
 </section>
 <section class="summary">
@@ -96,7 +101,7 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab5" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab5', 3)" class="table-tab">Default Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab5" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab5', 3)" class="table-tab">Default Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
@@ -107,19 +112,12 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Converts set of <a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>TutorScheduleEntity</code></a> into <a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model"><code>TutorSchedule</code></a></div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#toTutorSchedule(org.example.crmedu.infrastructure.entity.TutorScheduleEntity)" class="member-name-link">toTutorSchedule</a><wbr>(<a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorScheduleEntity</a>&nbsp;tutorScheduleEntity)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Converts a <a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>TutorScheduleEntity</code></a> to <a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model"><code>TutorSchedule</code></a></div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorScheduleEntity</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#toTutorScheduleEntity(org.example.crmedu.domain.model.TutorSchedule)" class="member-name-link">toTutorScheduleEntity</a><wbr>(<a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&nbsp;tutorSchedule)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Converts a <a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model"><code>TutorSchedule</code></a> to <a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>TutorScheduleEntity</code></a></div>
 </div>
 </div>
 </div>
-</div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.example.crmedu.infrastructure.mapping.BaseEntityMapper">Methods inherited from interface&nbsp;org.example.crmedu.infrastructure.mapping.<a href="BaseEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">BaseEntityMapper</a></h3>
+<code><a href="BaseEntityMapper.html#toDomain(E)">toDomain</a>, <a href="BaseEntityMapper.html#toEntity(D)">toEntity</a></code></div>
 </section>
 </li>
 </ul>
@@ -131,32 +129,6 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
-<li>
-<section class="detail" id="toTutorScheduleEntity(org.example.crmedu.domain.model.TutorSchedule)">
-<h3>toTutorScheduleEntity</h3>
-<div class="member-signature"><span class="return-type"><a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorScheduleEntity</a></span>&nbsp;<span class="element-name">toTutorScheduleEntity</span><wbr><span class="parameters">(<a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&nbsp;tutorSchedule)</span></div>
-<div class="block">Converts a <a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model"><code>TutorSchedule</code></a> to <a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>TutorScheduleEntity</code></a></div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>tutorSchedule</code> - the tutor schedule domain model to convert</dd>
-<dt>Returns:</dt>
-<dd>the <a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model"><code>TutorSchedule</code></a> JPA-entity</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="toTutorSchedule(org.example.crmedu.infrastructure.entity.TutorScheduleEntity)">
-<h3>toTutorSchedule</h3>
-<div class="member-signature"><span class="return-type"><a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a></span>&nbsp;<span class="element-name">toTutorSchedule</span><wbr><span class="parameters">(<a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorScheduleEntity</a>&nbsp;tutorScheduleEntity)</span></div>
-<div class="block">Converts a <a href="../entity/TutorScheduleEntity.html" title="class in org.example.crmedu.infrastructure.entity"><code>TutorScheduleEntity</code></a> to <a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model"><code>TutorSchedule</code></a></div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>tutorScheduleEntity</code> - the tutor schedule entity to convert</dd>
-<dt>Returns:</dt>
-<dd>the <a href="../../domain/model/TutorSchedule.html" title="class in org.example.crmedu.domain.model"><code>TutorSchedule</code></a></dd>
-</dl>
-</section>
-</li>
 <li>
 <section class="detail" id="setTutorScheduleEntityToSetTutorSchedule(java.util.Set)">
 <h3>setTutorScheduleEntityToSetTutorSchedule</h3>

@@ -58,7 +58,11 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" class="type-name-link external-link" title="class or interface in java.lang">Object</a>
 <ul>
+<li class="circle">org.example.crmedu.infrastructure.repository.<a href="../BaseRepository.html" class="type-name-link" title="class in org.example.crmedu.infrastructure.repository">BaseRepository</a>&lt;D,<wbr>E,<wbr>ID&gt;
+<ul>
 <li class="circle">org.example.crmedu.infrastructure.repository.student.<a href="StudentRepositoryImpl.html" class="type-name-link" title="class in org.example.crmedu.infrastructure.repository.student">StudentRepositoryImpl</a> (implements org.example.crmedu.domain.repository.<a href="../../../domain/repository/StudentRepository.html" title="interface in org.example.crmedu.domain.repository">StudentRepository</a>)</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -70,12 +74,20 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">org.springframework.data.repository.CrudRepository&lt;T,<wbr>ID&gt;
 <ul>
-<li class="circle">org.example.crmedu.infrastructure.repository.student.<a href="DataStudentRepository.html" class="type-name-link" title="interface in org.example.crmedu.infrastructure.repository.student">DataStudentRepository</a> (also extends org.springframework.data.repository.PagingAndSortingRepository&lt;T,<wbr>ID&gt;)</li>
+<li class="circle">org.example.crmedu.infrastructure.repository.<a href="../BaseDataRepository.html" class="type-name-link" title="interface in org.example.crmedu.infrastructure.repository">BaseDataRepository</a>&lt;E,<wbr>ID&gt; (also extends org.springframework.data.repository.PagingAndSortingRepository&lt;T,<wbr>ID&gt;)
+<ul>
+<li class="circle">org.example.crmedu.infrastructure.repository.student.<a href="DataStudentRepository.html" class="type-name-link" title="interface in org.example.crmedu.infrastructure.repository.student">DataStudentRepository</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="circle">org.springframework.data.repository.PagingAndSortingRepository&lt;T,<wbr>ID&gt;
 <ul>
-<li class="circle">org.example.crmedu.infrastructure.repository.student.<a href="DataStudentRepository.html" class="type-name-link" title="interface in org.example.crmedu.infrastructure.repository.student">DataStudentRepository</a> (also extends org.springframework.data.repository.CrudRepository&lt;T,<wbr>ID&gt;)</li>
+<li class="circle">org.example.crmedu.infrastructure.repository.<a href="../BaseDataRepository.html" class="type-name-link" title="interface in org.example.crmedu.infrastructure.repository">BaseDataRepository</a>&lt;E,<wbr>ID&gt; (also extends org.springframework.data.repository.CrudRepository&lt;T,<wbr>ID&gt;)
+<ul>
+<li class="circle">org.example.crmedu.infrastructure.repository.student.<a href="DataStudentRepository.html" class="type-name-link" title="interface in org.example.crmedu.infrastructure.repository.student">DataStudentRepository</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

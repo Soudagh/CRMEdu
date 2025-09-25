@@ -131,14 +131,17 @@ implements <a href="../../domain/service/jwt/JwtService.html" title="interface i
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieves access token via refresh token.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../domain/model/Jwt.html" title="class in org.example.crmedu.domain.model">Jwt</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#login(org.example.crmedu.domain.model.User)" class="member-name-link">login</a><wbr>(<a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a>&nbsp;userRequest)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCurrentUser()" class="member-name-link">getCurrentUser</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../domain/model/Jwt.html" title="class in org.example.crmedu.domain.model">Jwt</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#login(org.example.crmedu.domain.model.User)" class="member-name-link">login</a><wbr>(<a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a>&nbsp;userRequest)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Logs in selected user in system.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../domain/model/Jwt.html" title="class in org.example.crmedu.domain.model">Jwt</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refresh(java.lang.String)" class="member-name-link">refresh</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;refreshToken)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../domain/model/Jwt.html" title="class in org.example.crmedu.domain.model">Jwt</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refresh(java.lang.String)" class="member-name-link">refresh</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;refreshToken)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Updates and retrieves information about tokens via old refreshToken.</div>
 </div>
 </div>
@@ -217,6 +220,16 @@ implements <a href="../../domain/service/jwt/JwtService.html" title="interface i
 <dd><code>refreshToken</code> - the refresh token of selected user</dd>
 <dt>Returns:</dt>
 <dd><a href="../../domain/model/Jwt.html" title="class in org.example.crmedu.domain.model"><code>Jwt</code></a> model containing details about updated tokens</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCurrentUser()">
+<h3>getCurrentUser</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../domain/model/User.html" title="class in org.example.crmedu.domain.model">User</a></span>&nbsp;<span class="element-name">getCurrentUser</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../domain/service/jwt/JwtService.html#getCurrentUser()">getCurrentUser</a></code>&nbsp;in interface&nbsp;<code><a href="../../domain/service/jwt/JwtService.html" title="interface in org.example.crmedu.domain.service.jwt">JwtService</a></code></dd>
 </dl>
 </section>
 </li>

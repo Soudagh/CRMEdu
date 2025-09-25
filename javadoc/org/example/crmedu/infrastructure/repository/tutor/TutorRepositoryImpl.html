@@ -85,17 +85,19 @@ loadScripts(document, 'script');</script>
 <h1 title="Class TutorRepositoryImpl" class="title">Class TutorRepositoryImpl</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
+<div class="inheritance"><a href="../BaseRepository.html" title="class in org.example.crmedu.infrastructure.repository">org.example.crmedu.infrastructure.repository.BaseRepository</a>&lt;<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>,<wbr><a href="../../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;
 <div class="inheritance">org.example.crmedu.infrastructure.repository.tutor.TutorRepositoryImpl</div>
+</div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="../../../domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository">TutorRepository</a></code></dd>
+<dd><code><a href="../../../domain/repository/BaseCrudRepository.html" title="interface in org.example.crmedu.domain.repository">BaseCrudRepository</a>&lt;<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&gt;</code>, <code><a href="../../../domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository">TutorRepository</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="annotations">@Component
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">TutorRepositoryImpl</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
+<span class="extends-implements">extends <a href="../BaseRepository.html" title="class in org.example.crmedu.infrastructure.repository">BaseRepository</a>&lt;<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>,<wbr><a href="../../entity/TutorEntity.html" title="class in org.example.crmedu.infrastructure.entity">TutorEntity</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;
 implements <a href="../../../domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository">TutorRepository</a></span></div>
 <div class="block">Implementation of the <a href="../../../domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository"><code>TutorRepository</code></a> interface using JPA. Provides methods for managing <a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model"><code>Tutor</code></a> entities in the database.</div>
 </section>
@@ -109,7 +111,8 @@ implements <a href="../../../domain/repository/TutorRepository.html" title="inte
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">TutorRepositoryImpl</a>()</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.example.crmedu.infrastructure.repository.tutor.DataTutorRepository,org.example.crmedu.infrastructure.mapping.TutorEntityMapper)" class="member-name-link">TutorRepositoryImpl</a><wbr>(<a href="DataTutorRepository.html" title="interface in org.example.crmedu.infrastructure.repository.tutor">DataTutorRepository</a>&nbsp;tutorRepository,
+ <a href="../../mapping/TutorEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">TutorEntityMapper</a>&nbsp;mapper)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -125,43 +128,26 @@ implements <a href="../../../domain/repository/TutorRepository.html" title="inte
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#delete(java.lang.Long)" class="member-name-link">delete</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#existsByUser(org.example.crmedu.domain.model.Tutor)" class="member-name-link">existsByUser</a><wbr>(<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&nbsp;tutor)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Deletes a tutor by its unique identifier.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#existsByUser(org.example.crmedu.domain.model.Tutor)" class="member-name-link">existsByUser</a><wbr>(<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&nbsp;tutor)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks whether a tutor with the same user already exists.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../domain/model/Page.html" title="class in org.example.crmedu.domain.model">Page</a><wbr>&lt;<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findAll(int,int)" class="member-name-link">findAll</a><wbr>(int&nbsp;pageNumber,
- int&nbsp;pageSize)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Retrieves a paginated list of tutors.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findById(java.lang.Long)" class="member-name-link">findById</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Retrieves a tutor by its unique identifier.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#save(org.example.crmedu.domain.model.Tutor)" class="member-name-link">save</a><wbr>(<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&nbsp;tutor)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Saves a new tutor or updates an existing one.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update(org.example.crmedu.domain.model.Tutor)" class="member-name-link">update</a><wbr>(<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&nbsp;tutor)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Updates an existing tutor.</div>
-</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findTutorByUserId(java.lang.Long)" class="member-name-link">findTutorByUserId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;userId)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.example.crmedu.infrastructure.repository.BaseRepository">Methods inherited from class&nbsp;org.example.crmedu.infrastructure.repository.<a href="../BaseRepository.html" title="class in org.example.crmedu.infrastructure.repository">BaseRepository</a></h3>
+<code><a href="../BaseRepository.html#create(D)">create</a>, <a href="../BaseRepository.html#delete(ID)">delete</a>, <a href="../BaseRepository.html#findAll(int,int)">findAll</a>, <a href="../BaseRepository.html#findById(ID)">findById</a>, <a href="../BaseRepository.html#update(D)">update</a></code></div>
+<div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.example.crmedu.domain.repository.BaseCrudRepository">Methods inherited from interface&nbsp;org.example.crmedu.domain.repository.<a href="../../../domain/repository/BaseCrudRepository.html" title="interface in org.example.crmedu.domain.repository">BaseCrudRepository</a></h3>
+<code><a href="../../../domain/repository/BaseCrudRepository.html#create(T)">create</a>, <a href="../../../domain/repository/BaseCrudRepository.html#delete(java.lang.Long)">delete</a>, <a href="../../../domain/repository/BaseCrudRepository.html#findAll(int,int)">findAll</a>, <a href="../../../domain/repository/BaseCrudRepository.html#findById(java.lang.Long)">findById</a>, <a href="../../../domain/repository/BaseCrudRepository.html#update(T)">update</a></code></div>
 </section>
 </li>
 </ul>
@@ -174,9 +160,10 @@ implements <a href="../../../domain/repository/TutorRepository.html" title="inte
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;()">
+<section class="detail" id="&lt;init&gt;(org.example.crmedu.infrastructure.repository.tutor.DataTutorRepository,org.example.crmedu.infrastructure.mapping.TutorEntityMapper)">
 <h3>TutorRepositoryImpl</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">TutorRepositoryImpl</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">TutorRepositoryImpl</span><wbr><span class="parameters">(<a href="DataTutorRepository.html" title="interface in org.example.crmedu.infrastructure.repository.tutor">DataTutorRepository</a>&nbsp;tutorRepository,
+ <a href="../../mapping/TutorEntityMapper.html" title="interface in org.example.crmedu.infrastructure.mapping">TutorEntityMapper</a>&nbsp;mapper)</span></div>
 </section>
 </li>
 </ul>
@@ -187,56 +174,6 @@ implements <a href="../../../domain/repository/TutorRepository.html" title="inte
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
-<li>
-<section class="detail" id="save(org.example.crmedu.domain.model.Tutor)">
-<h3>save</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a></span>&nbsp;<span class="element-name">save</span><wbr><span class="parameters">(<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&nbsp;tutor)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../domain/repository/TutorRepository.html#save(org.example.crmedu.domain.model.Tutor)">TutorRepository</a></code></span></div>
-<div class="block">Saves a new tutor or updates an existing one.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../domain/repository/TutorRepository.html#save(org.example.crmedu.domain.model.Tutor)">save</a></code>&nbsp;in interface&nbsp;<code><a href="../../../domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository">TutorRepository</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>tutor</code> - the tutor to save</dd>
-<dt>Returns:</dt>
-<dd>the saved <a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model"><code>Tutor</code></a> entity</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="findById(java.lang.Long)">
-<h3>findById</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&gt;</span>&nbsp;<span class="element-name">findById</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../domain/repository/TutorRepository.html#findById(java.lang.Long)">TutorRepository</a></code></span></div>
-<div class="block">Retrieves a tutor by its unique identifier.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../domain/repository/TutorRepository.html#findById(java.lang.Long)">findById</a></code>&nbsp;in interface&nbsp;<code><a href="../../../domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository">TutorRepository</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>id</code> - the unique identifier of the tutor</dd>
-<dt>Returns:</dt>
-<dd>an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link"><code>Optional</code></a> containing the tutor if found, otherwise empty</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="findAll(int,int)">
-<h3>findAll</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../domain/model/Page.html" title="class in org.example.crmedu.domain.model">Page</a>&lt;<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&gt;</span>&nbsp;<span class="element-name">findAll</span><wbr><span class="parameters">(int&nbsp;pageNumber,
- int&nbsp;pageSize)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../domain/repository/TutorRepository.html#findAll(int,int)">TutorRepository</a></code></span></div>
-<div class="block">Retrieves a paginated list of tutors.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../domain/repository/TutorRepository.html#findAll(int,int)">findAll</a></code>&nbsp;in interface&nbsp;<code><a href="../../../domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository">TutorRepository</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>pageNumber</code> - the page number (starting from 0)</dd>
-<dd><code>pageSize</code> - the number of tutors per page</dd>
-<dt>Returns:</dt>
-<dd>a <a href="../../../domain/model/Page.html" title="class in org.example.crmedu.domain.model"><code>Page</code></a> containing the requested tutors</dd>
-</dl>
-</section>
-</li>
 <li>
 <section class="detail" id="existsByUser(org.example.crmedu.domain.model.Tutor)">
 <h3>existsByUser</h3>
@@ -254,30 +191,12 @@ implements <a href="../../../domain/repository/TutorRepository.html" title="inte
 </section>
 </li>
 <li>
-<section class="detail" id="update(org.example.crmedu.domain.model.Tutor)">
-<h3>update</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span><wbr><span class="parameters">(<a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a>&nbsp;tutor)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../domain/repository/TutorRepository.html#update(org.example.crmedu.domain.model.Tutor)">TutorRepository</a></code></span></div>
-<div class="block">Updates an existing tutor.</div>
+<section class="detail" id="findTutorByUserId(java.lang.Long)">
+<h3>findTutorByUserId</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../domain/model/Tutor.html" title="class in org.example.crmedu.domain.model">Tutor</a></span>&nbsp;<span class="element-name">findTutorByUserId</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;userId)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../../../domain/repository/TutorRepository.html#update(org.example.crmedu.domain.model.Tutor)">update</a></code>&nbsp;in interface&nbsp;<code><a href="../../../domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository">TutorRepository</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>tutor</code> - the tutor entity with updated information</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="delete(java.lang.Long)">
-<h3>delete</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">delete</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../domain/repository/TutorRepository.html#delete(java.lang.Long)">TutorRepository</a></code></span></div>
-<div class="block">Deletes a tutor by its unique identifier.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../domain/repository/TutorRepository.html#delete(java.lang.Long)">delete</a></code>&nbsp;in interface&nbsp;<code><a href="../../../domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository">TutorRepository</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>id</code> - the unique identifier of the tutor to delete</dd>
+<dd><code><a href="../../../domain/repository/TutorRepository.html#findTutorByUserId(java.lang.Long)">findTutorByUserId</a></code>&nbsp;in interface&nbsp;<code><a href="../../../domain/repository/TutorRepository.html" title="interface in org.example.crmedu.domain.repository">TutorRepository</a></code></dd>
 </dl>
 </section>
 </li>

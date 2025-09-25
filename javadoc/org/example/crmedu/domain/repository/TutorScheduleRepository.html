@@ -86,11 +86,16 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>All Superinterfaces:</dt>
+<dd><code><a href="BaseCrudRepository.html" title="interface in org.example.crmedu.domain.repository">BaseCrudRepository</a>&lt;<a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&gt;</code></dd>
+</dl>
+<dl class="notes">
 <dt>All Known Implementing Classes:</dt>
 <dd><code><a href="../../infrastructure/repository/schedule/TutorScheduleRepositoryImpl.html" title="class in org.example.crmedu.infrastructure.repository.schedule">TutorScheduleRepositoryImpl</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">TutorScheduleRepository</span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">TutorScheduleRepository</span><span class="extends-implements">
+extends <a href="BaseCrudRepository.html" title="interface in org.example.crmedu.domain.repository">BaseCrudRepository</a>&lt;<a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&gt;</span></div>
 <div class="block">Repository interface for managing <a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model"><code>TutorSchedule</code></a> entities. Defines methods for CRUD operations and querying tutors.</div>
 </section>
 <section class="summary">
@@ -106,16 +111,6 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#delete(java.lang.Long)" class="member-name-link">delete</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Deletes a schedule by its unique identifier.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findById(java.lang.Long)" class="member-name-link">findById</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Retrieves a tutor schedule by its unique identifier.</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a><wbr>&lt;<a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByTutorId(java.lang.Long)" class="member-name-link">findByTutorId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;tutorId)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -128,19 +123,12 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Retrieves a paginated list of schedules of certain tutor.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#save(org.example.crmedu.domain.model.TutorSchedule)" class="member-name-link">save</a><wbr>(<a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&nbsp;schedule)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Saves a new tutor schedule or updates an existing one.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#update(org.example.crmedu.domain.model.TutorSchedule)" class="member-name-link">update</a><wbr>(<a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&nbsp;schedule)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Updates an existing schedule.</div>
 </div>
 </div>
 </div>
-</div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.example.crmedu.domain.repository.BaseCrudRepository">Methods inherited from interface&nbsp;org.example.crmedu.domain.repository.<a href="BaseCrudRepository.html" title="interface in org.example.crmedu.domain.repository">BaseCrudRepository</a></h3>
+<code><a href="BaseCrudRepository.html#create(T)">create</a>, <a href="BaseCrudRepository.html#delete(java.lang.Long)">delete</a>, <a href="BaseCrudRepository.html#findAll(int,int)">findAll</a>, <a href="BaseCrudRepository.html#findById(java.lang.Long)">findById</a>, <a href="BaseCrudRepository.html#update(T)">update</a></code></div>
 </section>
 </li>
 </ul>
@@ -152,32 +140,6 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
-<li>
-<section class="detail" id="save(org.example.crmedu.domain.model.TutorSchedule)">
-<h3>save</h3>
-<div class="member-signature"><span class="return-type"><a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a></span>&nbsp;<span class="element-name">save</span><wbr><span class="parameters">(<a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&nbsp;schedule)</span></div>
-<div class="block">Saves a new tutor schedule or updates an existing one.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>schedule</code> - the schedule to save</dd>
-<dt>Returns:</dt>
-<dd>the saved <a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model"><code>TutorSchedule</code></a> entity</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="findById(java.lang.Long)">
-<h3>findById</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&gt;</span>&nbsp;<span class="element-name">findById</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
-<div class="block">Retrieves a tutor schedule by its unique identifier.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>id</code> - the unique identifier of the tutor schedule</dd>
-<dt>Returns:</dt>
-<dd>an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link"><code>Optional</code></a> containing the tutor schedule if found, otherwise empty</dd>
-</dl>
-</section>
-</li>
 <li>
 <section class="detail" id="findPagesByTutorId(int,int,java.lang.Long)">
 <h3>findPagesByTutorId</h3>
@@ -205,28 +167,6 @@ loadScripts(document, 'script');</script>
 <dd><code>tutorId</code> - the unique identifier of tutor</dd>
 <dt>Returns:</dt>
 <dd>the <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&gt;</code> containing the requested schedules</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="update(org.example.crmedu.domain.model.TutorSchedule)">
-<h3>update</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">update</span><wbr><span class="parameters">(<a href="../model/TutorSchedule.html" title="class in org.example.crmedu.domain.model">TutorSchedule</a>&nbsp;schedule)</span></div>
-<div class="block">Updates an existing schedule.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>schedule</code> - the schedule with updated information.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="delete(java.lang.Long)">
-<h3>delete</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">delete</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
-<div class="block">Deletes a schedule by its unique identifier.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>id</code> - the unique identifier of the schedule to delete</dd>
 </dl>
 </section>
 </li>
