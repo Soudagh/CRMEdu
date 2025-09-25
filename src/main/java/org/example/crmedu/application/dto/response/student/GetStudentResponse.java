@@ -3,6 +3,7 @@ package org.example.crmedu.application.dto.response.student;
 import java.util.Date;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.example.crmedu.application.dto.response.user.GetUserResponse;
 import org.example.crmedu.domain.enums.StudentStatus;
 
 /**
@@ -14,17 +15,7 @@ public class GetStudentResponse {
 
   private Long id;
 
-  private String surname;
-
-  private String name;
-
-  private String patronymic;
-
-  private String email;
-
-  private String phone;
-
-  private String timezone;
+  private GetUserResponse user;
 
   private String hex;
 

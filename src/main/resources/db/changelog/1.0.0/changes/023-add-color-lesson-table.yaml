@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 023-add-color-lesson-table.yaml
+      author: soudagh
+      changes:
+        - addColumn:
+            tableName: lesson
+            schemaName: crmedu
+            columns:
+              - column:
+                  name: color
+                  type: varchar(7)
+                  defaultValue: '#00FF00'

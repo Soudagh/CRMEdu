@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 017-create-attachment-table
+      author: soudagh
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_attachment
+              - column:
+                  name: url
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: completed_task_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_attachment_completed_task_id_completed_task
+                    references: completed_task(id)
+            tableName: attachment
+            schemaName: crmedu
+            remarks: table for persists attachments for completed tasks

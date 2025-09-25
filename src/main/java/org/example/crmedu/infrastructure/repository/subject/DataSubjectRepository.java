@@ -1,6 +1,7 @@
 package org.example.crmedu.infrastructure.repository.subject;
 
 import org.example.crmedu.infrastructure.entity.SubjectEntity;
+import org.example.crmedu.infrastructure.repository.BaseDataRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * CRUD operations and pagination.
  */
 @Repository
-public interface DataSubjectRepository extends JpaRepository<SubjectEntity, Long>, PagingAndSortingRepository<SubjectEntity, Long> {
+public interface DataSubjectRepository extends BaseDataRepository<SubjectEntity, Long> {
 
   /**
    * Checks whether a subject with the specified name that belongs to certain organization exists.

@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 025-add-lesson-attendance-status-table.yaml
+      author: soudagh
+      changes:
+        - addColumn:
+            tableName: attendance_status
+            schemaName: crmedu
+            columns:
+              - column:
+                  name: lesson_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_attendance_status_lesson_id
+                    references: lesson(id)

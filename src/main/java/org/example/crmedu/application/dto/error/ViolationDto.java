@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public class Violation {
+public class ViolationDto {
 
   /**
    * The field that caused the validation error.

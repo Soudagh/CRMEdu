@@ -3,6 +3,7 @@ package org.example.crmedu.application.dto.response.user;
 import java.time.ZonedDateTime;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.example.crmedu.application.dto.response.organization.GetOrganizationResponse;
 import org.example.crmedu.domain.enums.Role;
 import org.example.crmedu.domain.enums.UserStatus;
 
@@ -35,5 +36,7 @@ public class GetUserResponse {
 
   private UserStatus status;
 
-  private Long organization;
+  private GetOrganizationResponse organization;
+
+  private Boolean notificationsEnabled;
 }

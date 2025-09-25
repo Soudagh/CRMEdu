@@ -89,8 +89,6 @@ public class UserControllerTest extends BaseIntegrationTest {
   @SneakyThrows
   void shouldDeleteUser() {
     var response = mockCreator.createUser();
-    System.out.println(response);
-    System.out.println(response.getId());
     var id = response.getId();
     mockMvc.perform(delete("/api/v1/users/" + id))
         .andExpect(status().isOk());

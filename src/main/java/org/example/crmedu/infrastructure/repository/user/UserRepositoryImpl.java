@@ -1,54 +1,40 @@
 package org.example.crmedu.infrastructure.repository.user;
 
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
-import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.repository.UserRepository;
+import org.example.crmedu.infrastructure.entity.UserEntity;
 import org.example.crmedu.infrastructure.mapping.UserEntityMapper;
-import org.springframework.data.domain.PageRequest;
+import org.example.crmedu.infrastructure.repository.BaseRepository;
 import org.springframework.stereotype.Component;
 
 /**
  * Implementation of the {@link UserRepository} interface using JPA. Provides methods for managing {@link User} entities in the database.
  */
 @Component
-@RequiredArgsConstructor
-public class UserRepositoryImpl implements UserRepository {
+public class UserRepositoryImpl extends BaseRepository<User, UserEntity, Long> implements UserRepository {
 
   private final DataUserRepository userRepository;
 
   private final UserEntityMapper userMapper;
 
-  @Override
-  public Page<User> findAll(int pageNumber, int pageSize) {
-    var page = userRepository.findAll(
-            PageRequest.of(
-                pageNumber,
-                pageSize
-            ))
-        .map(userMapper::userEntityToUser);
-    return new Page<User>()
-        .setContent(page.getContent())
-        .setPage(pageNumber)
-        .setLimit(pageSize)
-        .setTotalPages(page.getTotalPages())
-        .setTotalCount(page.getTotalElements());
-  }
-
-  @Override
-  public Optional<User> findById(Long id) {
-    return userRepository.findById(id).map(userMapper::userEntityToUser);
+  public UserRepositoryImpl(
+      DataUserRepository userRepository,
+      UserEntityMapper userMapper
+  ) {
+    super(userRepository, userMapper);
+    this.userRepository = userRepository;
+    this.userMapper = userMapper;
   }
 
   @Override
   public Optional<User> findByEmail(String email) {
-    return userRepository.findByEmail(email).map(userMapper::userEntityToUser);
+    return userRepository.findByEmail(email).map(userMapper::toDomain);
   }
 
   @Override
   public Optional<User> findByVerificationToken(String token) {
-    return userRepository.findByVerificationToken(token).map(userMapper::userEntityToUser);
+    return userRepository.findByVerificationToken(token).map(userMapper::toDomain);
   }
 
   @Override
@@ -61,21 +47,4 @@ public class UserRepositoryImpl implements UserRepository {
     return userRepository.existsByPhoneAndIdIsNot(user.getPhone(), user.getId());
   }
 
-
-  @Override
-  public User save(User user) {
-    var requestedUserEntity = userMapper.userToUserEntity(user);
-    var responsedUserEntity = userRepository.save(requestedUserEntity);
-    return userMapper.userEntityToUser(responsedUserEntity);
-  }
-
-  @Override
-  public void update(User user) {
-    userRepository.save(userMapper.userToUserEntity(user));
-  }
-
-  @Override
-  public void delete(Long id) {
-    userRepository.deleteById(id);
-  }
 }

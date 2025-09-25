@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 016-create-completed-task-table
+      author: soudagh
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_completed_task
+              - column:
+                  name: title
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: 'NO_ANSWER'
+              - column:
+                  name: student_answer
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: due_date
+                  type: timestamp with timezone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: task_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_completed_task_task_id_task
+                    references: task(id)
+            tableName: completed_task
+            schemaName: crmedu
+            remarks: table for persists completed tasks

@@ -7,8 +7,10 @@ import org.example.crmedu.domain.model.Jwt;
 import org.example.crmedu.domain.model.User;
 import org.example.crmedu.domain.service.jwt.JwtService;
 import org.example.crmedu.domain.service.user.UserService;
+import org.example.crmedu.infrastructure.auth.jwt.JwtAuthentication;
 import org.example.crmedu.infrastructure.auth.jwt.JwtProvider;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +57,15 @@ public class JwtServiceImpl implements JwtService {
     var accessToken = getNewAccessToken(refreshToken);
     refreshStorage.put(user.getEmail(), newRefreshToken);
     return new Jwt().setType(BEARER_HEADER_TYPE).setAccessToken(accessToken).setRefreshToken(newRefreshToken);
+  }
+
+  @Override
+  public User getCurrentUser() {
+    return userService.findByEmail(getAuthInfo().getEmail());
+  }
+
+  private JwtAuthentication getAuthInfo() {
+    return (JwtAuthentication) SecurityContextHolder.getContext().getAuthentication();
   }
 
   private String getNewAccessToken(String refreshToken) {

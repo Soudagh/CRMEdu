@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 012-create-subject-program-table
+      author: soudagh
+      changes:
+        - createTable:
+            tableName: subject_program
+            schemaName: crmedu
+            remarks: table for connect subjects and programs
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_subject_program
+              - column:
+                  name: subject_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_subject_program_subject_id
+                    references: subject(id)
+              - column:
+                  name: program_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_subject_program_program_id
+                    references: program(id)

@@ -111,9 +111,9 @@ public class MockCreator extends BaseIntegrationTest {
    */
   @SneakyThrows
   public CreateStudentResponse createStudent() {
-    var organizationId = createOrganization().getId();
-    var request = getMockObject(CreateStudentRequest.class).setPhone("+79999999999").setEmail("org@mail.ru").setHex("#FFFFFF").setGrade(5)
-        .setOrganization(organizationId);
+    var userId = createUser().getId();
+    var request = getMockObject(CreateStudentRequest.class).setHex("#FFFFFF").setGrade(5)
+        .setUserId(userId);
     var responseContent = mockMvc.perform(post("/api/v1/students")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))

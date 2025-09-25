@@ -53,6 +53,7 @@ public class TutorEntity {
   @ManyToMany
   @JoinTable(
       name = "tutors_subjects",
+      schema = "crmedu",
       joinColumns = @JoinColumn(name = "tutor_id"),
       inverseJoinColumns = @JoinColumn(name = "subject_id")
   )
@@ -65,6 +66,9 @@ public class TutorEntity {
 
   @OneToMany(mappedBy = "tutor")
   private Set<TutorScheduleEntity> schedule = new HashSet<>();
+
+  @OneToMany(mappedBy = "tutor")
+  private List<LessonEntity> lessons;
 
   @Override
   public boolean equals(Object o) {

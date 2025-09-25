@@ -2,6 +2,7 @@ package org.example.crmedu.application.dto.response.subject;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.example.crmedu.application.dto.response.organization.GetOrganizationResponse;
 
 /**
  * A DTO representing the response when retrieving a Subject.
@@ -14,5 +15,5 @@ public class GetSubjectResponse {
 
   private String name;
 
-  private Long organization;
+  private GetOrganizationResponse organization;
 }

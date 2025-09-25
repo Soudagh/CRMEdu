@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 024-add-name-program-table.yaml
+      author: soudagh
+      changes:
+        - addColumn:
+            tableName: program
+            schemaName: crmedu
+            columns:
+              - column:
+                  name: name
+                  type: varchar(255)
+                  defaultValue: ''
+                  constraints:
+                    nullable: false

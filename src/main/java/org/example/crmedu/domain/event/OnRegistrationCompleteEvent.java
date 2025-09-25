@@ -1,4 +1,4 @@
-package org.example.crmedu.application.event;
+package org.example.crmedu.domain.event;
 
 import lombok.Getter;
 import org.example.crmedu.domain.model.User;

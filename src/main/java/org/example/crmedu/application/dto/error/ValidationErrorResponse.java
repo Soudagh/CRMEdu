@@ -12,8 +12,8 @@ import lombok.RequiredArgsConstructor;
 public class ValidationErrorResponse {
 
   /**
-   * A list of validation violations represented by {@link Violation} objects.
+   * A list of validation violations represented by {@link ViolationDto} objects.
    */
-  private final List<Violation> violations;
+  private final List<ViolationDto> violations;
 }
 

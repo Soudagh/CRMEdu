@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 020-create-lesson-materials-table
+      author: soudagh
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_lesson_materials
+              - column:
+                  name: name
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: url
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lesson_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_lesson_materials_lesson_id_lesson
+                    references: lesson(id)
+            tableName: lesson_materials
+            schemaName: crmedu
+            remarks: table for persists lesson materials

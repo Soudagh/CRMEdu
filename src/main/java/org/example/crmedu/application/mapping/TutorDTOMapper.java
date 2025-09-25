@@ -8,6 +8,7 @@ import org.example.crmedu.application.dto.request.tutor.PatchTutorSubjectsReques
 import org.example.crmedu.application.dto.request.tutor.UpdateTutorRequest;
 import org.example.crmedu.application.dto.response.tutor.CreateTutorResponse;
 import org.example.crmedu.application.dto.response.tutor.GetTutorResponse;
+import org.example.crmedu.application.dto.response.tutor.GetTutorSimpleResponse;
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.model.Subject;
 import org.example.crmedu.domain.model.Tutor;
@@ -52,6 +53,8 @@ public interface TutorDTOMapper {
    * @return the corresponding {@link GetTutorResponse} DTO
    */
   GetTutorResponse tutorToGetResponse(Tutor tutor);
+
+  GetTutorSimpleResponse tutorToGetSimpleResponse(Tutor tutor);
 
   /**
    * Converts an {@link UpdateTutorRequest} DTO to a {@link Tutor} model.

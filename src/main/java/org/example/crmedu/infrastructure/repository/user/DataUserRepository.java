@@ -2,6 +2,7 @@ package org.example.crmedu.infrastructure.repository.user;
 
 import java.util.Optional;
 import org.example.crmedu.infrastructure.entity.UserEntity;
+import org.example.crmedu.infrastructure.repository.BaseDataRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * operations and pagination.
  */
 @Repository
-public interface DataUserRepository extends JpaRepository<UserEntity, Long>, PagingAndSortingRepository<UserEntity, Long> {
+public interface DataUserRepository extends BaseDataRepository<UserEntity, Long> {
 
   /**
    * Checks whether a user with the specified email exists.

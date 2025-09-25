@@ -15,3 +15,37 @@ databaseChangeLog:
       file: db/changelog/1.0.0/changes/007-delete-cascade-columns.yaml
   - include:
       file: db/changelog/1.0.0/changes/008-add-columns-to-user.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/009-update-student-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/010-create-program-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/011-create-subscription-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/012-create-subject-program-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/013-create-lesson-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/014-create-homework-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/015-create-task-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/016-create-completed-task-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/017-create-attachment-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/018-create-checked-task-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/019-create-attendance-status-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/020-create-lesson-materials-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/021-create-notification-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/022-update-user-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/023-add-color-lesson-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/024-add-name-program-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/025-add-lesson-attendance-status-table.yaml

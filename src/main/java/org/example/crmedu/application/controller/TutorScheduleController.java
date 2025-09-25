@@ -71,7 +71,7 @@ public class TutorScheduleController {
   @GetMapping("/tutor/{tutorId}")
   @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<PageDTO<GetTutorScheduleResponse>> getTutorSchedulesOfTutor(Pageable pageable, @PathVariable Long tutorId) {
-    var page = tutorScheduleService.getTutorSchedules(pageable.getPageNumber(), pageable.getPageSize(), tutorId);
+    var page = tutorScheduleService.findAll(pageable.getPageNumber(), pageable.getPageSize(), tutorId);
     return ResponseEntity.ok(mapper.pageTutorScheduleToPageDTOGetTutorSchedule(page));
   }
 

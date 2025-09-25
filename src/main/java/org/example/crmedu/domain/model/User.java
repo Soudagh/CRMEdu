@@ -1,6 +1,8 @@
 package org.example.crmedu.domain.model;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.example.crmedu.domain.enums.Role;
@@ -64,7 +66,7 @@ public class User {
   private ZonedDateTime createdAt;
 
   /**
-   * Timestamp with time zone when user was updated last time.
+   * Timestamp withкак  time zone when user was updated last time.
    */
   private ZonedDateTime updatedAt;
 
@@ -78,8 +80,14 @@ public class User {
    */
   private UserStatus status;
 
+  private Boolean notificationsEnabled = true;
+
+  private String hex;
+
   /**
    * The organization, which current user belongs. Can be null, if current user is superuser.
    */
   private Organization organization;
+
+  private List<Notification> notifications = new ArrayList<>();
 }

@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 022-add-is-notifications-enabled-to-user
+      author: soudagh
+      changes:
+        - addColumn:
+            tableName: user
+            schemaName: crmedu
+            columns:
+              - column:
+                  name: notifications_enabled
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false

@@ -43,7 +43,7 @@ public class StudentController {
   @GetMapping
   @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<PageDTO<GetStudentResponse>> getStudents(Pageable pageable) {
-    var page = studentService.getStudents(pageable.getPageNumber(), pageable.getPageSize());
+    var page = studentService.findAll(pageable.getPageNumber(), pageable.getPageSize());
     return ResponseEntity.ok(mapper.pageStudentToPageDtoGetTutorResponse(page));
   }
 
@@ -83,7 +83,7 @@ public class StudentController {
   @PutMapping("/{id}")
   @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<Void> updateStudent(@Valid @RequestBody UpdateStudentRequest request, @PathVariable Long id) {
-    studentService.updateStudent(mapper.updateStudentRequestToStudent(request), id);
+    studentService.update(mapper.updateStudentRequestToStudent(request), id);
     return ResponseEntity.ok().build();
   }
 
@@ -96,7 +96,7 @@ public class StudentController {
   @DeleteMapping("/{id}")
   @Secured({"SUPERUSER", "ORG_ADMIN", "CURATOR"})
   ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
-    studentService.deleteStudent(id);
+    studentService.delete(id);
     return ResponseEntity.ok().build();
   }
 }

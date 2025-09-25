@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: 015-create-task-table
+      author: soudagh
+      changes:
+        - createTable:
+            tableName: task
+            schemaName: crmedu
+            remarks: "Таблица задач, привязанных к домашнему заданию"
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_task
+              - column:
+                  name: homework_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_task_homework_id
+                    references: homework(id)
+              - column:
+                  name: title
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: right_answer
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_date
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_date
+                  type: timestamp with time zone
+
+

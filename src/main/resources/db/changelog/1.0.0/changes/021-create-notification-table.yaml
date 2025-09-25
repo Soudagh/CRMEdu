@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 021-create-notifications-table
+      author: soudagh
+      changes:
+        - createTable:
+            tableName: notifications
+            schemaName: crmedu
+            remarks: table for user notifications
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_notifications
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_notifications_user_id_user
+                    references: user(id)
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: link
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: notification_type
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamptz
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_read
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false

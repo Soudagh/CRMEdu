@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 010-create-program-table
+      author: soudagh
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_program
+              - column:
+                  name: lesson_count
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: decimal
+                  defaultValue: '0'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: program_status
+                  type: varchar(20)
+                  defaultValue: 'ACTIVE'
+              - column:
+                  name: organization_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_program_organization_id_organization
+                    references: organization(id)
+            tableName: program
+            schemaName: crmedu
+            remarks: table for persists programs

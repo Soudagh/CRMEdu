@@ -1,65 +1,46 @@
 package org.example.crmedu.infrastructure.repository.student;
 
-import java.util.Optional;
-import lombok.RequiredArgsConstructor;
-import org.example.crmedu.domain.model.Page;
+import org.example.crmedu.domain.model.Lesson;
 import org.example.crmedu.domain.model.Student;
 import org.example.crmedu.domain.repository.StudentRepository;
+import org.example.crmedu.infrastructure.entity.LessonEntity;
+import org.example.crmedu.infrastructure.entity.StudentEntity;
 import org.example.crmedu.infrastructure.mapping.StudentEntityMapper;
-import org.springframework.data.domain.PageRequest;
+import org.example.crmedu.infrastructure.repository.BaseRepository;
 import org.springframework.stereotype.Component;
 
 /**
  * Implementation of the {@link StudentRepository } interface. Provides methods for managing {@link Student } entities in the database.
  */
 @Component
-@RequiredArgsConstructor
-public class StudentRepositoryImpl implements StudentRepository {
+public class StudentRepositoryImpl extends BaseRepository<Student, StudentEntity, Long> implements StudentRepository {
 
   private final StudentEntityMapper mapper;
 
   private final DataStudentRepository studentRepository;
 
-  @Override
-  public Student save(Student student) {
-    var requestedEntity = mapper.studentToStudentEntity(student);
-    var responsedEntity = studentRepository.save(requestedEntity);
-    return mapper.studentEntityToStudent(responsedEntity);
+  public StudentRepositoryImpl(
+      DataStudentRepository studentRepository,
+      StudentEntityMapper mapper
+  ) {
+    super(studentRepository, mapper);
+    this.studentRepository = studentRepository;
+    this.mapper = mapper;
   }
 
   @Override
-  public Optional<Student> findById(Long id) {
-    return studentRepository.findById(id).map(mapper::studentEntityToStudent);
+  public Student getStudentByUserId(Long userId) {
+    return mapper.toDomain(studentRepository.getStudentEntityByUser_Id(userId));
   }
 
-  @Override
-  public boolean existsByEmailAndPhoneInOrganization(Student student) {
-    return studentRepository.existsByEmailAndPhoneAndOrganization_IdAndIdIsNot(
-        student.getEmail(),
-        student.getPhone(),
-        student.getOrganization().getId(),
-        student.getId()
-    );
-  }
-
-  @Override
-  public Page<Student> findAll(int pageNumber, int pageSize) {
-    var page = studentRepository.findAll(PageRequest.of(pageNumber, pageSize)).map(mapper::studentEntityToStudent);
-    return new Page<Student>()
-        .setContent(page.getContent())
-        .setPage(pageNumber)
-        .setLimit(pageSize)
-        .setTotalPages(page.getTotalPages())
-        .setTotalCount(page.getTotalElements());
-  }
-
-  @Override
-  public void update(Student student) {
-    studentRepository.save(mapper.studentToStudentEntity(student));
-  }
-
-  @Override
-  public void delete(Long id) {
-    studentRepository.deleteById(id);
+  private Lesson mapToDomain(LessonEntity entity) {
+    return new Lesson()
+        .setId(entity.getId())
+        .setLessonStatus(entity.getLessonStatus())
+        .setNotes(entity.getNotes())
+        .setStartTime(entity.getStartTime())
+        .setEndTime(entity.getEndTime());
   }
 }
+
+

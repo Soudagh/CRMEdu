@@ -42,14 +42,14 @@ public class SecurityConfig {
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests((authorize) -> authorize
             .requestMatchers("/error").permitAll()
-            .requestMatchers("api/v1/auth/signup", "api/v1/auth/login", "api/v1/auth/verify-email", "api/v1/auth/token", "/v3/api-docs",
+            .requestMatchers("api/v1/auth/signup", "/api/v1/auth/login", "api/v1/auth/verify-email", "api/v1/auth/token", "/v3/api-docs",
                 "/v3/api-docs/**", "/swagger-resources", "/swagger-resources/**", "/configuration/ui",
                 "/configuration/security", "/swagger-ui/**", "/webjars/**", "/swagger-ui.html", "/api/v1/auth/**").permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/organizations").authenticated()
             .requestMatchers(HttpMethod.POST, "/api/v1/organizations").permitAll()
             .anyRequest().authenticated()
         )
-        .formLogin(form -> form.loginProcessingUrl("api/v1/auth/login"))
+//        .formLogin(form -> form.loginProcessingUrl("api/v1/auth/login"))
         .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }

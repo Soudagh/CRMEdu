@@ -96,7 +96,6 @@ public class SubjectControllerTest extends BaseIntegrationTest {
     var createResponse = mockCreator.createSubject();
     var id = createResponse.getId();
     var updateRequest = getMockObject(UpdateSubjectRequest.class);
-    System.out.println(updateRequest);
     mockMvc.perform(put("/api/v1/subjects/" + id)
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(updateRequest)))

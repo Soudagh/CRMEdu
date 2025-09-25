@@ -9,11 +9,12 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import java.util.Optional;
 import org.example.crmedu.BaseUnitTest;
-import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
+import org.example.crmedu.domain.exception.UniqueConstraintsException;
 import org.example.crmedu.domain.model.Organization;
 import org.example.crmedu.domain.model.Page;
 import org.example.crmedu.domain.repository.OrganizationRepository;
+import org.example.crmedu.domain.service.organization.OrganizationService;
 import org.example.crmedu.domain.service.organization.OrganizationServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +23,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
- * Unit tests for {@link OrganizationServiceImpl}. This class verifies the behavior of organization-related operations using mocked dependencies.
+ * Unit tests for {@link OrganizationService}. This class verifies the behavior of organization-related operations using mocked dependencies.
  */
 @ExtendWith(MockitoExtension.class)
 public class OrganizationServiceTest extends BaseUnitTest {
@@ -34,28 +35,31 @@ public class OrganizationServiceTest extends BaseUnitTest {
   private OrganizationRepository organizationRepository;
 
   @Test
-  void findById_shouldThrowException_whenSelectIdDoesNotExist() {
+  void givenNotExistentOrganizationId_whenFindById_shouldThrowEntityNotFoundException() {
     var organizationId = 1L;
-    when(organizationRepository.findById(1L)).thenReturn(Optional.empty());
+    when(organizationRepository.findById(organizationId)).thenReturn(Optional.empty());
+
     assertThrows(EntityNotFoundException.class, () -> organizationService.findById(organizationId));
   }
 
   @Test
-  void checkExistanceById_shouldThrowException_whenReturnsFalse() {
+  void givenNotExistentOrganizationId_whenCheckExistanceById_shouldThrowEntityNotFoundException() {
     var organizationId = 1L;
     when(organizationRepository.existsById(organizationId)).thenReturn(false);
+
     assertThrows(EntityNotFoundException.class, () -> organizationService.checkExistanceById(organizationId));
   }
 
   @Test
-  void checkExistanceById_shouldNotThrowException_whenReturnsTrue() {
+  void givenExistentOrganizationId_whenCheckExistanceById_shouldDoesNotThrowException() {
     var organizationId = 1L;
     when(organizationRepository.existsById(organizationId)).thenReturn(true);
+
     assertDoesNotThrow(() -> organizationService.checkExistanceById(organizationId));
   }
 
   @Test
-  void findAll_shouldReturnPageOfOrganizations() {
+  void givenTwoOrganizationsInRepository_whenFindAll_shouldReturnPageWithOrganizations() {
     int pageNumber = 0;
     int pageSize = 5;
     var org1 = getMockObject(Organization.class);
@@ -67,41 +71,52 @@ public class OrganizationServiceTest extends BaseUnitTest {
         .setLimit(pageSize)
         .setTotalCount(organizations.size());
     when(organizationRepository.findAll(pageNumber, pageSize)).thenReturn(mockPage);
+
     var resultPages = organizationService.findAll(pageNumber, pageSize);
+
     assertNotNull(resultPages);
-    assertEquals(2, resultPages.getContent().size());
+    assertEquals(organizations.size(), resultPages.getContent().size());
     assertEquals(org1, resultPages.getContent().get(0));
     assertEquals(org2, resultPages.getContent().get(1));
   }
 
   @Test
-  void checkOrganizationConstraint_shouldThrowException_whenOrganizationEmailExists() {
+  void givenExistentOrganizationByEmail_whenCreateOrganizationWithThisEmail_shouldThrowUniqueConstraintsException() {
     var organization = getMockObject(Organization.class).setId(null);
     when(organizationRepository.existsByEmail(organization)).thenReturn(true);
-    assertThrows(EntityExistsException.class, () -> organizationService.create(organization));
+
+    assertThrows(UniqueConstraintsException.class, () -> organizationService.create(organization));
   }
 
   @Test
-  void checkOrganizationConstraint_shouldThrowException_whenOrganizationPhoneExists() {
+  void givenExistentOrganizationByPhone_whenCreateOrganizationWithThisPhone_shouldThrowUniqueConstraintsException() {
     var organization = getMockObject(Organization.class).setId(null);
     when(organizationRepository.existsByPhone(organization)).thenReturn(true);
-    assertThrows(EntityExistsException.class, () -> organizationService.create(organization));
+
+    assertThrows(UniqueConstraintsException.class, () -> organizationService.create(organization));
   }
 
   @Test
-  void checkOrganizationConstraint_shouldThrowException_whenOrganizationNameExists() {
+  void givenExistentOrganizationByName_whenCreateOrganizationWithThisName_shouldThrowUniqueConstraintsException() {
     var organization = getMockObject(Organization.class).setId(null);
     when(organizationRepository.existsByName(organization)).thenReturn(true);
-    assertThrows(EntityExistsException.class, () -> organizationService.create(organization));
+
+    assertThrows(UniqueConstraintsException.class, () -> organizationService.create(organization));
   }
 
   @Test
-  void checkOrganizationConstraint_shouldNotThrowException_whenOrganizationUnique() {
+  void givenOrganizationWithNotExistentConstraints_whenCreate_shouldCreateOrganization() {
     var organization = getMockObject(Organization.class).setId(null);
     when(organizationRepository.existsByName(organization)).thenReturn(false);
     when(organizationRepository.existsByPhone(organization)).thenReturn(false);
     when(organizationRepository.existsByEmail(organization)).thenReturn(false);
-    assertDoesNotThrow(() -> organizationService.create(organization));
-  }
+    when(organizationRepository.create(organization)).thenReturn(organization.setId(1L));
 
+    var response = assertDoesNotThrow(() -> organizationService.create(organization));
+
+    assertNotNull(response);
+    assertEquals(organization.getName(), response.getName());
+    assertEquals(organization.getEmail(), response.getEmail());
+    assertEquals(organization.getPhone(), response.getPhone());
+  }
 }

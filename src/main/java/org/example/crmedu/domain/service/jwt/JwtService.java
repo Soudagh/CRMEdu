@@ -31,4 +31,6 @@ public interface JwtService {
    * @return {@link Jwt} model containing details about updated tokens
    */
   Jwt refresh(String refreshToken);
+
+  User getCurrentUser();
 }

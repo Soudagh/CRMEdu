@@ -12,7 +12,7 @@ import org.mapstruct.Mapper;
 /**
  * A mapper interface for converting between Student domain model and its corresponding DTOs. Uses MapStruct for automatic mapping.
  */
-@Mapper(componentModel = "spring", uses = OrganizationDTOMapper.class)
+@Mapper(componentModel = "spring", uses = {OrganizationDTOMapper.class, UserDTOMapper.class})
 public interface StudentDTOMapper {
 
   /**
