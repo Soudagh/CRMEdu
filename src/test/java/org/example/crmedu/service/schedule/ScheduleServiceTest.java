@@ -42,7 +42,7 @@ class ScheduleServiceTest extends BaseUnitTest {
   private TutorService tutorService;
 
   @Test
-  void validateScheduleOverlap_shouldThrowException_whenSchedulesOverlap() {
+  void givenOverlapSchedule_whenCreateSchedule_shouldReturnTutorScheduleOverlapsException() {
     var existingSchedule = getMockObject(TutorSchedule.class)
         .setDayOfWeek(DaysOfWeek.MONDAY)
         .setTimeStart(OffsetTime.parse("10:00:00+03:00"))
@@ -54,12 +54,13 @@ class ScheduleServiceTest extends BaseUnitTest {
     var tutorId = 1L;
     when(tutorScheduleRepository.findByTutorId(tutorId))
         .thenReturn(Set.of(existingSchedule));
+
     assertThrows(TutorScheduleOverlapsException.class,
         () -> tutorScheduleService.createSchedule(newSchedule, tutorId));
   }
 
   @Test
-  void validateScheduleOverlap_shouldNotThrowException_whenNoOverlap() {
+  void givenNotOverlapSchedule_whenCreateSchedule_shouldReturnTutorSchedule() {
     var existingSchedule = getMockObject(TutorSchedule.class)
         .setDayOfWeek(DaysOfWeek.MONDAY)
         .setTimeStart(OffsetTime.parse("10:00:00+03:00"))
@@ -71,11 +72,14 @@ class ScheduleServiceTest extends BaseUnitTest {
     var tutorId = 1L;
     when(tutorScheduleRepository.findByTutorId(tutorId))
         .thenReturn(Set.of(existingSchedule));
-    assertDoesNotThrow(() -> tutorScheduleService.createSchedule(newSchedule, tutorId));
-    newSchedule
-        .setTimeStart(OffsetTime.parse("07:30:00+03:00"))
-        .setTimeEnd(OffsetTime.parse("09:00:00+03:00"));
-    assertDoesNotThrow(() -> tutorScheduleService.createSchedule(newSchedule, tutorId));
+    when(tutorScheduleRepository.create(newSchedule)).thenReturn(newSchedule.setId(2L));
+
+    var response = assertDoesNotThrow(() -> tutorScheduleService.createSchedule(newSchedule, tutorId));
+
+    assertNotNull(response);
+    assertEquals(newSchedule.getDayOfWeek(), response.getDayOfWeek());
+    assertEquals(newSchedule.getTimeStart(), response.getTimeStart());
+    assertEquals(newSchedule.getTimeEnd(), response.getTimeEnd());
   }
 
   @Test

@@ -1,6 +1,7 @@
 package org.example.crmedu.service.tutor;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
@@ -30,31 +31,39 @@ public class TutorServiceTest extends BaseUnitTest {
   private TutorRepository tutorRepository;
 
   @Test
-  void findById_shouldThrowException_whenSelectedIdNotFound() {
+  void givenNotExistentId_whenFindById_shouldThrowEntityNotFoundException() {
     var tutorId = 1L;
     when(tutorRepository.findById(tutorId)).thenReturn(Optional.empty());
+
     assertThrows(EntityNotFoundException.class, () -> tutorService.findById(tutorId));
   }
 
   @Test
-  void findById_shouldNotThrowException_whenSelectedIdExists() {
+  void givenExistentId_whenFindById_shouldReturnTutor() {
     var tutor = getMockObject(Tutor.class);
     var tutorId = tutor.getId();
     when(tutorRepository.findById(tutorId)).thenReturn(Optional.of(tutor));
-    assertDoesNotThrow(() -> tutorService.findById(tutorId));
+
+    var response = assertDoesNotThrow(() -> tutorService.findById(tutorId));
+    assertEquals(tutorId, response.getId());
+    assertEquals(tutor.getUser(), response.getUser());
   }
 
   @Test
-  void create_shouldThrowException_whenTutorAlreadyBelongsToUser() {
+  void givenTutorAlreadyLinkedToUser_whenCreateTutor_shouldThrowUniqueConstraintsException() {
     var tutor = getMockObject(Tutor.class).setId(null);
     when(tutorRepository.existsByUser(tutor)).thenReturn(true);
+
     assertThrows(UniqueConstraintsException.class, () -> tutorService.create(tutor));
   }
 
   @Test
-  void create_shouldNotThrowException() {
+  void givenTutorNotLinkedToUser_whenCreateTutor_shouldReturnTutorLinkedToUser() {
     var tutor = getMockObject(Tutor.class).setId(null);
     when(tutorRepository.existsByUser(tutor)).thenReturn(false);
-    assertDoesNotThrow(() -> tutorService.create(tutor));
+    when(tutorRepository.create(tutor)).thenReturn(tutor.setId(1L));
+
+    var response = assertDoesNotThrow(() -> tutorService.create(tutor));
+    assertEquals(tutor.getUser(), response.getUser());
   }
 }

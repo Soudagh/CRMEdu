@@ -24,7 +24,7 @@ public class SecurityConfigurationTest extends BaseIntegrationTest {
   @SneakyThrows
   void shouldReturnErrorResponseForErrorEndpoint() {
     mockMvc.perform(get("/error"))
-        .andExpect(status().isInternalServerError()) // Ожидаем статус 500
+        .andExpect(status().isInternalServerError())
         .andExpect(jsonPath("$.status").value(999))
         .andExpect(jsonPath("$.error").value("None"))
         .andExpect(jsonPath("$.timestamp").exists());
