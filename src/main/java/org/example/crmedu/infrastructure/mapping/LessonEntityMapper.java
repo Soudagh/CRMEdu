@@ -5,7 +5,10 @@ import org.example.crmedu.domain.model.Lesson;
 import org.example.crmedu.infrastructure.entity.LessonEntity;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper(
+    componentModel = "spring",
+    uses = {TutorEntityMapper.class, UserEntityMapper.class, NotificationEntityMapper.class}
+)
 public interface LessonEntityMapper extends BaseEntityMapper<Lesson, LessonEntity> {
 
   Lesson toDomain(LessonEntity lesson);

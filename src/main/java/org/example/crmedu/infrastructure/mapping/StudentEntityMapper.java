@@ -7,5 +7,8 @@ import org.mapstruct.Mapper;
 /**
  * A mapper interface for converting between Student domain model and Student JPA-entity. Uses MapStruct for automatic mapping.
  */
-@Mapper(componentModel = "spring", uses = SubscriptionEntityMapper.class)
+@Mapper(
+    componentModel = "spring",
+    uses = {SubscriptionEntityMapper.class, UserEntityMapper.class, NotificationEntityMapper.class}
+)
 public interface StudentEntityMapper extends BaseEntityMapper<Student, StudentEntity> { }
