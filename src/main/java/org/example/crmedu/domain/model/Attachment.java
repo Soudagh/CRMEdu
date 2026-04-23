@@ -12,4 +12,10 @@ public class Attachment {
   private CompletedTask completedTask;
 
   private String url;
+
+  private byte[] content;
+
+  private String mimeType;
+
+  private String originalName;
 }

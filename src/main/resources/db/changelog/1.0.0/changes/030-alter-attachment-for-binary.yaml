@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 030-alter-attachment-for-binary
+      author: soudagh
+      changes:
+        - addColumn:
+            schemaName: crmedu
+            tableName: attachment
+            columns:
+              - column:
+                  name: content
+                  type: bytea
+              - column:
+                  name: mime_type
+                  type: varchar(64)
+              - column:
+                  name: original_name
+                  type: varchar(256)
+        - dropNotNullConstraint:
+            schemaName: crmedu
+            tableName: attachment
+            columnName: completed_task_id
+            columnDataType: bigint

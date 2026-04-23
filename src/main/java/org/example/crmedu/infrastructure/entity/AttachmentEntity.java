@@ -32,4 +32,13 @@ public class AttachmentEntity {
   @Column(name = "url", nullable = false)
   private String url;
 
+  @Column(name = "content")
+  private byte[] content;
+
+  @Column(name = "mime_type")
+  private String mimeType;
+
+  @Column(name = "original_name")
+  private String originalName;
+
 }

@@ -49,3 +49,13 @@ databaseChangeLog:
       file: db/changelog/1.0.0/changes/024-add-name-program-table.yaml
   - include:
       file: db/changelog/1.0.0/changes/025-add-lesson-attendance-status-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/026-alter-homework-add-status.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/027-alter-completed-task-add-student-id.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/028-alter-checked-task-add-inspection-date.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/029-create-payment-table.yaml
+  - include:
+      file: db/changelog/1.0.0/changes/030-alter-attachment-for-binary.yaml

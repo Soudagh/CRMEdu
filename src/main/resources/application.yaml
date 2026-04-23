@@ -11,6 +11,10 @@ spring:
     password: ${DATABASE_PASSWORD}
     url: ${DATABASE_URL}
     driver-class-name: org.postgresql.Driver
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   jpa:
     properties:
       hibernate:
