@@ -10,7 +10,7 @@ public class Task {
 
   private Long id;
 
-  private Lesson lesson;
+  private Homework homework;
 
   private String title;
 

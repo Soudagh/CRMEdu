@@ -1,5 +1,7 @@
 package org.example.crmedu.controller.tutor;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
@@ -16,16 +18,20 @@ import org.example.crmedu.application.dto.request.tutor.PatchTutorGradesRequest;
 import org.example.crmedu.application.dto.request.tutor.PatchTutorSubjectsRequest;
 import org.example.crmedu.application.dto.request.tutor.UpdateTutorRequest;
 import org.example.crmedu.controller.MockCreator;
+import org.example.crmedu.domain.service.auth.EmailService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 /**
  * Integration tests for {@code TutorController}. This class verifies the functionality of tutor-related API endpoints.
+ *
  */
-@WithMockUser(roles = "SUPERUSER")
+@WithMockUser("SUPERUSER")
 public class TutorControllerTest extends BaseIntegrationTest {
 
   @Autowired
@@ -34,11 +40,16 @@ public class TutorControllerTest extends BaseIntegrationTest {
   @Autowired
   private MockCreator mockCreator;
 
+  @MockitoBean
+  private EmailService emailService;
+
   @Test
   @SneakyThrows
-  void shouldCreateTutor() {
+  void givenTutorWithUserId_whenPostTutors_shouldCreateTutor() {
+    doNothing().when(emailService).sendMail(any(), any(), any());
     var userId = mockCreator.createUser().getId();
     var request = getMockObject(CreateTutorRequest.class).setUser(userId);
+
     mockMvc.perform(post("/api/v1/tutors")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -48,9 +59,11 @@ public class TutorControllerTest extends BaseIntegrationTest {
 
   @Test
   @SneakyThrows
-  void shouldGetTutor() {
+  void givenExistingUser_whenGetTutorById_shouldReturnUser() {
+    doNothing().when(emailService).sendMail(any(), any(), any());
     var response = mockCreator.createTutor();
     var id = response.getId();
+
     mockMvc.perform(get("/api/v1/tutors/" + id))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.id").value(id))
@@ -59,15 +72,19 @@ public class TutorControllerTest extends BaseIntegrationTest {
 
   @Test
   @SneakyThrows
-  void shouldReturnNotFoundWhenTutorDoesNotExist() {
+  void givenNonExistentTutorId_whenGetById_shouldReturn404() {
+    doNothing().when(emailService).sendMail(any(), any(), any());
     var nonExistentId = 999999L;
+
     mockMvc.perform(get("/api/v1/tutors/" + nonExistentId))
         .andExpect(status().isNotFound());
   }
 
   @Test
   @SneakyThrows
-  void shouldGetTutors() {
+  void givenNothing_whenGetTutors_shouldReturnPage() {
+    doNothing().when(emailService).sendMail(any(), any(), any());
+
     mockMvc.perform(get("/api/v1/tutors"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.content").isArray());
@@ -75,11 +92,13 @@ public class TutorControllerTest extends BaseIntegrationTest {
 
   @Test
   @SneakyThrows
-  void shouldUpdateTutor() {
+  void givenExistingTutorAndUpdatedVersion_whenUpdateById_shouldReturn200() {
+    doNothing().when(emailService).sendMail(any(), any(), any());
     var oldTutor = mockCreator.createTutor();
     var id = oldTutor.getId();
     var grades = Set.of(1, 2, 3, 4);
     var updateRequest = getMockObject(UpdateTutorRequest.class).setGrades(grades).setSubjects(null);
+
     mockMvc.perform(put("/api/v1/tutors/" + id)
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(updateRequest)))
@@ -91,6 +110,7 @@ public class TutorControllerTest extends BaseIntegrationTest {
   void shouldDeleteTutor() {
     var tutor = mockCreator.createTutor();
     var id = tutor.getId();
+
     mockMvc.perform(delete("/api/v1/tutors/" + id))
         .andExpect(status().isOk());
   }
@@ -105,6 +125,7 @@ public class TutorControllerTest extends BaseIntegrationTest {
     var subjects = Set.of(firstSubject.getId(), secondSubject.getId());
     var subjectRequest = getMockObject(PatchTutorSubjectsRequest.class).setSubjects(subjects);
     var tutor = mockCreator.createTutorByUserId(user.getId());
+
     mockMvc.perform(patch("/api/v1/tutors/" + tutor.getId() + "/subjects")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(subjectRequest)))
@@ -117,6 +138,7 @@ public class TutorControllerTest extends BaseIntegrationTest {
     var tutor = mockCreator.createTutor();
     var grades = Set.of(1, 2, 3);
     var gradesRequest = getMockObject(PatchTutorGradesRequest.class).setGrades(grades);
+
     mockMvc.perform(patch("/api/v1/tutors/" + tutor.getId() + "/grades")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(gradesRequest)))

@@ -1,5 +1,7 @@
 package org.example.crmedu.infrastructure.repository.student;
 
+import java.util.List;
+import org.example.crmedu.domain.enums.SubscriptionStatus;
 import org.example.crmedu.domain.model.Lesson;
 import org.example.crmedu.domain.model.Student;
 import org.example.crmedu.domain.repository.StudentRepository;
@@ -31,6 +33,15 @@ public class StudentRepositoryImpl extends BaseRepository<Student, StudentEntity
   @Override
   public Student getStudentByUserId(Long userId) {
     return mapper.toDomain(studentRepository.getStudentEntityByUser_Id(userId));
+  }
+
+  @Override
+  public List<Student> findByProgramId(Long programId) {
+    return studentRepository
+        .findAllBySubscriptions_Program_IdAndSubscriptions_SubscriptionStatus(programId, SubscriptionStatus.ACTIVE)
+        .stream()
+        .map(mapper::toDomain)
+        .toList();
   }
 
   private Lesson mapToDomain(LessonEntity entity) {

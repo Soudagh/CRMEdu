@@ -5,5 +5,12 @@ import org.example.crmedu.domain.model.Notification;
 import org.example.crmedu.domain.model.User;
 
 public interface NotificationService {
+
   List<Notification> getUserNotifications(User user);
+
+  Notification create(Notification notification);
+
+  void markAsRead(Long notificationId, Long userId);
+
+  void markAllAsRead(Long userId);
 }

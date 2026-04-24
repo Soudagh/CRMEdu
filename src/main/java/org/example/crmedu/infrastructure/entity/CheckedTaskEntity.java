@@ -28,6 +28,10 @@ public class CheckedTaskEntity {
   private Long id;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "completed_task_id")
+  private CompletedTaskEntity completedTaskEntity;
+
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "tutor_id")
   private TutorEntity tutorEntity;
 

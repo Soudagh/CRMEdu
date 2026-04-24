@@ -14,6 +14,8 @@ public class CheckedTask {
 
   private Tutor tutor;
 
+  private String comments;
+
   private Boolean isChecked;
 
   private ZonedDateTime inspectionDate;

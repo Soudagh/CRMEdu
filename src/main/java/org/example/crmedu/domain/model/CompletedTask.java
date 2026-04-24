@@ -13,6 +13,10 @@ public class CompletedTask {
 
   private Task task;
 
+  private Student student;
+
+  private String title;
+
   private String studentAnswer;
 
   private CompletedTaskStatus completedTaskStatus;

@@ -64,6 +64,7 @@ public class TutorServiceTest extends BaseUnitTest {
     when(tutorRepository.create(tutor)).thenReturn(tutor.setId(1L));
 
     var response = assertDoesNotThrow(() -> tutorService.create(tutor));
+
     assertEquals(tutor.getUser(), response.getUser());
   }
 }

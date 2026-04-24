@@ -1,5 +1,7 @@
 package org.example.crmedu.infrastructure.repository.student;
 
+import java.util.List;
+import org.example.crmedu.domain.enums.SubscriptionStatus;
 import org.example.crmedu.infrastructure.entity.StudentEntity;
 import org.example.crmedu.infrastructure.repository.BaseDataRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +16,7 @@ import org.springframework.stereotype.Repository;
 public interface DataStudentRepository extends BaseDataRepository<StudentEntity, Long> {
 
   StudentEntity getStudentEntityByUser_Id(Long userId);
+
+  List<StudentEntity> findAllBySubscriptions_Program_IdAndSubscriptions_SubscriptionStatus(
+      Long programId, SubscriptionStatus status);
 }

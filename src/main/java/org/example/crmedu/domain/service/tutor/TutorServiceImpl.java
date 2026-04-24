@@ -64,6 +64,12 @@ public class TutorServiceImpl extends BaseService<Tutor> implements TutorService
     return lessonRepository.getLessonsByTutorId(tutor.getId());
   }
 
+  @Override
+  @Transactional
+  public Tutor getTutorByUserId(Long userId) {
+    return tutorRepository.findTutorByUserId(userId);
+  }
+
   private void checkTutorBelongsToUser(Tutor tutor) {
     var violations = new ArrayList<UniqueConstraintError>();
     if (tutorRepository.existsByUser(tutor)) {

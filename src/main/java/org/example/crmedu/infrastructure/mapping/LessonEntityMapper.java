@@ -7,7 +7,12 @@ import org.mapstruct.Mapper;
 
 @Mapper(
     componentModel = "spring",
-    uses = {TutorEntityMapper.class, UserEntityMapper.class, NotificationEntityMapper.class}
+    uses = {
+        TutorEntityMapper.class,
+        StudentEntityMapper.class,
+        UserEntityMapper.class,
+        NotificationEntityMapper.class
+    }
 )
 public interface LessonEntityMapper extends BaseEntityMapper<Lesson, LessonEntity> {
 

@@ -1,5 +1,6 @@
 package org.example.crmedu.domain.repository;
 
+import java.util.List;
 import org.example.crmedu.domain.model.Student;
 
 /**
@@ -8,4 +9,6 @@ import org.example.crmedu.domain.model.Student;
 public interface StudentRepository extends BaseCrudRepository<Student> {
 
   Student getStudentByUserId(Long userId);
+
+  List<Student> findByProgramId(Long programId);
 }

@@ -19,6 +19,7 @@ public abstract class BaseService<T> {
         .orElseThrow(() -> new EntityNotFoundException(clazz, id));
   }
 
+  @Transactional
   public Page<T> findAll(int pageNumber, int pageSize) {
     return baseCrudRepository.findAll(pageNumber, pageSize);
   }

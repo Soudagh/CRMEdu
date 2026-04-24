@@ -11,12 +11,16 @@ import org.example.crmedu.domain.exception.EntityNotFoundException;
 import org.example.crmedu.domain.model.Organization;
 import org.example.crmedu.domain.service.organization.OrganizationService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.test.context.ActiveProfiles;
 
 /**
  * Integration tests for {@link OrganizationService}. This class verifies the integration of organization-related operations within the application, ensuring
  * correct interactions with the database.
  */
+@ActiveProfiles("test")
 public class OrganizationIntegrationServiceTest extends BaseIntegrationTest {
 
   @Autowired

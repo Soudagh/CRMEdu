@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 027-alter-completed-task-add-student-id
+      author: soudagh
+      changes:
+        - addColumn:
+            tableName: completed_task
+            schemaName: crmedu
+            columns:
+              - column:
+                  name: student_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_completed_task_student_id_student
+                    references: student(id)

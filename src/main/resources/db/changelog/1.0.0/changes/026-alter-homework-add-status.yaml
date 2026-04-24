@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 026-alter-homework-add-status
+      author: soudagh
+      changes:
+        - addColumn:
+            tableName: homework
+            schemaName: crmedu
+            columns:
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: 'DRAFT'
+                  constraints:
+                    nullable: false

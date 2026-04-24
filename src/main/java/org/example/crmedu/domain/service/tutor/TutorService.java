@@ -29,4 +29,6 @@ public interface TutorService extends BaseCrudService<Tutor> {
   void patchGrades(Set<Integer> grades, Long id);
 
   List<Lesson> getScheduleByUserId(Long userId);
+
+  Tutor getTutorByUserId(Long userId);
 }

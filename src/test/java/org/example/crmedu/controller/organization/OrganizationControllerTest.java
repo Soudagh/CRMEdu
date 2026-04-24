@@ -32,9 +32,10 @@ public class OrganizationControllerTest extends BaseIntegrationTest {
 
   @Test
   @SneakyThrows
-  void shouldCreateOrganization() {
+  void givenOrganization_whenPostOrganizations_shouldCreateOrganization() {
     var request = getMockObject(CreateOrganizationRequest.class).setPhone("+79999999999").setEmail("org@mail.ru");
     request.setName("Test Organization");
+
     mockMvc.perform(post("/api/v1/organizations")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -47,6 +48,7 @@ public class OrganizationControllerTest extends BaseIntegrationTest {
   void createOrganization_shouldReturnBadRequest_whenEmailIsNull() {
     var request = getMockObject(CreateOrganizationRequest.class).setPhone("+79999999999").setEmail(null);
     request.setName("Test Organization");
+
     mockMvc.perform(post("/api/v1/organizations")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -58,6 +60,7 @@ public class OrganizationControllerTest extends BaseIntegrationTest {
   void shouldGetOrganization() {
     var response = mockCreator.createOrganization();
     var id = response.getId();
+
     mockMvc.perform(get("/api/v1/organizations/" + id))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.id").value(id));
@@ -67,6 +70,7 @@ public class OrganizationControllerTest extends BaseIntegrationTest {
   @SneakyThrows
   void shouldReturnNotFoundWhenOrganizationDoesNotExist() {
     var nonExistentId = 999999L;
+
     mockMvc.perform(get("/api/v1/organizations/" + nonExistentId))
         .andExpect(status().isNotFound());
   }
@@ -86,6 +90,7 @@ public class OrganizationControllerTest extends BaseIntegrationTest {
     var createResponse = mockCreator.createOrganization();
     var id = createResponse.getId();
     var updateRequest = getMockObject(UpdateOrganizationRequest.class).setPhone("+79999999999").setEmail("org@mail.ru");
+
     mockMvc.perform(put("/api/v1/organizations/" + id)
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(updateRequest)))
@@ -97,6 +102,7 @@ public class OrganizationControllerTest extends BaseIntegrationTest {
   void shouldDeleteOrganization() {
     var response = mockCreator.createOrganization();
     var id = response.getId();
+
     mockMvc.perform(delete("/api/v1/organizations/" + id))
         .andExpect(status().isOk());
   }

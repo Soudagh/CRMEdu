@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 028-alter-checked-task-add-inspection-date
+      author: soudagh
+      changes:
+        - addColumn:
+            tableName: checked_task
+            schemaName: crmedu
+            columns:
+              - column:
+                  name: inspection_date
+                  type: timestamp with time zone

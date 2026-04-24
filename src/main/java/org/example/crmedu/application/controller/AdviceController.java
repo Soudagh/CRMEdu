@@ -10,6 +10,8 @@ import org.example.crmedu.application.dto.error.ValidationErrorResponse;
 import org.example.crmedu.application.dto.error.ViolationDto;
 import org.example.crmedu.domain.exception.EntityExistsException;
 import org.example.crmedu.domain.exception.EntityNotFoundException;
+import org.example.crmedu.domain.exception.OperationNotAllowedException;
+import org.example.crmedu.domain.exception.ResourceAccessDeniedException;
 import org.example.crmedu.domain.exception.TutorScheduleOverlapsException;
 import org.example.crmedu.domain.exception.UniqueConstraintsException;
 import org.springframework.http.HttpStatus;
@@ -82,6 +84,18 @@ public class AdviceController {
    * @param e the exception containing validation errors
    * @return a {@link ResponseEntity} containing a {@link ValidationErrorResponse} with the list of validation violations
    */
+  @ExceptionHandler(OperationNotAllowedException.class)
+  public ResponseEntity<SystemError> handleOperationNotAllowedException(OperationNotAllowedException e) {
+    var error = getSystemError(e);
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+  }
+
+  @ExceptionHandler(ResourceAccessDeniedException.class)
+  public ResponseEntity<SystemError> handleResourceAccessDeniedException(ResourceAccessDeniedException e) {
+    var error = getSystemError(e);
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
+  }
+
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ValidationErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
     final List<ViolationDto> violations = e.getBindingResult().getFieldErrors().stream()

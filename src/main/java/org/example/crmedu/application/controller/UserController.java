@@ -10,10 +10,12 @@ import org.example.crmedu.application.dto.request.user.UpdateUserRequest;
 import org.example.crmedu.application.dto.response.user.CreateUserResponse;
 import org.example.crmedu.application.dto.response.user.GetUserResponse;
 import org.example.crmedu.application.dto.response.user.GetUserScheduleResponse;
+import org.example.crmedu.application.dto.response.notification.GetNotificationResponse;
 import org.example.crmedu.application.mapping.LessonDTOMapper;
+import org.example.crmedu.application.mapping.NotificationDTOMapper;
 import org.example.crmedu.application.mapping.UserDTOMapper;
-import org.example.crmedu.domain.model.Notification;
 import org.example.crmedu.domain.service.jwt.JwtService;
+import org.example.crmedu.domain.service.notification.NotificationService;
 import org.example.crmedu.domain.service.user.UserService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -44,6 +46,10 @@ public class UserController {
   private final LessonDTOMapper lessonDTOMapper;
 
   private final JwtService jwtService;
+
+  private final NotificationService notificationService;
+
+  private final NotificationDTOMapper notificationDTOMapper;
 
   /**
    * Retrieves a paginates list of users.
@@ -118,8 +124,24 @@ public class UserController {
   }
 
   @GetMapping("/notifications")
-  public ResponseEntity<List<Notification>> getUserNotifications() {
-    return ResponseEntity.ok(jwtService.getCurrentUser().getNotifications());
+  public ResponseEntity<List<GetNotificationResponse>> getUserNotifications() {
+    var user = jwtService.getCurrentUser();
+    var notifications = notificationService.getUserNotifications(user);
+    return ResponseEntity.ok(notificationDTOMapper.notificationsToGetResponses(notifications));
+  }
+
+  @PatchMapping("/notifications/{id}/read")
+  public ResponseEntity<Void> markNotificationAsRead(@PathVariable Long id) {
+    var userId = jwtService.getCurrentUser().getId();
+    notificationService.markAsRead(id, userId);
+    return ResponseEntity.ok().build();
+  }
+
+  @PatchMapping("/notifications/read-all")
+  public ResponseEntity<Void> markAllNotificationsAsRead() {
+    var userId = jwtService.getCurrentUser().getId();
+    notificationService.markAllAsRead(userId);
+    return ResponseEntity.ok().build();
   }
 
   @GetMapping("/schedule")
