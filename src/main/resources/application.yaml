@@ -1,6 +1,10 @@
 spring:
   application:
     name: crmedu
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration
+      - org.springframework.boot.autoconfigure.mail.MailSenderValidatorAutoConfiguration
   liquibase:
     enabled: true
     default-schema: crmedu
